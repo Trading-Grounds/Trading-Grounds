@@ -34,7 +34,11 @@ module.exports = (sequelize, Sequelize) => {
 		status: {
 			type: Sequelize.ENUM('active', 'inactive'),
 			defaultValue: 'active'
-		}
+		}, 
+        bank_balance: {
+            type: Sequelize.INTEGER,
+            isNumeric: true
+        }
 	});
 	
 	return User;
