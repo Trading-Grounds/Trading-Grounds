@@ -41,6 +41,9 @@
         ],
         "prettier/prettier": "error"
 */
+<<<<<<< HEAD
+=======
 
+>>>>>>> cd21dc3704c8c4bc652e65eab9c7b2344311d284
     }
 }

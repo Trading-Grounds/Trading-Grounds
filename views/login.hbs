@@ -1,0 +1,16 @@
+	{{#if errors}}
+		<ul class="errors">
+		{{#each errors}}
+			<li class="">{{this}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+	
+	<form id="login" name="login" method="post" action="/login">
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" placeholder="Username" value="{{user.username}}">
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" placeholder="Password" value="{{user.password}}">
+		<input type="submit" id="submit" value="Log In">
+	</form>
+	<p>Don't have an account? <a href="/register">Create one!</a></p>
