@@ -1,6 +1,9 @@
 {
   "development": {
-    "use_env_variable": "LOCALDB",
+    "username": "bootcamp",
+    "password": "secret",
+    "database": "exampledb",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
