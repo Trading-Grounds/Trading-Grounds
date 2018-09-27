@@ -1,0 +1,24 @@
+	{{#if errors}}
+		<ul class="errors">
+		{{#each errors}}
+			<li class="">{{this}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+	
+	<form id="register" name="register" method="post" action="/register">
+		<label for="username">Username</label>
+		<input type="text" id="username" name="username" placeholder="Username" value="{{user.username}}">
+		<label for="email">Email</label>
+		<input type="email" id="email" name="email" placeholder="Email" value="{{user.email}}">
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" placeholder="Password" value="{{user.password}}">
+		<label for="confirm_password">Confirm Password</label>
+		<input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="{{user.confirm_password}}">
+		<label for="first_name">First Name</label>
+		<input type="text" id="first_name" name="first_name" placeholder="First Name" value="{{user.first_name}}">
+		<label for="last_name">Last Name</label>
+		<input type="text" id="last_name" name="last_name" placeholder="Last Name" value="{{user.last_name}}">
+		<input type="submit" id="submit" value="Register">
+	</form>
+	<p>Already have an account? <a href="/login">Log in!</a></p>
