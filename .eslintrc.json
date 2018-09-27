@@ -9,6 +9,7 @@
         "prettier"
       ],
     "rules": {
+/*
         "no-duplicate-case":"error",
         "no-empty":"error",
         "no-extra-semi":"error",
@@ -37,7 +38,9 @@
         "semi": [
             "error",
             "always"
-        ]
-       
+        ],
+        "prettier/prettier": "error"
+*/
+
     }
 }
