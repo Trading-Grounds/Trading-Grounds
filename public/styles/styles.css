@@ -22,6 +22,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  color: ghostwhite;
 }
 
 nav {
@@ -46,6 +47,7 @@ h1 {
   Font-Size: 128px;
   color: ghostwhite;
 }
+
 
 h4 {
   Font-Family: 'Source Sans Pro', Sans-Serif;
