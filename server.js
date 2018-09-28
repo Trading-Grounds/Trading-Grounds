@@ -47,16 +47,16 @@ app.set('view engine', '.hbs');
 var models = require('./models');
 
 // Routes
-var authRoutes = require('./routes/auth')(app, passport);
+require('./routes/auth')(app, passport);
 // var reset = require('./routes/reset')(app);
-var apiRoutes = require('./routes/apiRoutes')(app);
-var htmlRoutes = require('./routes/htmlRoutes')(app);
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
 
 //	Import Passport Strategies
 require('./config/passport/passport')(passport, models.user);
 
 //	Database Syncing Options
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
