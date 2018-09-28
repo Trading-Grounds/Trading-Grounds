@@ -39,6 +39,10 @@ header, main, footer {
       url("/img/new_york_bw.jpg"); 
   }
 
+  #webTicker {
+      color: ghostwhite;
+  }
+
   nav {
     background: transparent;
     z-index: 0;
