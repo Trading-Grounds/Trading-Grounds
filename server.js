@@ -47,6 +47,7 @@ var models = require('./models');
 
 // Routes
 var authRoutes = require('./routes/auth')(app, passport);
+// var reset = require('./routes/reset')(app);
 var apiRoutes = require('./routes/apiRoutes')(app);
 var htmlRoutes = require('./routes/htmlRoutes')(app);
 
@@ -62,7 +63,7 @@ if (process.env.NODE_ENV === "test") {
 	syncOptions.force = true;
 }
 
-// Starting the server, syncing our models ------------------------------------/
+// Sync the models and start the server
 models.sequelize.sync(syncOptions).then(() => {
 	app.listen(PORT, err => {
 		if(!err) {
