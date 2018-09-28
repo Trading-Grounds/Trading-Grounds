@@ -98,3 +98,15 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
+
+//Front-end Script
+$( document ).ready(function() {
+  
+// Webticker Function
+$("#webTicker").webTicker({
+  height:'75px'
+});
+
+
+
+});
