@@ -1,0 +1,70 @@
+/*
+Use for Headings
+Font-Family: 'Playfair Display', Serif;
+Font-Size: 48px;
+
+Use for Content
+Font-Family: 'Source Sans Pro', Sans-Serif;
+Font-Size: 17px;
+*/
+
+body {
+    /*Font Style*/
+    Font-Family: 'Source Sans Pro', Sans-Serif;
+    Font-Size: 17px;
+
+    /*This is for Materialize Sticky Footer*/
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header, main, footer {
+    padding-left: 300px;
+  }
+
+
+.page-background {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: cover, cover;
+}
+
+#dashboard {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("/img/new_york_bw.jpg"); 
+  }
+
+  nav {
+    background: transparent;
+    z-index: 0;
+  }
+  
+  .no-shadows {
+    box-shadow: none !important;
+  }
+  
+  .brand-logo {
+    Font-Family: 'Playfair Display', Serif;
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+
+  .page-footer {
+    background: transparent;
+  }
+
+  /*Media Queries*/
+
+  /*Materialize Side Nav*/
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }

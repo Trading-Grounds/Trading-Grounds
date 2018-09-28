@@ -39,7 +39,8 @@ app.engine(
 	})
 );
 */
-app.engine('hbs', exphbs({ extname: '.hbs', defaultLayout: 'main' }));
+// app.engine('hbs', exphbs({ extname: '.hbs', defaultLayout: 'main' }));
+app.engine('hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
 //	Import DB Models
