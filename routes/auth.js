@@ -1,7 +1,7 @@
 var authController = require('../controllers/authcontroller');
-var expressValidator = require('express-validator');
+// var expressValidator = require('express-validator');
 
-console.log('\n\n\n', authController, '\n\n\n');
+// console.log('\n\n\n', authController, '\n\n\n');
 module.exports = (app, passport) => {
 	
 	//	GET Registration
@@ -17,29 +17,11 @@ module.exports = (app, passport) => {
 	app.get('/login', authController.login);
 	
 	//	POST Login
-
 	app.post('/login', validateLogin, passport.authenticate('local-login', {
 		successRedirect: '/dashboard',
 		failureRedirect: '/login',
 		failureFlash: true
-
-// 		failWithError: true	// allows callback function in case of failure
-// 	}, (req, res, next) => {
-// 		return res.redirect('/dashboard');
-// 	}, (err, req, res, next) => {
-		//	Failure Callback Function
-// 		console.log('\n\n\n', err, '\n\n\n');
-// 		return res.render('login');
 	}));
-/*
-	app.post('/login', validateLogin, passport.authenticate('local-login'), (req, res, info) => {
-		if(info) {
-			console.log('\n\n\n', info, '\n\n\n');
-		} else {
-			res.redirect('/dashboard');
-		}
-	});
-*/
 	
 	//	GET Logout
 	app.get('/logout', authController.logout);
