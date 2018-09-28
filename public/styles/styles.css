@@ -8,52 +8,60 @@ Font-Family: 'Source Sans Pro', Sans-Serif;
 Font-Size: 17px;
 */
 
-body {
-  /* fallback for old browsers */
-  background: #0f0c29;
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+body{
   /*Font Style*/
   Font-Family: 'Source Sans Pro', Sans-Serif;
   Font-Size: 17px;
+  
   /*This is for Materialize Sticky Footer*/
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  color: ghostwhite;
-}
-
-nav {
-  background: transparent;
-  z-index: 0;
-}
-
-.no-shadows {
-  box-shadow: none !important;
-}
-
-.brand-logo {
-  Font-Family: 'Playfair Display', Serif;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
-h1 {
-  Font-Family: 'Playfair Display', Serif;
-  Font-Size: 128px;
-  color: ghostwhite;
-}
-
-
-h4 {
-  Font-Family: 'Source Sans Pro', Sans-Serif;
-  color: ghostwhite;
-}
-
-.page-footer {
-  background: transparent;
-}
+  }
+  
+  .page-background {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center, center;
+    background-size: cover, cover;
+  }
+  
+  #index {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("/img/bull_wall_street.jpg"); 
+  }
+  
+  nav {
+    background: transparent;
+    z-index: 0;
+  }
+  
+  .no-shadows {
+    box-shadow: none !important;
+  }
+  
+  .brand-logo {
+    Font-Family: 'Playfair Display', Serif;
+  }
+  
+  main {
+    flex: 1 0 auto;
+  }
+  
+  h1 {
+    Font-Family: 'Playfair Display', Serif;
+    Font-Size: 128px;
+    color: ghostwhite;
+  }
+  
+  h4 {
+    Font-Family: 'Source Sans Pro', Sans-Serif;
+    color: ghostwhite;
+  }
+  
+  .page-footer {
+    background: transparent;
+  }
