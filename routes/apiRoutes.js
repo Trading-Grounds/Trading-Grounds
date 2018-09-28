@@ -31,11 +31,30 @@ module.exports = function (app) {
             "Symbol: " + quote.price.symbol,
             "Purchasing Price: " + "$" + quote.summaryDetail.ask + " USD",
             "Selling Price: " + "$" + quote.summaryDetail.bid + " USD",
+            "Open: " + "$" + quote.summaryDetail.open + " USD",
+            "52 Week High: " + "$" + quote.summaryDetail.fiftyTwoWeekHigh + " USD",
+            "52 Week Low: " + "$" + quote.summaryDetail.fiftyTwoWeekLow + " USD",
             "Current Date: " + quote.price.regularMarketTime
           ].join("\n");
           console.log(stockData);
+          // return stockData
         }
       });
+      yahooFinance.historical({ symbol: req.params.symbol, from: '2018-09-21', to: '2018-09-27', period: 'd' }, function (err, quotes) {
+        if (err) {
+          throw err;
+        } else {
+          for (var i = 0; i < quotes.length; i++) {
+            var historicalData = [
+              "Date: " + quotes[i].date,
+              "High: " + quotes[i].high,
+              "Low: " + quotes[i].low
+            ].join("\n\n")
+            console.log(historicalData);
+          }
+        };
+      });
+
       res.json(dbTopStocks);
     });
   });
@@ -49,4 +68,6 @@ module.exports = function (app) {
   });
 
 };
+
+
 
