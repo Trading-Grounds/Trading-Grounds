@@ -1,3 +1,79 @@
-	<h2>Dashboard</h2>
-	<h4>Hurray! You are logged in!</h4>
-	<a href="/logout">Logout</a>
+{{>dashboardheader}}
+
+<body class="page-background" id="dashboard">
+
+	<!--Fixed Navigation -->
+	<ul id="slide-out" class="sidenav sidenav-fixed">
+		<li>
+			<div class="user-view">
+				<div class="background">
+					<img src="/img/small_graph_bw.jpg">
+				</div>
+				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
+				<a href="#name"><span class="white-text name">John Doe</span></a>
+				<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+			</div>
+		</li>
+		<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+		<li><a href="#!">Second Link</a></li>
+		<li>
+			<div class="divider"></div>
+		</li>
+		<li><a class="subheader">Subheader</a></li>
+		<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+	</ul>
+	<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+
+<main>
+	<section class="section section-daily-stats center">
+		<div class="row">
+			<div class="col l3 m6 s12">
+				<div class="card-panel lighten-1 white-text center">
+					<i class="material-icons medium"></i>
+					<h5></h5>
+					<h3 class=""></h3>
+					<div class="">
+						<div class="" style="width:60%;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col l3 m6 s12">
+				<div class="card-panel lighten-5 center">
+					<i class="material-icons medium"></i>
+					<h5></h5>
+					<h3 class=""></h3>
+					<div class="">
+						<div class="" style="width:35%;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col l3 m6 s12">
+				<div class="card-panel">
+					<i class="material-icons medium"></i>
+					<h5></h5>
+					<h3 class=""></h3>
+					<div class="">
+						<div class="determinate white" style="width:80%;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col l3 m6 s12">
+				<div class="card-panel">
+					<i class="material-icons medium"></i>
+					<h5></h5>
+					<h3 class=""></h3>
+					<div class="">
+						<div class="" style="width:50%;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+</main>
+
+	<!--Cody's Log-Out DUring Testing -->
+	{{!-- <a href="/logout">Logout</a> --}}
+
+	{{> footer}}
