@@ -24,56 +24,72 @@
 	</ul>
 	<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-
-<main>
-	<section class="section section-daily-stats center">
-		<div class="row">
-			<div class="col l3 m6 s12">
-				<div class="card-panel lighten-1 white-text center">
-					<i class="material-icons medium"></i>
-					<h5></h5>
-					<h3 class=""></h3>
-					<div class="">
-						<div class="" style="width:60%;"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col l3 m6 s12">
-				<div class="card-panel lighten-5 center">
-					<i class="material-icons medium"></i>
-					<h5></h5>
-					<h3 class=""></h3>
-					<div class="">
-						<div class="" style="width:35%;"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col l3 m6 s12">
-				<div class="card-panel">
-					<i class="material-icons medium"></i>
-					<h5></h5>
-					<h3 class=""></h3>
-					<div class="">
-						<div class="determinate white" style="width:80%;"></div>
-					</div>
-				</div>
-			</div>
-			<div class="col l3 m6 s12">
-				<div class="card-panel">
-					<i class="material-icons medium"></i>
-					<h5></h5>
-					<h3 class=""></h3>
-					<div class="">
-						<div class="" style="width:50%;"></div>
-					</div>
-				</div>
+	<!--Stock Ticker-->
+	<header>
+		<div class="tickercontainer">
+			<div class="mask">
+				<ul id="webTicker">
+					<li class="ticker-spacer"></li>
+					<li>This List Item will scroll infintely</li>
+					<li>And this one will follow it</li>
+					<li class="last">Finally when it goes out of screen, it will queue again at the end</li>
+				</ul>
+				<span class="tickeroverlay-left">&nbsp;</span>
+				<span class="tickeroverlay-right">&nbsp;</span>
 			</div>
 		</div>
-	</section>
-	
-</main>
+	</header>
 
-	<!--Cody's Log-Out DUring Testing -->
-	{{!-- <a href="/logout">Logout</a> --}}
+	<!--Main Content-->
+	<main>
+		<section class="section section-daily-stats center">
+			<div class="row">
+				<div class="col l3 m6 s12">
+					<div class="card-panel lighten-1 white-text center">
+						<i class="material-icons medium"></i>
+						<h5></h5>
+						<h3 class=""></h3>
+						<div class="">
+							<div class="" style="width:60%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col l3 m6 s12">
+					<div class="card-panel lighten-5 center">
+						<i class="material-icons medium"></i>
+						<h5></h5>
+						<h3 class=""></h3>
+						<div class="">
+							<div class="" style="width:35%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col l3 m6 s12">
+					<div class="card-panel">
+						<i class="material-icons medium"></i>
+						<h5></h5>
+						<h3 class=""></h3>
+						<div class="">
+							<div class="determinate white" style="width:80%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col l3 m6 s12">
+					<div class="card-panel">
+						<i class="material-icons medium"></i>
+						<h5></h5>
+						<h3 class=""></h3>
+						<div class="">
+							<div class="" style="width:50%;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+
+
 
 	{{> footer}}
