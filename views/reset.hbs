@@ -1,0 +1,23 @@
+	{{#if errors}}
+		<ul class="">
+		{{#each errors}}
+			<li class="">{{this}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+	
+	{{#if messages}}
+		<ul class="">
+		{{#each messages}}
+			<li class="">{{this}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+	
+	<h2>Reset Password</h2>
+	<form id="reset_password" name="reset_password" method="post" action="/reset">
+		<label for="email">Email</label>
+		<input type="email" id="email" name="email" placeholder="Email" value="{{user.email}}">
+		<input type="submit" id="submit" value="Reset Password">
+	</form>
+	<p><a href="/login">Back</a></p>

@@ -34,7 +34,13 @@ module.exports = (sequelize, Sequelize) => {
 		status: {
 			type: Sequelize.ENUM('active', 'inactive'),
 			defaultValue: 'active'
-		}, 
+		},
+		reset_password_token: {
+			type: Sequelize.STRING,
+		},
+		reset_password_expires: {
+			type: Sequelize.STRING,
+		},
         bank_balance: {
             type: Sequelize.INTEGER,
             isNumeric: true
