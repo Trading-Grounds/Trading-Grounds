@@ -30,8 +30,9 @@
 			<div class="mask">
 				<ul id="webTicker">
 					<li class="ticker-spacer"></li>
-					<li>This List Item will scroll infintely</li>
-					<li>And this one will follow it</li>
+					{{#each ticker}}
+					<li class="last">{{symbol}}</li>
+					{{/each }}
 					<li class="last">Finally when it goes out of screen, it will queue again at the end</li>
 				</ul>
 				<span class="tickeroverlay-left">&nbsp;</span>
@@ -57,7 +58,9 @@
 				<div class="col l3 m6 s12">
 					<div class="card-panel lighten-5 center">
 						<i class="material-icons medium"></i>
-						<h5></h5>
+						<h5>{{#each ticker}}
+					<li class="last">{{symbol}}</li>
+					{{/each }}</h5>
 						<h3 class=""></h3>
 						<div class="">
 							<div class="" style="width:35%;"></div>
@@ -67,7 +70,7 @@
 				<div class="col l3 m6 s12">
 					<div class="card-panel">
 						<i class="material-icons medium"></i>
-						<h5></h5>
+						<h5>{{stockInfo}}{{historicalData}}</h5>
 						<h3 class=""></h3>
 						<div class="">
 							<div class="determinate white" style="width:80%;"></div>
