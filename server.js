@@ -47,10 +47,10 @@ app.set('view engine', '.hbs');
 var models = require('./models');
 
 // Routes
-require('./routes/auth')(app, passport);
-// var reset = require('./routes/reset')(app);
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+var authRoutes = require('./routes/auth')(app, passport);
+var reset = require('./routes/reset')(app);
+var apiRoutes = require('./routes/apiRoutes')(app);
+var htmlRoutes = require('./routes/htmlRoutes')(app);
 
 //	Import Passport Strategies
 require('./config/passport/passport')(passport, models.user);
