@@ -3,43 +3,71 @@ var yahooFinance = require("yahoo-finance");
 
 module.exports = function (app) {
   // Get all examples
-  app.get("/api/examples", function (req, res) {
-    db.Example.findAll({}).then(function (dbExamples) {
-      res.json(dbExamples);
+
+  app.get("/api/topStock", function (req, res) {
+    console.log("Route??????")
+    db.TopStock.findAll({}).then(function (dbTopStocks) {
+      console.log(dbTopStocks);
+      res.json(dbTopStocks);
+    });
+  });
+
+  app.get("/api/topStock/:symbol", function (req, res) {
+    // Here we add an "include" property to our options in our findOne query
+    //We will probably need to link this to our Account
+    db.TopStock.findOne({
+      where: {
+        symbol: req.params.symbol
+      },
+      // include: [db.Account]?? /////TODO LATER
+    }).then(function (dbTopStocks) {
+      // This returns the yahoo Finance info
+      yahooFinance.quote({ symbol: req.params.symbol, modules: ["price", "summaryDetail"] }, function (err, quote) {
+        if (err) {
+          console.log("I'm sorry. We could not retrieve stock information.");
+        } else {
+          var stockData = [
+            "Stock Name: " + quote.price.shortName,
+            "Symbol: " + quote.price.symbol,
+            "Purchasing Price: " + "$" + quote.summaryDetail.ask + " USD",
+            "Selling Price: " + "$" + quote.summaryDetail.bid + " USD",
+            "Open: " + "$" + quote.summaryDetail.open + " USD",
+            "52 Week High: " + "$" + quote.summaryDetail.fiftyTwoWeekHigh + " USD",
+            "52 Week Low: " + "$" + quote.summaryDetail.fiftyTwoWeekLow + " USD",
+            "Current Date: " + quote.price.regularMarketTime
+          ].join("\n");
+          console.log(stockData);
+          // return stockData
+        }
+      });
+      yahooFinance.historical({ symbol: req.params.symbol, from: '2018-09-21', to: '2018-09-27', period: 'd' }, function (err, quotes) {
+        if (err) {
+          throw err;
+        } else {
+          for (var i = 0; i < quotes.length; i++) {
+            var historicalData = [
+              "Date: " + quotes[i].date,
+              "High: " + quotes[i].high,
+              "Low: " + quotes[i].low
+            ].join("\n\n")
+            console.log(historicalData);
+          }
+        };
+      });
+
+      res.json(dbTopStocks);
     });
   });
 
 
-  // Create a new example
-  app.post("/api/examples", function (req, res) {
-    db.Example.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
+  // add in a new stock
+  app.post("/api/topStock", function (req, res) {
+    db.TopStock.create(req.body).then(function (dbTopStocks) {
+      res.json(dbTopStocks);
     });
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function (req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.json(dbExample);
-    });
-  });
-
-  // This returns the yahoo Finance info
-  yahooFinance.quote({ symbol: "AAPL", modules: ["price", "summaryDetail"] }, function (err, quote) {
-    if (err) {
-      console.log("I'm sorry. We could not retrieve stock information.");
-    } else {
-      var stockData = [
-        "Stock Name: " + quote.price.shortName,
-        "Symbol: " + quote.price.symbol,
-        "Purchasing Price: " + "$" + quote.summaryDetail.ask + " USD",
-        "Selling Price: " + "$" + quote.summaryDetail.bid + " USD",
-        "Current Date: " + quote.price.regularMarketTime
-      ].join("\n");
-      console.log(stockData);
-
-    }
-
   });
 
 };
+
+
+
