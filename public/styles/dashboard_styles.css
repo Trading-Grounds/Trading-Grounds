@@ -6,6 +6,9 @@ Font-Size: 48px;
 Use for Content
 Font-Family: 'Source Sans Pro', Sans-Serif;
 Font-Size: 17px;
+
+Use for Stock Ticker
+font-family: 'Source Code Pro', monospace;
 */
 
 body {
@@ -19,10 +22,11 @@ body {
     flex-direction: column;
 }
 
-header, main, footer {
-    padding-left: 300px;
-  }
-
+/*Background Image with gradient overlay*/
+#dashboard {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url("/img/new_york_bw.jpg");
+}
 
 .page-background {
     margin: 0;
@@ -34,41 +38,116 @@ header, main, footer {
     background-size: cover, cover;
 }
 
-#dashboard {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url("/img/new_york_bw.jpg"); 
-  }
+/*Requried for Materialize SideNav*/
+header,
+main,
+footer {
+    padding-left: 300px;
+}
 
-  #webTicker {
-      color: ghostwhite;
-  }
+/*SideNav Styling*/
+.sidenav {
+    background: #232526;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
-  nav {
+.name, .email {
+    color: ghostwhite;
+}
+
+#hamburger-menu {
+    color: ghostwhite;
+}
+
+.btn-small {
+    border-radius: 10px;
+}
+
+/*Search Bar*/
+nav {
+    /* background: rgba(188, 199, 34, 0.609); */
+    background:#84bb656e;
+    /*Color: Money Green*/
+    /* background:#84bb65b2; */
+}
+
+/*Stock Ticker*/
+.ticker-color {
+    color: ghostwhite;
+    font-size: 24px;
+    font-family: 'Source Code Pro', monospace;
+}
+
+/*User Image*/
+.circle {
+   margin: auto;
+}
+/*User Name & Email*/
+.user-view {
+    text-align: center;
+}
+
+#main-card {
+    /* background: rgba(0, 0, 0, 0.294);  */
+    background:#84bb6534;
+}
+
+/*Card Panels*/
+.card-panel {
+    background: rgba(0, 0, 0, 0.541);
+    border-radius: 10px;
+    color: ghostwhite;
+}
+
+/*Reveal Cards*/
+.card {
+    background: rgba(0, 0, 0, 0.541);
+    border-radius: 10px;
+    color: ghostwhite;
+}
+
+.card-content {
+    border-radius: 10px;
+}
+
+.card-action {
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card-reveal {
+    color: black;
+    border-radius: 10px;
+}
+
+.buy-button {
+    float: left;
+}
+
+.sell-button {
+    float: right;
+}
+
+.close-x {
+    color:#84bb65b2;
+}
+/*Materialize Sticky Footer*/
+.page-footer {
     background: transparent;
-    z-index: 0;
-  }
-  
-  .no-shadows {
-    box-shadow: none !important;
-  }
-  
-  .brand-logo {
-    Font-Family: 'Playfair Display', Serif;
-  }
-  
-  main {
+}
+
+main {
     flex: 1 0 auto;
-  }
+}
 
-  .page-footer {
-    background: transparent;
-  }
+/*Media Queries*/
 
-  /*Media Queries*/
-
-  /*Materialize Side Nav*/
-  @media only screen and (max-width : 992px) {
-    header, main, footer {
-      padding-left: 0;
+/*Materialize Side Nav*/
+@media only screen and (max-width : 992px) {
+    header,
+    main,
+    footer {
+        padding-left: 0;
     }
-  }
+}
