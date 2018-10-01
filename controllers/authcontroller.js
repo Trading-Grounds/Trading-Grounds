@@ -2,7 +2,12 @@ var app = require('../server');
 var auth = {};
 
 auth.register = (req, res) => {
-	res.render('register');
+	var errors = req.flash('error');
+	var user = req.flash('user')[0];
+// 	console.log('\n\n\n', errors, '\n\n\n')
+	console.log('\n\n\n', req.flash(), '\n\n\n')
+// 	console.log('\n\n\n', user, '\n\n\n');
+	res.render('register', { errors: errors, user: user });
 };
 
 auth.login = (req, res) => {
@@ -14,7 +19,7 @@ auth.login = (req, res) => {
 		password: password
 	}
 	console.log('\n\n\n', errors, '\n\n\n');
-	console.log('\n\n\n', user, '\n\n\n');
+// 	console.log('\n\n\n', user, '\n\n\n');
 	res.render('login', { errors: errors, user: user });
 };
 

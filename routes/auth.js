@@ -10,7 +10,8 @@ module.exports = (app, passport) => {
 	//	POST Registration
 	app.post('/register', validateRegistration, passport.authenticate('local-register', {
 		successRedirect: '/dashboard',
-		failureRedirect: '/register'
+		failureRedirect: '/register',
+		failureFlash: true
 	}));
 	
 	//	GET Login
