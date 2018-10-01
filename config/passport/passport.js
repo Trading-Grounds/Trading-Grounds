@@ -47,23 +47,40 @@ module.exports = (passport, user) => {
 					username: username
 				}
 			}).then(user => {
+				var data = {
+					username: username,
+					email: req.body.email,
+					hashed_password: generateHash(password),
+					first_name: req.body.first_name,
+					last_name: req.body.last_name
+				};
 				if(user) {
+					data.password = req.body.password;
+					data.confirm_password = req.body.confirm_password;
+					req.flash('user', data);
 					return done(null, false, { message: 'Username already exits' });
 				} else {
-					var hashed_password = generateHash(password);
-					var data = {
-						username: username,
-						email: req.body.email,
-						hashed_password: hashed_password,
-						first_name: req.body.first_name,
-						last_name: req.body.last_name
-					};
+// 					var hashed_password = generateHash(password);
 					
-					User.create(data).then((newUser, created) => {
-						if(!newUser) {
-							return done(null, false);
+					User.findOne({
+						where: {
+							email: req.body.email
+						}
+					}).then(user => {
+						if(user) {
+							data.password = req.body.password;
+							data.confirm_password = req.body.confirm_password;
+							req.flash('user', data);
+							return done(null, false, { message: 'Email is already in use' });
 						} else {
-							return done(null, newUser);
+							
+							User.create(data).then((newUser, created) => {
+								if(!newUser) {
+									return done(null, false);
+								} else {
+									return done(null, newUser);
+								}
+							});
 						}
 					});
 				}

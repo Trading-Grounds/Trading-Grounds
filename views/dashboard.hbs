@@ -8,8 +8,11 @@
 			<div class="user-view">
 				<div class="background"></div>
 				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
+
 				<a href="#name"><span class="white-text name">{{user.username}}</span></a>
 				<a href="#email"><span class="white-text email">{{user.email}}</span></a>
+
+
 			</div>
 		</li>
 
@@ -77,10 +80,9 @@
 						<div class="mask">
 							<ul id="webTicker-2">
 								<li class="ticker-spacer"></li>
-								<li class="ticker-color">APPL $238.00</li>
-								<li class="ticker-color">GOOG $437.00</li>
-								<li class="ticker-color">DAX $12246.00</li>
-								<li id="ticker-color" class="last ticker-color">HSI $2778.00</li>
+								{{#each ticker}}<li class="ticker-color">{{this.symbol}}{{this.price}}</li> {{/each}}
+
+								{{#each ticker}}<li id="ticker-color" class="last ticker-color">{{this.symbol}}{{this.price}}</li>{{/each}}
 							</ul>
 						</div>
 					</div>
@@ -114,7 +116,7 @@
 					<div class="col l3 m6 s12">
 						<div class="card-panel center z-depth-5">
 							<i class="material-icons medium"></i>
-							<h5>DATA GOES HERE</h5>
+							<h5>Total Bank Funds Available: </h5>
 							<h3 class=""></h3>
 							<div class="">
 								<div class="" style="width:60%;"></div>
@@ -124,7 +126,7 @@
 					<div class="col l3 m6 s12">
 						<div class="card-panel center z-depth-5">
 							<i class="material-icons medium"></i>
-							<h5>DATA GOES HERE</h5>
+							<h5>Current Stock Portfolio: </h5>
 							<h3 class=""></h3>
 							<div class="">
 								<div class="" style="width:35%;"></div>
@@ -150,8 +152,28 @@
 								<div class="" style="width:50%;"></div>
 							</div>
 						</div>
-					</div>
-				</div>
+						<div class="col l3 m6 s12">
+							<div class="card-panel lighten-5 center">
+								<i class="material-icons medium"></i>
+								<h5>
+									<li class="last"></li>
+								</h5>
+								<h3 class=""></h3>
+								<div class="">
+									<div class="" style="width:35%;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="col l3 m6 s12">
+							<div class="card-panel">
+								<i class="material-icons medium"></i>
+								<h5></h5>
+								<h3 class=""></h3>
+								<div class="">
+									<div class="determinate white" style="width:80%;"></div>
+								</div>
+							</div>
+						</div>
 			</section>
 
 			<!--Large Panels -->
@@ -175,10 +197,16 @@
 			<!--Reveal Cards-->
 			<section>
 				<div class="row">
-					<div class="col l3 m6 s12">
+					{{#each ticker}}<div class="col l3 m6 s12">
 						<div class="card sticky-action medium z-depth-5">
 							<div class="card-content">
-								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
+								<span class="card-title activator">{{this.stockName}}, {{this.symbol}}<i class="material-icons right dots">more_vert</i></span>
+								<br>All prices in USD<br>
+								Buying Price: {{this.price}} <br>
+								Selling Price: {{this.sellPrice}} <br>
+								Opening Price: {{this.open}} <br>
+								52 Week High: {{this.fiftyTwoWeekHigh}} <br>
+								52 Week Low: {{this.fiftyTwoWeekLow}}<br>
 							</div>
 							<div class="card-action">
 								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
@@ -189,52 +217,9 @@
 								<p>Here is some more information about this product that is only revealed once clicked on.</p>
 							</div>
 						</div>
-					</div>
-					<div class="col l3 m6 s12">
-						<div class="card sticky-action medium z-depth-5">
-							<div class="card-content">
-								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
-							</div>
-							<div class="card-action">
-								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
-								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
-							</div>
-							<div class="card-reveal">
-								<span class="card-title">Card Title<i class="material-icons right dots">close</i></span>
-								<p>Here is some more information about this product that is only revealed once clicked on.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col l3 m6 s12">
-						<div class="card sticky-action medium z-depth-5">
-							<div class="card-content">
-								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
-							</div>
-							<div class="card-action">
-								<a href="#" class="btn-small green accent-4 buy-button buy-button">BUY</a>
-								<a href="#" class="btn-small red accent-4 sell-button sell-button">SELL</a>
-							</div>
-							<div class="card-reveal">
-								<span class="card-title">Card Title<i class="material-icons right">close</i></span>
-								<p>Here is some more information about this product that is only revealed once clicked on.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col l3 m6 s12">
-						<div class="card sticky-action medium z-depth-5">
-							<div class="card-content">
-								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
-							</div>
-							<div class="card-action">
-								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
-								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
-							</div>
-							<div class="card-reveal">
-								<span class="card-title">Card Title<i class="material-icons right">close</i></span>
-								<p>Here is some more information about this product that is only revealed once clicked on.</p>
-							</div>
-						</div>
-					</div>
+					</div>{{/each}}
+
+
 				</div>
 			</section>
 
