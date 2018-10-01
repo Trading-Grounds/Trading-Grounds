@@ -2,58 +2,154 @@
 
 <body class="page-background" id="dashboard">
 
-	<!--Fixed Navigation -->
+	<!--Fixed Side Navigation -->
 	<ul id="slide-out" class="sidenav sidenav-fixed">
 		<li>
 			<div class="user-view">
-				<div class="background">
-					<img src="/img/small_graph_bw.jpg">
-				</div>
+				<div class="background"></div>
 				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
 				<a href="#name"><span class="white-text name">{{user.username}}</span></a>
 				<a href="#email"><span class="white-text email">{{user.email}}</span></a>
 			</div>
 		</li>
-		<li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-		<li><a href="#!">Second Link</a></li>
-		<li>
-			<div class="divider"></div>
-		</li>
-		<li><a class="subheader">Subheader</a></li>
-		<li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-	</ul>
-	<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-	<!--Stock Ticker-->
-	<header>
-		<div class="tickercontainer">
-			<div class="mask">
-				<ul id="webTicker">
-					<li class="ticker-spacer"></li>
-					{{#each ticker}}
-					<li class="last">{{symbol}}</li>
-					{{/each }}
-					<li class="last">Finally when it goes out of screen, it will queue again at the end</li>
-				</ul>
-				<span class="tickeroverlay-left">&nbsp;</span>
-				<span class="tickeroverlay-right">&nbsp;</span>
+		<!--Log Out Button-->
+		<li>
+			<a href="/logout" class="btn-small black logout-link">Logout</a>
+		</li>
+
+		<!--Search Box in Fixed Side Navigation-->
+		<nav>
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field">
+						<input id="search" type="search" placeholder="stock symbol" required>
+						<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
+				</form>
 			</div>
-		</div>
-	</header>
+		</nav>
+
+		<!--Page Links-->
+		<ul>
+			<ul class="collapsible collapsible-accordion">
+				<li>
+					<a class="collapsible-header white-text waves-effect waves-green accent-4">STOCKS</a>
+					<div class="collapsible-body">
+						<ul>
+							<li> <a class="waves-effect waves-green accent-4" href="mystocks.html">My Stocks</a></li>
+							<li> <a class="waves-effect waves-green accent-4" href="watchlist.html">Watch List</a></li>
+							<li> <a class="waves-effect waves-green accent-4" href="browsestock.html">Browse Stock</a></li>
+							<li> <a class="waves-effect waves-green accent-4" href="search.html">Search Stocks</a></li>
+							<li> <a class="waves-effect waves-green accent-4" href="indecies.html">Indecies</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</ul>
+	</ul>
+	<ul class="right hide-on-med-and-down">
+		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
+		<ul id='dropdown1' class='dropdown-content'>
+			<li> <a href="mystocks.html">My Stocks</a></li>
+			<li> <a href="watchlist.html">Watch List</a></li>
+			<li> <a href="browsestock.html">Browse Stock</a></li>
+			<li> <a href="search.html">Search Stocks</a></li>
+			<li> <a href="indecies.html">Indecies</a></li>
+		</ul>
+	</ul>
+
+
+	</ul>
+	<a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i id="hamburger-menu" class="material-icons">menu</i></a>
 
 	<!--Main Content-->
-	<main>
-		<section class="section section-daily-stats center">
+	<main id="main-area">
+		<!--Main Card-->
+		<div id="main-card" class="card-panel z-depth-5">
+
+			<!--Stock Ticker-->
 			<div class="row">
-				<div class="col l3 m6 s12">
-					<div class="card-panel lighten-1 white-text center">
-						<i class="material-icons medium"></i>
-						<h5></h5>
-						<h3 class=""></h3>
-						<div class="">
-							<div class="" style="width:60%;"></div>
+				<div class="col l12 m12 s12">
+					<!--Stock Ticker -->
+					<div class="tickercontainer">
+						<div class="mask">
+							<ul id="webTicker-2">
+								<li class="ticker-spacer"></li>
+								<li class="ticker-color">APPL $238.00</li>
+								<li class="ticker-color">GOOG $437.00</li>
+								<li class="ticker-color">DAX $12246.00</li>
+								<li id="ticker-color" class="last ticker-color">HSI $2778.00</li>
+							</ul>
 						</div>
 					</div>
+
+					<br>
+
+					<!--Financial Times Ticker-->
+					<div class="tickercontainer">
+						<div class="mask">
+							<ul id="webTicker">
+								<li class="ticker-spacer"></li>
+								<li id="finNews1" class="ticker-color"> | </li>
+								<li id="finNews2" class="ticker-color"> | </li>
+								<li id="finNews3" class="ticker-color"> | </li>
+								<li id="finNews4" class="ticker-color"> | </li>
+								<li id="finNews5" class="ticker-color"> | </li>
+								<li id="finNews6" class="ticker-color"> | </li>
+								<li id="finNews7" class="ticker-color"> | </li>
+								<li id="finNews8" class="ticker-color"> | </li>
+								<li id="finNews9" class="ticker-color"> | </li>
+								<li id="finNews10" class="last ticker-color"> | </li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Four Cards at Top -->
+			<section class="section section-daily-stats center">
+				<div class="row">
+					<div class="col l3 m6 s12">
+						<div class="card-panel center z-depth-5">
+							<i class="material-icons medium"></i>
+							<h5>DATA GOES HERE</h5>
+							<h3 class=""></h3>
+							<div class="">
+								<div class="" style="width:60%;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col l3 m6 s12">
+						<div class="card-panel center z-depth-5">
+							<i class="material-icons medium"></i>
+							<h5>DATA GOES HERE</h5>
+							<h3 class=""></h3>
+							<div class="">
+								<div class="" style="width:35%;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col l3 m6 s12">
+						<div class="card-panel center z-depth-5">
+							<i class="material-icons medium"></i>
+							<h5>DATA GOES HERE</h5>
+							<h3 class=""></h3>
+							<div class="">
+								<div class="determinate white" style="width:80%;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="col l3 m6 s12">
+						<div class="card-panel center z-depth-5">
+							<i class="material-icons medium"></i>
+							<h5>DATA GOES HERE</h5>
+							<h3 class=""></h3>
+							<div class="">
+								<div class="" style="width:50%;"></div>
+							</div>
+
 				</div>
 				<div class="col l3 m6 s12">
 					<div class="card-panel lighten-5 center">
@@ -77,22 +173,104 @@
 						</div>
 					</div>
 				</div>
-				<div class="col l3 m6 s12">
-					<div class="card-panel">
-						<i class="material-icons medium"></i>
-						<h5></h5>
-						<h3 class=""></h3>
-						<div class="">
-							<div class="" style="width:50%;"></div>
+			</section>
+
+			<!--Large Panels -->
+			<section>
+				<div class="row">
+					<div class="col l6 m6 s12">
+						<div class="card-panel z-depth-5">
+							<span class="">MORE DATA CAN GO HERE
+							</span>
+						</div>
+					</div>
+					<div class="col l6 m6 s12">
+						<div class="card-panel z-depth-5">
+							<span class="">MORE DATA CAN GO HERE
+							</span>
 						</div>
 					</div>
 				</div>
+			</section>
+
+			<!--Reveal Cards-->
+			<section>
+				<div class="row">
+					<div class="col l3 m6 s12">
+						<div class="card sticky-action medium z-depth-5">
+							<div class="card-content">
+								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
+							</div>
+							<div class="card-action">
+								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
+								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title">Card Title<i class="material-icons right close-x">close</i></span>
+								<p>Here is some more information about this product that is only revealed once clicked on.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col l3 m6 s12">
+						<div class="card sticky-action medium z-depth-5">
+							<div class="card-content">
+								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
+							</div>
+							<div class="card-action">
+								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
+								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title">Card Title<i class="material-icons right dots">close</i></span>
+								<p>Here is some more information about this product that is only revealed once clicked on.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col l3 m6 s12">
+						<div class="card sticky-action medium z-depth-5">
+							<div class="card-content">
+								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
+							</div>
+							<div class="card-action">
+								<a href="#" class="btn-small green accent-4 buy-button buy-button">BUY</a>
+								<a href="#" class="btn-small red accent-4 sell-button sell-button">SELL</a>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title">Card Title<i class="material-icons right">close</i></span>
+								<p>Here is some more information about this product that is only revealed once clicked on.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col l3 m6 s12">
+						<div class="card sticky-action medium z-depth-5">
+							<div class="card-content">
+								<span class="card-title activator">Card Title<i class="material-icons right dots">more_vert</i></span>
+							</div>
+							<div class="card-action">
+								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
+								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title">Card Title<i class="material-icons right">close</i></span>
+								<p>Here is some more information about this product that is only revealed once clicked on.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!--Something Else Here-->
+			<div class="row">
+				<div class="col l12 m12 s12">
+					<div class="card-panel z-depth-5">
+						<span class="">MORE DATA CAN GO HERE
+						</span>
+					</div>
+				</div>
 			</div>
-		</section>
+
+		</div>
 
 	</main>
-
-
-
 
 	{{> footer}}
