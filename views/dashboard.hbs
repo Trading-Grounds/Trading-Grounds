@@ -8,8 +8,8 @@
 			<div class="user-view">
 				<div class="background"></div>
 				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
-				<a href="#name"><span class="name">John Doe</span></a>
-				<a href="#email"><span class="email">jdandturk@gmail.com</span></a>
+				<a href="#name"><span class="white-text name">{{user.username}}</span></a>
+				<a href="#email"><span class="white-text email">{{user.email}}</span></a>
 			</div>
 		</li>
 
@@ -149,6 +149,27 @@
 							<div class="">
 								<div class="" style="width:50%;"></div>
 							</div>
+
+				</div>
+				<div class="col l3 m6 s12">
+					<div class="card-panel lighten-5 center">
+						<i class="material-icons medium"></i>
+						<h5>{{#each ticker}}
+					<li class="last">{{symbol}}</li>
+					{{/each }}</h5>
+						<h3 class=""></h3>
+						<div class="">
+							<div class="" style="width:35%;"></div>
+						</div>
+					</div>
+				</div>
+				<div class="col l3 m6 s12">
+					<div class="card-panel">
+						<i class="material-icons medium"></i>
+						<h5>{{stockInfo}}{{historicalData}}</h5>
+						<h3 class=""></h3>
+						<div class="">
+							<div class="determinate white" style="width:80%;"></div>
 						</div>
 					</div>
 				</div>

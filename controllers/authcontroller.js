@@ -25,7 +25,8 @@ auth.logout = (req, res) => {
 };
 
 auth.dashboard = (req, res) => {
-	res.render('dashboard');
-}
+	// res.render('dashboard', { user: req.user });
+	res.redirect("/api/topStock");
+};
 
 module.exports = auth;

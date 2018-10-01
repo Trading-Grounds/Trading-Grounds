@@ -1,0 +1,151 @@
+0,Company,Symbol
+1,Apple Inc.,AAPL
+2,Microsoft Corporation,MSFT
+3,Amazon.com Inc.,AMZN
+4,Berkshire Hathaway Inc. Class B,BRK.B
+5,Facebook Inc. Class A,FB
+6,JPMorgan Chase & Co.,JPM
+7,Johnson & Johnson,JNJ
+8,Alphabet Inc. Class C,GOOG
+9,Exxon Mobil Corporation,XOM
+10,Alphabet Inc. Class A (Google),GOOGL
+11,Bank of America Corp,BAC
+12,Visa Inc. Class A,V
+13,Pfizer Inc.,PFE
+14,UnitedHealth Group Incorporated,UNH
+15,AT&T Inc.,T
+16,Home Depot Inc.,HD
+17,Chevron Corporation,CVX
+18,Wells Fargo & Company,WFC
+19,Cisco Systems Inc.,CSCO
+20,Verizon Communications Inc.,VZ
+21,Intel Corporation,INTC
+22,Procter & Gamble Company,PG
+23,Mastercard Incorporated Class A,MA
+24,Boeing Company,BA
+25,Merck & Co. Inc.,MRK
+26,Citigroup Inc.,C
+27,Coca-Cola Company,KO
+28,Walt Disney Company,DIS
+29,Netflix Inc.,NFLX
+30,NVIDIA Corporation,NVDA
+31,Comcast Corporation Class A,CM
+32,PepsiCo Inc.,PEP
+33,DowDuPont Inc.,DWDP
+34,Oracle Corporation,ORCL
+35,AbbVie Inc.,ABBV
+36,International Business Machines Corporation,IBM
+37,Walmart Inc.,WMT
+38,Medtronic plc,MDT
+39,Amgen Inc.,AMGN
+40,Adobe Systems Incorporated,ADBE
+41,McDonald's Corporation,MCD
+42,Abbott Laboratories, ABT
+43,Philip Morris International Inc.,PM
+44,3M Company,MMM
+45,Honeywell International Inc.,HON
+46,Union Pacific Corporation,UNP
+47,salesforce.com inc.,CRM
+48,Altria Group Inc,MO
+49,Accenture Plc Class,A
+50,NIKE Inc. Class B,NKE
+51,PayPal Holdings Inc,PYPL
+52,Broadcom Inc.,AVGO
+53,United Technologies Corporation,UTX
+54,Texas Instruments Incorporated,TXN
+55,Costco Wholesale Corporation,COST
+56,Eli Lilly and Company,LLY
+57,QUALCOMM Incorporated,QCOM
+58,Bristol-Myers Squibb Company,BMY
+59,General Electric Company,GE
+60,Gilead Sciences Inc.,GILD
+61,Thermo Fisher Scientific Inc.,TMO
+62,Booking Holdings Inc.,BKNG
+63,Lowe's Companies Inc.,LOW
+64,Caterpillar Inc.,CAT
+65,ConocoPhillips,COP
+66,Lockheed Martin Corporation,LMT
+67,Schlumberger NV,SLB
+68,U.S. Bancorp,USB
+69,United Parcel Service Inc. Class B,UPS
+70,Goldman Sachs Group Inc.,GS
+71,CVS Health Corporation,CVS
+72,NextEra Energy Inc.,NEE
+73,Starbucks Corporation,SBUX
+74,American Express Company,AXP
+75,EOG Resources Inc.,EOG
+76,Biogen Inc.,BIIB
+77,Anthem Inc.,ANTM
+78,Becton Dickinson and Company,BDX
+79,TJX Companies Inc,TJX
+80,Danaher Corporation,DHR
+81,Aetna Inc.,AET
+82,Automatic Data Processing Inc.,ADP
+83,Intuitive Surgical Inc.,ISRG
+84,PNC Financial Services Group Inc.,PNC
+85,Mondelez International Inc. Class A,MDLZ
+86,Morgan Stanley,MS
+87,American Tower Corporation,AMT
+88,Activision Blizzard Inc.,ATVI
+89,Celgene Corporation,CELG
+90,Chubb Limited,CB
+91,Walgreens Boots Alliance Inc,WBA
+92,Occidental Petroleum Corporation,OXY
+93,Charles Schwab Corporation,SCHW
+94,Allergan plc,AGN
+95,CSX Corporation,CSX
+96,FedEx Corporation,FDX
+97,CME Group Inc. Class A,CME
+98,Raytheon Company,RTN
+99,Colgate-Palmolive Company,CL
+100,BlackRock Inc.,BLK
+101,Intuit Inc.,INTU
+102,Charter Communications Inc. Class A,CHTR
+103,General Dynamics Corporation,GD
+104,Duke Energy Corporation	DUK
+105,Northrop Grumman Corporation,NOC
+106,Stryker Corporation,SYK
+107,Simon Property Group Inc.,SPG
+108,Boston Scientific Corporation,BSX
+109,Illumina Inc.,ILMN
+110,Express Scripts Holding Company,ESRX
+111,S&P Global Inc.,SPG
+112,Micron Technology Inc.,MU
+113,Norfolk Southern Corporation,NSC
+114,Valero Energy Corporation,VLO
+115,Cigna Corporation,CI
+116,Deere & Company,DE
+117,Phillips 66,PSX
+118,American International Group Inc.,AIG
+119,Emerson Electric Co.,EMR
+120,Twenty-First Century Fox Inc. Class A,FOXA
+121,American International Group Inc.,AIG
+122,Bank of New York Mellon Corporation,BK
+123,MetLife Inc.,MET
+124,Target Corporation,TGT
+125,Praxair Inc.,PX
+126,Humana Inc.,HUM
+127,Capital One Financial Corporation,COF
+128,Dominion Energy Inc,D
+129,Crown Castle International Corp,CCI
+130,Cognizant Technology Solutions Corporation Class A,CTSH
+131,General Motors Company,GM
+132,Zoetis Inc. Class A,ZTS
+133,Southern Company,SO
+134,Illinois Tool Works Inc.,ITW
+135,Intercontinental Exchange Inc.,ICE
+136,Marsh & McLennan Companies Inc.,MMC
+137,Prudential Financial Inc.,PRU
+138,Prologis Inc.,PLD
+139,Exelon Corporation,EXC
+140,Progressive Corporation,PGR
+141,HP Inc.,HPQ
+142,Ecolab Inc.,ECL
+143,Kimberly-Clark Corporation,KMB
+144,Marriott International Inc. Class A,MAR
+145,BB&T Corporation,BBT
+146,Aon plc,AON
+147,Baxter International Inc.,BAX
+148,Eaton Corp. Plc,ETN
+149,Applied Materials Inc.,AMAT
+150,Ross Stores Inc.,ROST

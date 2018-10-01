@@ -1,4 +1,3 @@
-/*
 var resetController = require('../controllers/resetcontroller');
 
 module.exports = (app) => {
@@ -16,4 +15,3 @@ module.exports = (app) => {
 	app.post('/reset/:token', resetController.resetPassword);
 	
 }
-*/
