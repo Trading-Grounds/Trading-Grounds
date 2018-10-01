@@ -98,16 +98,6 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-
-
-
-
-
-
-
-
-
-
 //===========Script added by Dustin McGilvray for Front-End Events===============
 $(document).ready(function() {
   
@@ -148,10 +138,6 @@ $.ajax({
   var news8 = response.articles[7].title;
   var news9 = response.articles[8].title;
   var news10 = response.articles[9].title;
-
-
-
-
 
   //Adding News to Web Ticker
   $("#finNews1").html(news1 + " | ");

@@ -48,7 +48,7 @@ var models = require('./models');
 
 // Routes
 var authRoutes = require('./routes/auth')(app, passport);
-// var reset = require('./routes/reset')(app);
+var reset = require('./routes/reset')(app);
 var apiRoutes = require('./routes/apiRoutes')(app);
 var htmlRoutes = require('./routes/htmlRoutes')(app);
 
@@ -56,7 +56,7 @@ var htmlRoutes = require('./routes/htmlRoutes')(app);
 require('./config/passport/passport')(passport, models.user);
 
 //	Database Syncing Options
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

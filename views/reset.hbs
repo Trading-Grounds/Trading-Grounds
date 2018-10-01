@@ -1,0 +1,65 @@
+	{{> header}}
+	
+	{{#if errors}}
+		<ul class="">
+		{{#each errors}}
+			<li class="">{{this}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+	
+	{{#if messages}}
+		<ul class="">
+		{{#each messages}}
+			<li class="">{{this}}</li>
+		{{/each}}
+		</ul>
+	{{/if}}
+
+<body class="page-background" id="index">
+
+	<nav class="no-shadows">
+		<div class="nav-wrapper">
+			<a href="/" class="brand-logo">TG</a>
+		</div>
+	</nav>
+
+	<main>
+		<div class="container">
+			<div class="row center-align">
+				<div class="col s12 m12">
+					<h1>Trading
+						<i class="large material-icons">account_balance</i>
+						Grounds</h1>
+				</div>
+			</div>
+
+			<!--Login Form-->
+			<div class="container">
+				<div id=id="reset_password" class="row">
+					<form id="login" class="col s12 m12 l12" name="reset_password" method="post" action="/reset">
+						<div class="row">
+							<div class="card-panel">
+								<div class="input field col s12 m12 l12">
+									<input class="validate white-text" type="email" id="email" name="email" placeholder="Email" value="{{user.email}}">
+								</div>
+															
+								<div class="row center-align">
+									<div class="col s12 m12 l12">
+										<button class="btn waves-effect waves-light" type="submit" id="submit" value="Reset Password" name="action">Reset
+											<i class="material-icons right">send</i>
+										</button>
+										<ul>
+											<li><a href="/login">Back</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	{{> footer}}
