@@ -21,6 +21,8 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             isNumeric: true
         }
+    }, {
+        timestamps: false
     });
 
     return Account;
