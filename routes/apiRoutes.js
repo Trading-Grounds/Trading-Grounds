@@ -18,7 +18,7 @@ module.exports = function (app) {
 
       }
 
-      yahooFinance.quote({ symbols: ["GOOG","AAPL"], modules: ["price", "summaryDetail"] }, function (err, quote) {
+      yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
         if (err) {
           console.log("Stock Info Not Available");
         } else {
@@ -26,13 +26,13 @@ module.exports = function (app) {
           Object.keys(quote).forEach(function (ticker) {
             tickerData.push({
               symbol: quote[ticker].price.symbol,
-              price: quote[ticker].summaryDetail.bid
+              price: " $" + quote[ticker].summaryDetail.bid,
+              sellPrice: " $" + quote[ticker].summaryDetail.bid,
+              stockName: quote[ticker].price.shortName,
+              open: "$" + quote[ticker].summaryDetail.open,
+              fiftyTwoWeekHigh: "$" + quote[ticker].summaryDetail.fiftyTwoWeekHigh,
+              fiftyTwoWeekLow: + "$" + quote[ticker].summaryDetail.fiftyTwoWeekLow
             });
-            // tickerData = [
-            //   quote[ticker].price.symbol + ": $" + quote[ticker].summaryDetail.bid + " USD"
-            // ].join("\n");
-            // console.log(tickerData);
-
           })
           console.log(tickerData)
           res.render("dashboard", { ticker: tickerData });
