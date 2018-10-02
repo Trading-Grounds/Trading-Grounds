@@ -1,4 +1,6 @@
 var authController = require('../controllers/authcontroller');
+var db = require("../models");
+var yahooFinance = require("yahoo-finance");
 // var expressValidator = require('express-validator');
 
 // console.log('\n\n\n', authController, '\n\n\n');
@@ -28,7 +30,7 @@ module.exports = (app, passport) => {
 	app.get('/logout', authController.logout);
 	
 	//	GET Dashboard (Restricted Access)
-	app.get('/dashboard', isLoggedIn, authController.dashboard);
+	app.get('/dashboard', isLoggedIn, showStocks, authController.dashboard);
 	
 	//	Custom middleware for restricting access to protected views
 	function isLoggedIn(req, res, next) {
@@ -38,7 +40,51 @@ module.exports = (app, passport) => {
 			res.redirect('/');
 		}
 	}
+
+	function showStocks(req, res) {
+	if(req.isAuthenticated()) {
+
+		db.TopStock.findAll({}).then(function (dbTopStocks) {
+		  // console.log(dbTopStocks);
+		  // res.json(dbTopStocks);
+		  var stocks = [];
+		  for (let i = 0; i < dbTopStocks.length; i++) {
+			console.log(dbTopStocks[i].symbol);
+			if (dbTopStocks[i].symbol && dbTopStocks[i].symbol.trim() != "") {
+			  stocks.push(dbTopStocks[i].symbol.trim())
+			};
 	
+		  }
+	
+		  yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
+			if (err) {
+			  console.log("Stock Info Not Available");
+			} else {
+			  var tickerData = [];
+			  Object.keys(quote).forEach(function (ticker) {
+				tickerData.push({
+				  symbol: quote[ticker].price.symbol,
+				  price: " $" + quote[ticker].summaryDetail.bid,
+				  sellPrice: " $" + quote[ticker].summaryDetail.bid,
+				  stockName: quote[ticker].price.shortName,
+				  open: "$" + quote[ticker].summaryDetail.open,
+				  fiftyTwoWeekHigh: "$" + quote[ticker].summaryDetail.fiftyTwoWeekHigh,
+				  fiftyTwoWeekLow: + "$" + quote[ticker].summaryDetail.fiftyTwoWeekLow
+				});
+			  })
+			  console.log(tickerData)
+			  res.render("dashboard", {
+				ticker: tickerData
+			  });
+			  // console.log(quote);
+	
+			}
+		  })
+		});
+	  }
+	}
+
+
 	//	Registration Form Validations
 	function validateRegistration(req, res, next) {
 		var validate = require('../functions/validations');
