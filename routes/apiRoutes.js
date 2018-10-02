@@ -18,11 +18,18 @@ module.exports = function (app) {
 
       }
 
+<<<<<<< HEAD
+      yahooFinance.quote({
+        symbols: ["GOOG", "AAPL"],
+        modules: ["price", "summaryDetail"]
+      }, function (err, quote) {
+=======
       yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
+>>>>>>> a77937f4d92ec50c94560b0668c368ec817fc1b0
         if (err) {
           console.log("Stock Info Not Available");
         } else {
-          var tickerData =[];
+          var tickerData = [];
           Object.keys(quote).forEach(function (ticker) {
             tickerData.push({
               symbol: quote[ticker].price.symbol,
@@ -35,7 +42,9 @@ module.exports = function (app) {
             });
           })
           console.log(tickerData)
-          res.render("dashboard", { ticker: tickerData });
+          res.render("dashboard", {
+            ticker: tickerData
+          });
           // console.log(quote);
 
         }
@@ -53,7 +62,10 @@ module.exports = function (app) {
       // include: [db.Account]?? /////TODO LATER
     }).then(function (dbTopStocks) {
       // This returns the yahoo Finance info
-      yahooFinance.quote({ symbol: req.params.symbol, modules: ["price", "summaryDetail"] }, function (err, quote) {
+      yahooFinance.quote({
+        symbol: req.params.symbol,
+        modules: ["price", "summaryDetail"]
+      }, function (err, quote) {
         if (err) {
           console.log("I'm sorry. We could not retrieve stock information.");
         } else {
@@ -68,7 +80,12 @@ module.exports = function (app) {
             "Current Date: " + quote.price.regularMarketTime
           ].join("\n");
           console.log(stockData);
-          yahooFinance.historical({ symbol: req.params.symbol, from: '2018-09-21', to: '2018-09-27', period: 'd' }, function (err, quotes) {
+          yahooFinance.historical({
+            symbol: req.params.symbol,
+            from: '2018-09-21',
+            to: '2018-09-27',
+            period: 'd'
+          }, function (err, quotes) {
             if (err) {
               throw err;
             } else {
@@ -79,7 +96,10 @@ module.exports = function (app) {
                   "Low: " + quotes[i].low
                 ].join("\n\n")
                 console.log(historicalData);
-                res.render("dashboard", { stockInfo: stockData, historicalData: historicalData })
+                res.render("dashboard", {
+                  stockInfo: stockData,
+                  historicalData: historicalData
+                })
 
               }
             };
@@ -116,6 +136,3 @@ module.exports = function (app) {
 
 
 };
-
-
-
