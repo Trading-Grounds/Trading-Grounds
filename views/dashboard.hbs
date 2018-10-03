@@ -9,15 +9,18 @@
 				<div class="background"></div>
 				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
 
-				<a href="#name"><span class="white-text name">{{user.username}}</span></a>
-				<a href="#email"><span class="white-text email">{{user.email}}</span></a>
+				<span class="white-text name user-info">{{user.username}}</span>
+				<span class="white-text email user-info">{{user.email}}</span>
+				<div class="card-small">
+					<span class="white-text account user-info">$ 23,764.87</span>
+				</div>
 
 			</div>
 		</li>
 
 		<!--Log Out Button-->
-		<li>
-			<a href="/logout" class="btn-small black logout-link">Logout</a>
+		<li id="logout-link">
+			<a href="/logout" class="white-text logout-link">Logout</a>
 		</li>
 
 		<!--Search Box in Fixed Side Navigation-->
@@ -34,17 +37,30 @@
 		</nav>
 
 		<!--Page Links-->
+
 		<ul>
 			<ul class="collapsible collapsible-accordion">
+				<!--Portfolio Collapsible Link-->
 				<li>
-					<a class="collapsible-header white-text waves-effect waves-green accent-4">STOCKS</a>
+					<a class="collapsible-header white-text waves-effect waves-green accent-4"><i class="white-text material-icons">arrow_drop_down</i>PORTFOLIO</a>
 					<div class="collapsible-body">
 						<ul>
-							<li> <a class="waves-effect waves-green accent-4" href="mystocks.html">My Stocks</a></li>
-							<li> <a class="waves-effect waves-green accent-4" href="watchlist.html">Watch List</a></li>
-							<li> <a class="waves-effect waves-green accent-4" href="/stocks/movers/nasdaq">Browse Stock</a></li>
-							<li> <a class="waves-effect waves-green accent-4" href="search.html">Search Stocks</a></li>
-							<li> <a class="waves-effect waves-green accent-4" href="indecies.html">Indecies</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="investments.html">Investments</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="watchlist.html">Watchlist</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="transactions.html">Transactions</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<!--Portfolio Collapsible Link-->
+				<li>
+					<a class="collapsible-header white-text waves-effect waves-green accent-4"><i class="white-text material-icons">arrow_drop_down</i>STOCKS</a>
+					<div class="collapsible-body">
+						<ul>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="topmovers.html">Top Movers</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="volume.html">Volume</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="marketcap.html">Market Cap</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="sector.html">Sector/Industry</a></li>
 						</ul>
 					</div>
 				</li>
@@ -53,19 +69,23 @@
 	</ul>
 	<!--
 	<ul class="right hide-on-med-and-down">
-		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
+		<!--Portfolio-->
+		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1"><i class="material-icons">place</i>PORTFOLIO<i class="material-icons right">arrow_drop_down</i></a></li>
 		<ul id='dropdown1' class='dropdown-content'>
-			<li> <a href="mystocks.html">My Stocks</a></li>
-			<li> <a href="watchlist.html">Watch List</a></li>
-			<li> <a href="browsestock.html">Browse Stock</a></li>
-			<li> <a href="search.html">Search Stocks</a></li>
-			<li> <a href="indecies.html">Indecies</a></li>
+			<li> <a href="investments.html">Investments</a></li>
+			<li> <a href="watchlist.html">Watchlist</a></li>
+			<li> <a href="transactions.html">Transactions</a></li>
+		</ul>
+		<!--Stocks-->
+		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1"><i class="material-icons">place</i>STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
+		<ul id='dropdown1' class='dropdown-content'>
+			<li> <a href="topmovers.html">Top Movers</a></li>
+			<li> <a href="volume.html">Volume</a></li>
+			<li> <a href="marketcap.html">Market Cap</a></li>
+			<li> <a href="sector.html">Sector/Industry</a></li>
 		</ul>
 	</ul>
 
-
-	</ul>
-	-->
 	<a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i id="hamburger-menu" class="material-icons">menu</i></a>
 	
 	
@@ -119,8 +139,9 @@
 					<div class="col l3 m6 s12">
 						<div class="card-panel center z-depth-5">
 							<i class="material-icons medium"></i>
-							<h5>Total Bank Funds Available: </h5>
-							<h3 class=""></h3>
+							<h5>Account Balance</h5>
+							<div class="divider"></div>
+							<h4 class="">$ 23,764.87</h4>
 							<div class="">
 								<div class="" style="width:60%;"></div>
 							</div>
@@ -129,8 +150,9 @@
 					<div class="col l3 m6 s12">
 						<div class="card-panel center z-depth-5">
 							<i class="material-icons medium"></i>
-							<h5>Current Stock Portfolio: </h5>
-							<h3 class=""></h3>
+							<h5>Cash</h5>
+							<div class="divider"></div>
+							<h4 class="">$ 15,207.65</h4>
 							<div class="">
 								<div class="" style="width:35%;"></div>
 							</div>
@@ -139,8 +161,9 @@
 					<div class="col l3 m6 s12">
 						<div class="card-panel center z-depth-5">
 							<i class="material-icons medium"></i>
-							<h5>DATA GOES HERE</h5>
-							<h3 class=""></h3>
+							<h5>Investment</h5>
+							<div class="divider"></div>
+							<h4 class="">$ 54,324.34</h4>
 							<div class="">
 								<div class="determinate white" style="width:80%;"></div>
 							</div>
@@ -149,32 +172,11 @@
 					<div class="col l3 m6 s12">
 						<div class="card-panel center z-depth-5">
 							<i class="material-icons medium"></i>
-							<h5>DATA GOES HERE</h5>
-							<h3 class=""></h3>
+							<h5>ROI</h5>
+							<div class="divider"></div>
+							<h4 class="">$ 15,547.87</h4>
 							<div class="">
 								<div class="" style="width:50%;"></div>
-							</div>
-						</div>
-						<div class="col l3 m6 s12">
-							<div class="card-panel lighten-5 center">
-								<i class="material-icons medium"></i>
-								<h5>
-									<li class="last"></li>
-								</h5>
-								<h3 class=""></h3>
-								<div class="">
-									<div class="" style="width:35%;"></div>
-								</div>
-							</div>
-						</div>
-						<div class="col l3 m6 s12">
-							<div class="card-panel">
-								<i class="material-icons medium"></i>
-								<h5></h5>
-								<h3 class=""></h3>
-								<div class="">
-									<div class="determinate white" style="width:80%;"></div>
-								</div>
 							</div>
 						</div>
 			</section>
@@ -182,15 +184,35 @@
 			<!--Large Panels -->
 			<section>
 				<div class="row">
-					<div class="col l6 m6 s12">
+					<div class="col l12 m12 s12">
 						<div class="card-panel z-depth-5">
-							<span class="">MORE DATA CAN GO HERE
-							</span>
-						</div>
-					</div>
-					<div class="col l6 m6 s12">
-						<div class="card-panel z-depth-5">
-							<span class="">MORE DATA CAN GO HERE
+							<span class="table">
+								<table class="centered highlight responsive-table">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Share</th>
+											<th>Gain/Loss</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>APPL <br> <span class="small-name">Apple</span></td>
+											<td>$ 225.48</td>
+											<td><span class="arrow"> &#8679 </span>+ 0.20% <br><span class="small-number">+0.04</span></td>
+										</tr>
+										<tr>
+											<td>GOOG <br> <span class="small-name">Google</span></td>
+											<td>$ 1203.00</td>
+											<td>+ 0.48% <br><span class="small-number">+1.21</span></td>
+										</tr>
+										<tr>
+											<td>NKE <br> <span class="small-name">Nike</span></td>
+											<td>$ 84.72</td>
+											<td>+ 0.21% <br><span class="small-number">+0.07</span></td>
+										</tr>
+									</tbody>
+								</table>
 							</span>
 						</div>
 					</div>
@@ -226,11 +248,61 @@
 				</div>
 			</section>
 
-			<!--Something Else Here-->
+
+			<!--Pie Chart and Table-->
 			<div class="row">
-				<div class="col l12 m12 s12">
+				<div class="col l6 m12 s12">
+					<div class="card-panel center-align z-depth-5">
+						<span class="chart-graph">
+							<img id="pie" src="/img/pie-chart.png">
+						</span>
+					</div>
+				</div>
+				<div class="col l6 m12 s12">
 					<div class="card-panel z-depth-5">
-						<span class="">MORE DATA CAN GO HERE
+						<span class="">
+							<table>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Item Name</th>
+										<th>Item Price</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>Technology</td>
+										<td>$ 15,350.00</td>
+										<td>33%</td>
+									</tr>
+									<tr>
+										<td>Energy</td>
+										<td>$ 11,052.00</td>
+										<td>24%</td>
+									</tr>
+									<tr>
+										<td>Finance</td>
+										<td>$ 8289.00</td>
+										<td>18%</td>
+									</tr>
+									<tr>
+										<td>Capital Goods</td>
+										<td>$ 6447.00</td>
+										<td>14%</td>
+									</tr>
+									<tr>
+										<td>Transportation</td>
+										<td>$ 4913.00</td>
+										<td>11%</td>
+									</tr>
+									<tr>
+										<td>Total</td>
+										<td>$ 46,051.00</td>
+										<td>100%</td>
+									</tr>
+								</tbody>
+							</table>
 						</span>
 					</div>
 				</div>

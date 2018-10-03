@@ -19,7 +19,7 @@ module.exports = function (app) {
 
       }
 
-      yahooFinance.quote({ symbols: AAPL, modules: ["price", "summaryDetail"] }, function (err, quote) {
+      yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
         if (err) {
           console.log("Stock Info Not Available");
         } else {

@@ -1,0 +1,125 @@
+{{>dashboardheader}}
+
+<body class="page-background" id="dashboard">
+
+    <!--Fixed Side Navigation -->
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+        <li>
+            <div class="user-view">
+                <div class="background"></div>
+                <a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
+
+                <span class="white-text name user-info">{{user.username}}</span>
+                <span class="white-text email user-info">{{user.email}}</span>
+                <div class="card-small">
+                    <span class="white-text account user-info">$ 23,764.87</span>
+                </div>
+            </div>
+        </li>
+
+        <!--Log Out Button-->
+        <li id="logout-link">
+            <a href="/logout" class="white-text logout-link">Logout</a>
+        </li>
+
+        <!--Search Box in Fixed Side Navigation-->
+        <nav>
+            <div class="nav-wrapper">
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" placeholder="stock symbol" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+        <!--Page Links-->
+
+        <ul>
+            <ul class="collapsible collapsible-accordion">
+
+                <!--Portfolio Collapsible Link-->
+                <li>
+                    <a class="collapsible-header white-text waves-effect waves-green accent-4"><i class="white-text material-icons">arrow_drop_down</i>PORTFOLIO</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="investments.html">Investments</a></li>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="watchlist.html">Watchlist</a></li>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="transactions.html">Transactions</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!--Portfolio Collapsible Link-->
+                <li>
+                    <a class="collapsible-header white-text waves-effect waves-green accent-4"><i class="white-text material-icons">arrow_drop_down</i>STOCKS</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="topmovers.html">Top
+                                    Movers</a></li>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="volume.html">Volume</a></li>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="marketcap.html">Market
+                                    Cap</a></li>
+                            <li> <a class="white-text waves-effect waves-green accent-4" href="sector.html">Sector/Industry</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </ul>
+    </ul>
+    <ul class="right hide-on-med-and-down">
+        <!--Portfolio-->
+        <li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">PORTFOLIO<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id='dropdown1' class='dropdown-content'>
+            <li> <a href="investments.html">Investments</a></li>
+            <li> <a href="watchlist.html">Watchlist</a></li>
+            <li> <a href="transactions.html">Transactions</a></li>
+        </ul>
+        <!--Stocks-->
+        <li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">STOCKS<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        <ul id='dropdown1' class='dropdown-content'>
+            <li> <a href="topmovers.html">Top Movers</a></li>
+            <li> <a href="volume.html">Volume</a></li>
+            <li> <a href="marketcap.html">Market Cap</a></li>
+            <li> <a href="sector.html">Sector/Industry</a></li>
+        </ul>
+    </ul>
+
+    <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i id="hamburger-menu" class="material-icons">menu</i></a>
+
+    <!--Main Content-->
+    <main id="main-area">
+        <!--Main Card-->
+        <div id="main-card" class="card z-depth-5">
+
+            <div class="row center-align">
+                <div class="col s12 m12 l12">
+
+                    <div class="card large sticky-action">
+                        <div class="card-content">
+
+                            <span class="card-title activator"><i class="material-icons right">more_vert</i></span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="btn-small green accent-4 buy-button">BUY</a>
+                            <a href="#" class="btn-small red accent-4 sell-button">SELL</a>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    {{> footer}}

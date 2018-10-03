@@ -72,6 +72,26 @@ h4 {
   background:#84bb65b2;
 }
 
+.wrong-login {
+  color: red;
+  font-size: 15px;
+}
+
+.wrong-register {
+  color: red;
+  font-size: 15px;
+}
+
+.wrong-reset {
+  color: red;
+  font-size: 15px;
+}
+
+.correct-reset {
+  color: green;
+  font-size: 15px;
+}
+
 .page-footer {
   background: transparent;
 }

@@ -1,13 +1,5 @@
 {{> header}}
 
-{{#if errors}}
-<ul class="errors">
-	{{#each errors}}
-	<li class="">{{this}}</li>
-	{{/each}}
-</ul>
-{{/if}}
-
 <body class="page-background" id="index">
 
 	<nav class="no-shadows">
@@ -46,10 +38,22 @@
 									 value="{{user.confirm_password}}">
 								</div>
 								<div class="input field col s6">
-									<input class="validate white-text" type="text" id="first_name" name="first_name" placeholder="First Name" value="{{user.first_name}}">
+									<input class="validate white-text" type="text" id="first_name" name="first_name" placeholder="First Name"
+									 value="{{user.first_name}}">
 								</div>
 								<div class="input field col s6">
 									<input class="validate white-text" type="text" id="last_name" name="last_name" placeholder="Last Name" value="{{user.last_name}}">
+								</div>
+								<div class="row center-align">
+									<div class="col s12 m12 l12">
+										{{#if errors}}
+										<ul class="errors">
+											{{#each errors}}
+											<li class="wrong-register">{{this}}</li>
+											{{/each}}
+										</ul>
+										{{/if}}
+									</div>
 								</div>
 								<div class="row center-align">
 									<div class="col s12 m12 l12">
