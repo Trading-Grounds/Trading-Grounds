@@ -65,6 +65,7 @@ footer {
 
 #hamburger-menu {
     color: ghostwhite;
+    height: 0;
 }
 
 .btn-small {
@@ -103,9 +104,14 @@ nav {
     text-align: center;
 }
 
+#main-area {
+	max-height: 100vh;
+	overflow: auto;
+}
 #main-card {
     /* background: rgba(0, 0, 0, 0.294);  */
-    background: #84bb6534;
+    background:#84bb6534;
+    margin-top: 0;
 }
 
 /*Card Panels*/
@@ -166,5 +172,9 @@ main {
     main,
     footer {
         padding-left: 0;
+    }
+    #hamburger-menu {
+	    height: auto;
+	    position: fixed;
     }
 }
