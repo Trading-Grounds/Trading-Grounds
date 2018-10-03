@@ -87,6 +87,9 @@ footer {
     color: ghostwhite;
     height: 0;
 }
+.hide-drop {
+	height: 0;
+}
 
 
 /*Search Bar*/
@@ -105,6 +108,9 @@ nav {
 
 .material-icon {
     color: ghostwhite;
+}
+#search-icon {
+	cursor: pointer;
 }
 
 /*Stock Ticker*/
@@ -155,6 +161,10 @@ td {
     font-weight: 300;
 }
 
+.stock-row {
+	cursor: pointer;
+}
+
 
 /*Reveal Cards*/
 .card {
@@ -203,6 +213,9 @@ main {
     flex: 1 0 auto;
 }
 
+.capitalize {
+	text-decoration: capitalize;
+}
 /*Media Queries*/
 
 /*Materialize Side Nav*/
