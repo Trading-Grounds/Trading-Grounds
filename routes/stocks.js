@@ -5,7 +5,7 @@ var yahooFinance = require('yahoo-finance');
 
 module.exports = (app) => {
 	
-	//	GET Stock
+	//	GET Single Stock
 	app.get('/stock/:symbol', (req, res) => {
 		
 		var symbol = req.params.symbol;
@@ -144,11 +144,11 @@ module.exports = (app) => {
 		});
 	});
 	
-	//	Get Top Movers 
-	app.get('/stocks/movers/:exchange', (req, res) => {
-		var exchange = req.params.exchange.toUpperCase();
-		console.log('\n\n\n', exchange, '\n\n\n');
-		if(exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX') {
+	//	GET Stocks By Top Movers 
+	app.get('/stocks/movers/:exchange?', (req, res) => {
+		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
+// 		console.log('\n\n\n', exchange, '\n\n\n');
+		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
 			return res.redirect('/stocks/movers/nasdaq');
 		}
 		Company.findAll({
@@ -159,60 +159,7 @@ module.exports = (app) => {
 			order: [['market_cap', 'ASC']],
 		}).then(companies => {
 			if(companies) {
-						
-				var stocks = [];
-				
-				var count = 0;
-				
-				function findTopMovers(companies, cb) {
-		
-					if(count < companies.length) {
-						
-						yahooFinance.quote({ symbol: companies[count].symbol, modules: ['summaryDetail', 'price' ]}, (err, quote) => {
-							if(err) {
-								console.log('Unable to find: ', companies[count].symbol);
-								count++;
-								findTopMovers(companies, cb)
-							} else {
-								var sd = quote.summaryDetail;
-								
-								if(sd.ask == 0 && sd.bid == 0) {
-									var price = parseFloat(sd.previousClose);
-								} else if(sd.ask == 0) {
-									var price = parseFloat(sd.bid);
-								} else {
-									var price = parseFloat(sd.ask);
-								}
-								
-								var change = format(price - parseFloat(sd.previousClose));
-								if(parseFloat(change) < 0) {
-									var gain = false;
-								} else {
-									var gain = true;
-								}
-								
-								var data = {
-									price: format(price),
-									name: quote.price.shortName ? quote.price.shortName : '-',
-									symbol: quote.price.symbol ? quote.price.symbol : '-',
-									change: format(price - parseFloat(sd.previousClose)),
-									unformattedChange: (((price / parseFloat(sd.previousClose)) - 1) * 100),
-									percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
-									gain: gain 
-								};
-								
-								stocks.push(data);
-								console.log('count', count);
-								count++;
-								findTopMovers(companies, cb);
-							}
-						});
-					} else {
-						console.log('count done', count);
-						cb();
-					}
-				}
-				
+												
 				var topGainers = {
 					one: {},
 					two: {},
@@ -240,22 +187,12 @@ module.exports = (app) => {
 					three: 0,
 					four: 0,
 					five: 0
-				}
+				};
 				
-/*
-				var highestGain = 0;
-				var highestGainer;
-				var highestGain2 = 0;
-				var highestGainer2;
-				
-				var biggestLoss = 5;
-				var biggestLoser;
-*/
-				
-				findTopMovers(companies, () => {
-					console.log('stocks', stocks);
+				findStocksByAPI(companies, [], 0, (stocks) => {
+
 					stocks.forEach(stock => {
-// 						console.log('compare:', stock.unformattedChange, highestGain);
+						
 						if(parseFloat(stock.unformattedChange) > topGains.one) {
 							
 							topGains.five = topGains.four;
@@ -361,14 +298,36 @@ module.exports = (app) => {
 						}
 						
 					});
-// 					console.log('Top Movers:', highestGainer, biggestLoser);
-					res.render('stocks', {
+
+					res.render('movers', {
 						topGainers: topGainers,
 						topLosers: topLosers,
 						exchange: exchange
 					});
 				});
 			}
+		});
+	});
+	
+	//	GET Stocks By Sector
+	app.get('/stocks/sector/:sector?', (req, res) => {
+		var sector = req.params.sector;
+		
+		Company.findAll({
+			where: {
+				sector: sector
+			},
+			order: [['market_cap', 'ASC']],
+			limit: 10
+		}).then(companies => {
+			
+			findStocksByAPI(companies, [], 0, (stocks) => {
+				console.log('\n\n\nstocks found:', stocks);
+				res.render('sectors', {
+					stocks: stocks,
+					sector: sector.toUpperCase()
+				});
+			});
 		});
 	});
 }
@@ -378,4 +337,58 @@ var format = (val=0, dec=2, den='$ ') => {
 	var parts = fixed.toString().split('.');
 	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	return den + parts.join('.');
+}
+
+//	Uses Recursion to handle asynchonous API calls, returning an array of stock data into the callback function
+function findStocksByAPI(companies, stocks=[], count=0, cb) {
+	
+	if(count == 0) {
+		console.log('\nSearching API for ' + companies.length + ' companies...\n');
+	}
+	if(count < companies.length) {
+		
+		yahooFinance.quote({ symbol: companies[count].symbol, modules: ['summaryDetail', 'price' ]}, (err, quote) => {
+			if(err) {
+				console.log('Unable to find: ', companies[count].symbol);
+				count++;
+				findStocksByAPI(companies, stocks, count, cb)
+			} else {
+				var sd = quote.summaryDetail ? quote.summaryDetail : {};
+				
+				if(sd.ask == 0 && sd.bid == 0) {
+					var price = parseFloat(sd.previousClose);
+				} else if(sd.ask == 0) {
+					var price = parseFloat(sd.bid);
+				} else {
+					var price = parseFloat(sd.ask);
+				}
+				
+				var change = format(price - parseFloat(sd.previousClose));
+				if(parseFloat(change) < 0) {
+					var gain = false;
+				} else {
+					var gain = true;
+				}
+				
+				var data = {
+					price: format(price),
+					name: quote.price.shortName ? quote.price.shortName : '-',
+					symbol: quote.price.symbol ? quote.price.symbol : '-',
+					change: format(price - parseFloat(sd.previousClose)),
+					unformattedChange: (((price / parseFloat(sd.previousClose)) - 1) * 100),
+					percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
+					gain: gain 
+				};
+				
+				stocks.push(data);
+				console.log(count + ' / ' + companies.length);
+				count++;
+				findStocksByAPI(companies, stocks, count, cb);
+			}
+		});
+	} else {
+		console.log(count + ' / ' + companies.length);
+		console.log('\nSearch Complete!\n');
+		cb(stocks);
+	}
 }
