@@ -39,6 +39,7 @@ body {
     background-repeat: no-repeat, no-repeat;
     background-position: center, center;
     background-size: cover, cover;
+    background-attachment: scroll;
 }
 
 /*Requried for Materialize SideNav*/
