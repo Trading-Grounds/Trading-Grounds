@@ -11,6 +11,9 @@ Use for Stock Ticker
 font-family: 'Source Code Pro', monospace;
 */
 
+/*Color: Money Green*/
+/* background:#84bb65b2; */
+
 body {
     /*Font Style*/
     Font-Family: 'Source Sans Pro', Sans-Serif;
@@ -47,12 +50,16 @@ footer {
 
 /*SideNav Styling*/
 .sidenav {
-    background: #232526;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #232526;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #414345, #232526);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #414345, #232526);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.name, .email {
+.name,
+.email {
     color: ghostwhite;
 }
 
@@ -67,10 +74,16 @@ footer {
 
 /*Search Bar*/
 nav {
-    /* background: rgba(188, 199, 34, 0.609); */
-    background:#84bb656e;
-    /*Color: Money Green*/
-    /* background:#84bb65b2; */
+    background: #84bb656e;
+}
+
+.collapsible-body {
+    background: #232526;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #414345, #232526);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #414345, #232526);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 /*Stock Ticker*/
@@ -78,12 +91,14 @@ nav {
     color: ghostwhite;
     font-size: 24px;
     font-family: 'Source Code Pro', monospace;
+    background: rgba(0, 0, 0, 0.541);
 }
 
 /*User Image*/
 .circle {
-   margin: auto;
+    margin: auto;
 }
+
 /*User Name & Email*/
 .user-view {
     text-align: center;
@@ -136,8 +151,9 @@ nav {
 }
 
 .close-x {
-    color:#84bb65b2;
+    color: #84bb65b2;
 }
+
 /*Materialize Sticky Footer*/
 .page-footer {
     background: transparent;
@@ -151,6 +167,7 @@ main {
 
 /*Materialize Side Nav*/
 @media only screen and (max-width : 992px) {
+
     header,
     main,
     footer {
