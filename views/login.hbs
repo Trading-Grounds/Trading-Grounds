@@ -1,13 +1,5 @@
 {{> header}}
 
-{{#if errors}}
-<ul class="">
-	{{#each errors}}
-	<li class="">{{this}}</li>
-	{{/each}}
-</ul>
-{{/if}}
-
 <body class="page-background" id="index">
 
 	<nav class="no-shadows">
@@ -28,7 +20,7 @@
 
 			<!--Login Form-->
 			<div class="container">
-				<div id="login-form" class="row">
+				<div class="row">
 					<form id="login" class="col s12 m12 l12" name="login" method="post" action="/login">
 						<div class="row">
 							<div class="card-panel">
@@ -37,8 +29,19 @@
 								</div>
 								<div class="input field col s6">
 									<input class="validate white-text" type="password" id="password" name="password" placeholder="Password" value="{{user.password}}">
-								</div>								
+								</div>
 								<div class="row center-align">
+									<div class="col s12 m12 l12">
+										{{#if errors}}
+										<ul class="wrong-login">
+											{{#each errors}}
+											<li class="">{{this}}</li>
+											{{/each}}
+										</ul>
+										{{/if}}
+									</div>
+								</div>
+								<div id="login-button" class="row center-align">
 									<div class="col s12 m12 l12">
 										<button class="btn waves-effect waves-light" type="submit" id="submit" value="Log In" name="action">Submit
 											<i class="material-icons right">send</i>

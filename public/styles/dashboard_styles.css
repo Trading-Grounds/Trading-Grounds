@@ -58,18 +58,34 @@ footer {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.name,
-.email {
+/*User Image*/
+.circle {
+    margin: auto;
+}
+
+.card-small {
+    background: #84bb656e;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*User Name & Email*/
+.user-view {
+    text-align: center;
+    Font-Family: 'Source Sans Pro', Sans-Serif;
     color: ghostwhite;
 }
+
+.logout-link {
+    text-align: center;
+}
+
 
 #hamburger-menu {
     color: ghostwhite;
 }
 
-.btn-small {
-    border-radius: 10px;
-}
 
 /*Search Bar*/
 nav {
@@ -85,22 +101,16 @@ nav {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.material-icon {
+    color: ghostwhite;
+}
+
 /*Stock Ticker*/
 .ticker-color {
     color: ghostwhite;
     font-size: 24px;
     font-family: 'Source Code Pro', monospace;
     background: rgba(0, 0, 0, 0.541);
-}
-
-/*User Image*/
-.circle {
-    margin: auto;
-}
-
-/*User Name & Email*/
-.user-view {
-    text-align: center;
 }
 
 #main-card {
@@ -114,6 +124,30 @@ nav {
     border-radius: 10px;
     color: ghostwhite;
 }
+
+/*Table's*/
+table {
+    color: ghostwhite;
+    border: transparent;
+}
+
+table>thead {
+    background: #84bb6534;
+}
+
+table.highlight>tbody>tr:hover {
+    background-color: #84bb6534;
+}
+
+td {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.small-name {
+    font-weight: 300;
+}
+
 
 /*Reveal Cards*/
 .card {
@@ -142,6 +176,11 @@ nav {
 
 .sell-button {
     float: right;
+}
+
+#pie {
+    width: 300px;
+    height: 300px;
 }
 
 .close-x {

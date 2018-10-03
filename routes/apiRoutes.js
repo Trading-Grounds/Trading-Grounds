@@ -18,14 +18,7 @@ module.exports = function (app) {
 
       }
 
-<<<<<<< HEAD
-      yahooFinance.quote({
-        symbols: ["GOOG", "AAPL"],
-        modules: ["price", "summaryDetail"]
-      }, function (err, quote) {
-=======
       yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
->>>>>>> a77937f4d92ec50c94560b0668c368ec817fc1b0
         if (err) {
           console.log("Stock Info Not Available");
         } else {
