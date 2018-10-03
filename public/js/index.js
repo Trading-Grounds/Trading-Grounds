@@ -47,15 +47,15 @@ $(document).ready(function() {
 	
 	  //Adding News to Web Ticker
 	  $("#finNews1").html(news1 + " | ").attr('href', response.articles[0].url);
-	  $("#finNews2").html(news2 + " | ");
-	  $("#finNews3").html(news3 + " | ");
-	  $("#finNews4").html(news4 + " | ");
-	  $("#finNews5").html(news5 + " | ");
-	  $("#finNews6").html(news6 + " | ");
-	  $("#finNews7").html(news7 + " | ");
-	  $("#finNews8").html(news8 + " | ");
-	  $("#finNews9").html(news9 + " | ");
-	  $("#finNews10").html(news10 + " | ");
+	  $("#finNews2").html(news2 + " | ").attr('href', response.articles[1].url);
+	  $("#finNews3").html(news3 + " | ").attr('href', response.articles[2].url);
+	  $("#finNews4").html(news4 + " | ").attr('href', response.articles[3].url);
+	  $("#finNews5").html(news5 + " | ").attr('href', response.articles[4].url);
+	  $("#finNews6").html(news6 + " | ").attr('href', response.articles[5].url);
+	  $("#finNews7").html(news7 + " | ").attr('href', response.articles[6].url);
+	  $("#finNews8").html(news8 + " | ").attr('href', response.articles[7].url);
+	  $("#finNews9").html(news9 + " | ").attr('href', response.articles[8].url);
+	  $("#finNews10").html(news10 + " | ").attr('href', response.articles[9].url);
 	
 	});
 
