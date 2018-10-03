@@ -1,0 +1,40 @@
+
+<h2 class="capitalize">{{sector}}</h2>
+
+<a href="/stocks/sector/basic%20industries">Basic Industries</a>
+<a href="/stocks/sector/capital%20goods">Capital Goods</a>
+<a href="/stocks/sector/consumer%20durables">Consumer Durables</a>
+<a href="/stocks/sector/consumer%20non-durables">Consumer Non-Durables</a>
+<a href="/stocks/sector/consumer%20services">Consumer Services</a>
+<a href="/stocks/sector/energy">Energy</a>
+<a href="/stocks/sector/finance">Finance</a>
+<a href="/stocks/sector/health%20care">Health Care</a>
+<a href="/stocks/sector/miscellaneous">Miscellaneous</a>
+<a href="/stocks/sector/public%20utilities">Public Utilities</a>
+<a href="/stocks/sector/technology">Technology</a>
+<a href="/stocks/sector/transportation">Transportation</a> 
+
+<br><br>
+
+
+<table>
+
+	<tr>
+		<th>Stock</th>
+		<th>Current Price</th>
+		<th>Change</th>
+	</tr>
+	
+{{#each stocks}}
+	<tr>
+		<td>{{this.symbol}}</td>
+		<td>{{this.price}}</td>
+		<td>{{this.percentChange}}</td>
+	</tr>
+{{/each}}
+
+</table>
+
+<br>
+
+<a href="/dashboard">Back</a>

@@ -46,7 +46,7 @@ $(document).ready(function() {
 	
 	
 	  //Adding News to Web Ticker
-	  $("#finNews1").html(news1 + " | ");
+	  $("#finNews1").html(news1 + " | ").attr('href', response.articles[0].url);
 	  $("#finNews2").html(news2 + " | ");
 	  $("#finNews3").html(news3 + " | ");
 	  $("#finNews4").html(news4 + " | ");
@@ -67,13 +67,13 @@ $(document).ready(function() {
 		window.location.href = '/stock/' + symbol;
 	});
 	
-	var API = {
-		getStock: function(symbol) {
-			return $.ajax({
-				
-			});
-		}
-	}
+	$('#search-icon').click(function() {
+		$('#search-form').submit();
+	});
+	
+	$('#search-close').click(function() {
+		$('#search').val('');
+	});
 	
 /*
 	var API = {
@@ -101,5 +101,12 @@ $(document).ready(function() {
 		}
 	};
 */
+
+/*=========== Stock Row Clicked ===========*/
+
+$(document).on('click', '.stock-row', function() {
+	var symbol = $(this).data('symbol');
+	window.location.href = '/stock/' + symbol;
+});
   
 });

@@ -29,8 +29,8 @@
 				<form id="search-form">
 					<div class="input-field">
 						<input id="search" type="search" placeholder="stock symbol" required>
-						<label class="label-icon" for="search"><i class="material-icons">search</i></label>
-						<i class="material-icons">close</i>
+						<label class="label-icon" for="search"><i id="search-icon" class="material-icons">search</i></label>
+						<i id="search-close" class="material-icons">close</i>
 					</div>
 				</form>
 			</div>
@@ -57,10 +57,10 @@
 					<a class="collapsible-header white-text waves-effect waves-green accent-4"><i class="white-text material-icons">arrow_drop_down</i>STOCKS</a>
 					<div class="collapsible-body">
 						<ul>
-							<li> <a class="white-text waves-effect waves-green accent-4" href="topmovers.html">Top Movers</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="/stocks/movers/nasdaq">Top Movers</a></li>
 							<li> <a class="white-text waves-effect waves-green accent-4" href="volume.html">Volume</a></li>
 							<li> <a class="white-text waves-effect waves-green accent-4" href="marketcap.html">Market Cap</a></li>
-							<li> <a class="white-text waves-effect waves-green accent-4" href="sector.html">Sector/Industry</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="/stocks/sector/basic%20industries">Sector</a></li>
 						</ul>
 					</div>
 				</li>
@@ -70,19 +70,19 @@
 	<!--
 	<ul class="right hide-on-med-and-down">
 		<!--Portfolio-->
-		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1"><i class="material-icons">place</i>PORTFOLIO<i class="material-icons right">arrow_drop_down</i></a></li>
+		<li class="hide-drop"><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1"><i class="material-icons">place</i>PORTFOLIO<i class="material-icons right">arrow_drop_down</i></a></li>
 		<ul id='dropdown1' class='dropdown-content'>
 			<li> <a href="investments.html">Investments</a></li>
 			<li> <a href="watchlist.html">Watchlist</a></li>
 			<li> <a href="transactions.html">Transactions</a></li>
 		</ul>
 		<!--Stocks-->
-		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1"><i class="material-icons">place</i>STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
+		<li class="hide-drop"><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1"><i class="material-icons">place</i>STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
 		<ul id='dropdown1' class='dropdown-content'>
-			<li> <a href="topmovers.html">Top Movers</a></li>
+			<li> <a href="/stocks/movers/nasdaq">Top Movers</a></li>
 			<li> <a href="volume.html">Volume</a></li>
 			<li> <a href="marketcap.html">Market Cap</a></li>
-			<li> <a href="sector.html">Sector/Industry</a></li>
+			<li> <a href="/stocks/sector/basic%20industries">Sector</a></li>
 		</ul>
 	</ul>
 
@@ -117,16 +117,16 @@
 						<div class="mask">
 							<ul id="webTicker">
 								<li class="ticker-spacer"></li>
-								<li id="finNews1" class="ticker-color"> | </li>
-								<li id="finNews2" class="ticker-color"> | </li>
-								<li id="finNews3" class="ticker-color"> | </li>
-								<li id="finNews4" class="ticker-color"> | </li>
-								<li id="finNews5" class="ticker-color"> | </li>
-								<li id="finNews6" class="ticker-color"> | </li>
-								<li id="finNews7" class="ticker-color"> | </li>
-								<li id="finNews8" class="ticker-color"> | </li>
-								<li id="finNews9" class="ticker-color"> | </li>
-								<li id="finNews10" class="last ticker-color"> | </li>
+								<li><a href=""  target="_blank" id="finNews1" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews2" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews3" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews4" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews5" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews6" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews7" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews8" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews9" class="ticker-color"> | </a></li>
+								<li><a href=""  target="_blank" id="finNews10" class="last ticker-color"> | </a></li>
 							</ul>
 						</div>
 					</div>
@@ -196,17 +196,17 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
+										<tr class="stock-row" data-symbol="appl">
 											<td>APPL <br> <span class="small-name">Apple</span></td>
 											<td>$ 225.48</td>
 											<td><span class="arrow"> &#8679 </span>+ 0.20% <br><span class="small-number">+0.04</span></td>
 										</tr>
-										<tr>
+										<tr class="stock-row" data-symbol="goog">
 											<td>GOOG <br> <span class="small-name">Google</span></td>
 											<td>$ 1203.00</td>
 											<td>+ 0.48% <br><span class="small-number">+1.21</span></td>
 										</tr>
-										<tr>
+										<tr class="stock-row" data-symbol="nke">
 											<td>NKE <br> <span class="small-name">Nike</span></td>
 											<td>$ 84.72</td>
 											<td>+ 0.21% <br><span class="small-number">+0.07</span></td>
@@ -264,9 +264,9 @@
 							<table>
 								<thead>
 									<tr>
-										<th>Name</th>
-										<th>Item Name</th>
-										<th>Item Price</th>
+										<th>Sector</th>
+										<th>$</th>
+										<th>%</th>
 									</tr>
 								</thead>
 
