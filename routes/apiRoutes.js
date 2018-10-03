@@ -1,5 +1,6 @@
 var db = require("../models");
 var yahooFinance = require("yahoo-finance");
+var authController = require('../controllers/authcontroller');
 
 module.exports = function (app) {
   // Get all examples
@@ -18,14 +19,7 @@ module.exports = function (app) {
 
       }
 
-<<<<<<< HEAD
-      yahooFinance.quote({
-        symbols: ["GOOG", "AAPL"],
-        modules: ["price", "summaryDetail"]
-      }, function (err, quote) {
-=======
-      yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
->>>>>>> a77937f4d92ec50c94560b0668c368ec817fc1b0
+      yahooFinance.quote({ symbols: AAPL, modules: ["price", "summaryDetail"] }, function (err, quote) {
         if (err) {
           console.log("Stock Info Not Available");
         } else {
@@ -112,27 +106,7 @@ module.exports = function (app) {
   });
 
 
-  // add in a new stock
-  app.post("/api/topStock", function (req, res) {
-    db.TopStock.create(req.body).then(function (dbTopStocks) {
-      res.json(dbTopStocks);
-    });
-  });
 
-
-  //To pull the specfic account information with all the stocks purchased
-  //I don't think we will need a get all, because a user would NEVER need to see other accounts
-  app.get("/api/account/:id", function (req, res) {
-    db.Account.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: [db.User]
-    }).then(function (dbAccount) {
-      res.json(dbAccount);
-
-    })
-  })
 
 
 };
