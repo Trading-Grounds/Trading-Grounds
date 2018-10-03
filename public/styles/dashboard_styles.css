@@ -151,10 +151,21 @@ td {
     font-size: 18px;
 }
 
-.small-name {
+.stock-symbol {
+    font-size: 24px;
+}
+
+.company-name {
     font-weight: 300;
 }
 
+.share {
+    font-size: 24px;
+}
+
+.big-number {
+    font-size: 24px;
+}
 
 /*Reveal Cards*/
 .card {
@@ -177,6 +188,10 @@ td {
     border-radius: 10px;
 }
 
+.close-x {
+    color: #84bb65b2;
+}
+
 .buy-button {
     float: left;
 }
@@ -185,14 +200,12 @@ td {
     float: right;
 }
 
+/*Chart*/
 #pie {
     width: 300px;
     height: 300px;
 }
 
-.close-x {
-    color: #84bb65b2;
-}
 
 /*Materialize Sticky Footer*/
 .page-footer {
