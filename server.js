@@ -49,6 +49,7 @@ var models = require('./models');
 // Routes
 var authRoutes = require('./routes/auth')(app, passport);
 var reset = require('./routes/reset')(app);
+var stocks = require('./routes/stocks')(app);
 var apiRoutes = require('./routes/apiRoutes')(app);
 var htmlRoutes = require('./routes/htmlRoutes')(app);
 

@@ -8,19 +8,12 @@
 			<div class="user-view">
 				<div class="background"></div>
 				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
+
 				<a href="#name"><span class="white-text name">{{user.username}}</span></a>
 				<a href="#email"><span class="white-text email">{{user.email}}</span></a>
-=======
-				<a href="#name"><span class="white-text name">John Doe</span></a>
-				<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-				<a href="/logout"><span class="logout-link">Logout</span></a>
->>>>>>> 3a7d9926e6347ec41cb7d6356f21eddb5f33407a
-=======
-				<a href="#name"><span class="white-text name">{{user.username}}</span></a>
-				<a href="#email"><span class="white-text email">{{user.email}}</span></a>
->>>>>>> c4b56e685959d8a3e12b024d7b99615737ce319a
+
 			</div>
 		</li>
 
@@ -32,7 +25,7 @@
 		<!--Search Box in Fixed Side Navigation-->
 		<nav>
 			<div class="nav-wrapper">
-				<form>
+				<form id="search-form">
 					<div class="input-field">
 						<input id="search" type="search" placeholder="stock symbol" required>
 						<label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -51,7 +44,7 @@
 						<ul>
 							<li> <a class="waves-effect waves-green accent-4" href="mystocks.html">My Stocks</a></li>
 							<li> <a class="waves-effect waves-green accent-4" href="watchlist.html">Watch List</a></li>
-							<li> <a class="waves-effect waves-green accent-4" href="browsestock.html">Browse Stock</a></li>
+							<li> <a class="waves-effect waves-green accent-4" href="/stocks/movers/nasdaq">Browse Stock</a></li>
 							<li> <a class="waves-effect waves-green accent-4" href="search.html">Search Stocks</a></li>
 							<li> <a class="waves-effect waves-green accent-4" href="indecies.html">Indecies</a></li>
 						</ul>
@@ -60,6 +53,7 @@
 			</ul>
 		</ul>
 	</ul>
+	<!--
 	<ul class="right hide-on-med-and-down">
 		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
 		<ul id='dropdown1' class='dropdown-content'>
@@ -73,7 +67,10 @@
 
 
 	</ul>
+	-->
 	<a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i id="hamburger-menu" class="material-icons">menu</i></a>
+	
+	
 
 	<!--Main Content-->
 	<main id="main-area">
@@ -283,5 +280,11 @@
 		</div>
 
 	</main>
+	
+	<script>
+	
 
-	{{> footer}}
+	
+	</script>
+
+	
