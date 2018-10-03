@@ -18,24 +18,33 @@ module.exports = function (app) {
 
       }
 
-      yahooFinance.quote({ symbols: ["GOOG","AAPL"], modules: ["price", "summaryDetail"] }, function (err, quote) {
+<<<<<<< HEAD
+      yahooFinance.quote({
+        symbols: ["GOOG", "AAPL"],
+        modules: ["price", "summaryDetail"]
+      }, function (err, quote) {
+=======
+      yahooFinance.quote({ symbols: stocks, modules: ["price", "summaryDetail"] }, function (err, quote) {
+>>>>>>> a77937f4d92ec50c94560b0668c368ec817fc1b0
         if (err) {
           console.log("Stock Info Not Available");
         } else {
-          var tickerData =[];
+          var tickerData = [];
           Object.keys(quote).forEach(function (ticker) {
             tickerData.push({
               symbol: quote[ticker].price.symbol,
-              price: quote[ticker].summaryDetail.bid
+              price: " $" + quote[ticker].summaryDetail.bid,
+              sellPrice: " $" + quote[ticker].summaryDetail.bid,
+              stockName: quote[ticker].price.shortName,
+              open: "$" + quote[ticker].summaryDetail.open,
+              fiftyTwoWeekHigh: "$" + quote[ticker].summaryDetail.fiftyTwoWeekHigh,
+              fiftyTwoWeekLow: + "$" + quote[ticker].summaryDetail.fiftyTwoWeekLow
             });
-            // tickerData = [
-            //   quote[ticker].price.symbol + ": $" + quote[ticker].summaryDetail.bid + " USD"
-            // ].join("\n");
-            // console.log(tickerData);
-
           })
           console.log(tickerData)
-          res.render("dashboard", { ticker: tickerData });
+          res.render("dashboard", {
+            ticker: tickerData
+          });
           // console.log(quote);
 
         }
@@ -53,7 +62,10 @@ module.exports = function (app) {
       // include: [db.Account]?? /////TODO LATER
     }).then(function (dbTopStocks) {
       // This returns the yahoo Finance info
-      yahooFinance.quote({ symbol: req.params.symbol, modules: ["price", "summaryDetail"] }, function (err, quote) {
+      yahooFinance.quote({
+        symbol: req.params.symbol,
+        modules: ["price", "summaryDetail"]
+      }, function (err, quote) {
         if (err) {
           console.log("I'm sorry. We could not retrieve stock information.");
         } else {
@@ -68,7 +80,12 @@ module.exports = function (app) {
             "Current Date: " + quote.price.regularMarketTime
           ].join("\n");
           console.log(stockData);
-          yahooFinance.historical({ symbol: req.params.symbol, from: '2018-09-21', to: '2018-09-27', period: 'd' }, function (err, quotes) {
+          yahooFinance.historical({
+            symbol: req.params.symbol,
+            from: '2018-09-21',
+            to: '2018-09-27',
+            period: 'd'
+          }, function (err, quotes) {
             if (err) {
               throw err;
             } else {
@@ -79,7 +96,10 @@ module.exports = function (app) {
                   "Low: " + quotes[i].low
                 ].join("\n\n")
                 console.log(historicalData);
-                res.render("dashboard", { stockInfo: stockData, historicalData: historicalData })
+                res.render("dashboard", {
+                  stockInfo: stockData,
+                  historicalData: historicalData
+                })
 
               }
             };
@@ -116,6 +136,3 @@ module.exports = function (app) {
 
 
 };
-
-
-
