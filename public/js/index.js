@@ -41,10 +41,6 @@ $(document).ready(function() {
 	  var news9 = response.articles[8].title;
 	  var news10 = response.articles[9].title;
 	
-	
-	
-	
-	
 	  //Adding News to Web Ticker
 	  $("#finNews1").html(news1 + " | ");
 	  $("#finNews2").html(news2 + " | ");
