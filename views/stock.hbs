@@ -1,0 +1,126 @@
+<html>
+<head>
+<style>
+
+.card-link {
+	cursor: pointer;
+}
+.selected-link {
+	font-weight: bold;
+	cursor: default; 
+}
+.js-hidden {
+	display: none;
+}
+
+</style>
+
+<script
+	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+	crossorigin="anonymous">
+</script>
+
+</head>
+
+<body>
+
+<h3>{{symbol}}</h3>
+<h6>{{name}}</h6>
+<h2>{{price}}</h2>
+<h4>{{#if gain}}+ {{else}}- {{/if}}{{change}} ({{#if gain}}+ {{else}}- {{/if}}{{percentChange}})</h4>
+<ul>
+	<span class="card-link" id="hist-link">Historical</span>
+	<span class="card-link selected-link" id="det-link">Details</span>
+	<span class="card-link" id="comp-link">Company</span>
+</ul>
+
+<div class="js-hidden" id="historical">
+	<ul>
+		<li><span>1w</span></li>
+		<li><span>1m</span></li>
+		<li><span>6m</span></li>
+		<li><span>YTD</span></li>
+		<li><span>1y</span></li>
+		<li><span>5y</span></li>
+	</ul>
+	Historical Data/Graph Display Here
+</div>
+
+<div id="details">
+	<ul>
+		<li>Previous Close: {{close}}</li>
+		<li>Open: {{open}}</li>
+		<li>High: {{high}}</li>
+		<li>Low: {{low}}</li>
+		<li>Volume: {{volume}}</li>
+		<li>Market Cap: {{marketCap}}</li>
+		<li>52 Week High: {{fiftyTwoHigh}}</li>
+		<li>52 Week Low: {{fiftyTwoLow}}</li>
+	</ul>
+	<hr>
+	<ul>
+		<li>Div/Yield: {{div}} / {{yield}}</li>
+		<li>Beta: {{beta}}</li>
+		<li>EPS: {{eps}}</li>
+		<li>P/E: {{pe}}</li>
+	</ul>
+	<hr>
+	Bid: {{bid}}<br>Ask: {{ask}}
+</div>
+
+<div class="js-hidden" id="company">
+	<ul>
+		<li>Name: {{name}}</li>
+		<li>Symbol: {{symbol}}</li>
+		<li>Sector: {{sector}}</li>
+		<li>Industry: {{industry}}</li>
+		<li>Location: {{state}}, {{country}}</li>
+		<li>Employees: {{employees}}</li>
+		<li>Phone: {{phone}}</li>
+		<li>Website: <a href="{{website}}" target="_blank">{{website}}</a></li>
+	</ul>
+	<hr>
+	<div>{{summary}}</div>
+</div>
+
+<a href="/dashboard">Back</a>
+
+</body>
+
+<script>
+
+$('.card-link').click(function() {
+
+});
+
+$('#hist-link').click(function() {
+	$('#det-link').removeClass('selected-link');
+	$('#comp-link').removeClass('selected-link');
+	$('#hist-link').addClass('selected-link');
+	$('#historical').removeClass('js-hidden');
+	$('#details').addClass('js-hidden');
+	$('#company').addClass('js-hidden');
+});
+
+$('#det-link').click(function() {
+	$('#det-link').addClass('selected-link');
+	$('#comp-link').removeClass('selected-link');
+	$('#hist-link').removeClass('selected-link');
+	$('#historical').addClass('js-hidden');
+	$('#details').removeClass('js-hidden');
+	$('#company').addClass('js-hidden');
+});
+
+$('#comp-link').click(function() {
+	$('#det-link').removeClass('selected-link');
+	$('#comp-link').addClass('selected-link');
+	$('#hist-link').removeClass('selected-link');
+	$('#historical').addClass('js-hidden');
+	$('#details').addClass('js-hidden');
+	$('#company').removeClass('js-hidden');
+});
+
+</script>
+
+</html>

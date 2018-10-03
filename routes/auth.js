@@ -1,4 +1,6 @@
 var authController = require('../controllers/authcontroller');
+var db = require("../models");
+var yahooFinance = require("yahoo-finance");
 // var expressValidator = require('express-validator');
 
 // console.log('\n\n\n', authController, '\n\n\n');
@@ -38,7 +40,7 @@ module.exports = (app, passport) => {
 			res.redirect('/');
 		}
 	}
-	
+
 	//	Registration Form Validations
 	function validateRegistration(req, res, next) {
 		var validate = require('../functions/validations');
