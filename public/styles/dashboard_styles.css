@@ -56,6 +56,7 @@ header {
     text-align: center;
     color: ghostwhite;
     Font-Family: 'Playfair Display', Serif;
+    background: rgba(0, 0, 0, 0.541);
 
 }
 
@@ -140,7 +141,7 @@ nav {
 
 /*Materialize Sticky Footer*/
 .page-footer {
-    background: transparent;
+    background: rgba(0, 0, 0, 0.616);
 }
 
 main {
@@ -162,7 +163,7 @@ main {
     text-decoration: capitalize;
 }
 
-/*Table's*/
+/*==========================Table's==============================================================*/
 table {
     color: ghostwhite;
     border: transparent;
@@ -259,6 +260,12 @@ td {
     text-align: center;
 }
 /*===========================================End Watchlist Styling=================================================================*/
+
+/*===========================================Movers.hbs Styling=======================================================*/
+
+
+
+/*===========================================Movers.hbs Styling=======================================================*/
 
 /*============================================Media Queries==========================================================*/
 

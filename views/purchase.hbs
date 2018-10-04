@@ -3,7 +3,7 @@
 <body class="page-background" id="dashboard">
 
     <header>
-        <h1>Investments</h1>
+        <h1>Purchase Stock</h1>
     </header>
 
     {{> sidenav}}
@@ -59,43 +59,58 @@
                 </div>
             </section>
 
-            <!--Table-->
+            <!--Stock View-->
             <section>
-                <div class="row">
+                <div class="container">
+                <div class="row center-align">
                     <div class="col l12 m12 s12">
-                        <div class="card-panel center z-depth-5">
-                            <span class="table">
-                                <table class="centered highlight responsive-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Symbol</th>
-                                            <th>Name</th>
-                                            <th>Shares</th>
-                                            <th>Costs</th>
-                                            <th>Price</th>
-                                            <th>Market Value</th>
-                                            <th>Gain/Loss</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>GOOG</td>
-                                            <td>Alphabet, Inc</td>
-                                            <td>15</td>
-                                            <td>$ 17,266.30</td>
-                                            <td>$ 1203.60 <span>(-3.73)</span></td>
-                                            <td>$ 18,054.18</td>
-                                            <td>$ 787.95 <span>(4.56%)</span></td>
-                                            <td> <a href="#" class="btn-small green accent-4 buy-button">BUY</a>
-                                                <a href="#" class="btn-small red accent-4 sell-button">SELL</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </span>
+
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="card">
+                                    <div class="card-content white-text">
+                                        <span class="company-name">
+                                            <h4>
+                                                Company Name
+                                            </h4>
+                                        </span>
+                                        <span class="card-title">
+                                            <h1>
+                                                Stock Symbol
+                                            </h1>
+                                        </span>
+                                        <span class="share-price">
+                                            <h3>
+                                                $ 0,000.00
+                                            </h3>
+                                        </span>
+                                        <span class="share-qty">
+                                            <div class="input-field col s12 m6 l6">
+                                                <input placeholder="Number of Shares" id="" type="text">
+                                            </div>
+                                        </span>
+                                        <div class="row center-align">
+                                            <div class="col s12 m6 l12">
+                                                <span class="total-purchase">
+                           
+                                                    <h3>
+                                                        $ 0,000.00
+                                                    </h3>
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="card-action">
+                                        <a class="waves-effect waves-light btn" href="#">Purchase</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
+                </div>
                 </div>
             </section>
         </div>
