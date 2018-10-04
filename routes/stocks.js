@@ -19,7 +19,7 @@ module.exports = (app) => {
 							$like: '%' + req.params.symbol + '%'
 						}
 					},
-					order: [['market_cap', 'ASC']],
+					order: [['market_cap', 'DESC']],
 					limit: 10
 				}).then(company => {
 					if(company[0]) {
@@ -156,7 +156,7 @@ module.exports = (app) => {
 				exchange: exchange
 			},
 			limit: 25,
-			order: [['market_cap', 'ASC']],
+			order: [['market_cap', 'DESC']],
 		}).then(companies => {
 			if(companies) {
 												
@@ -309,6 +309,233 @@ module.exports = (app) => {
 		});
 	});
 	
+	//	GET Stocks By Volume
+	app.get('/stocks/volume/:exchange?', (req, res) => {
+		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
+		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
+			return res.redirect('/stocks/volume/nasdaq');
+		}
+		Company.findAll({
+			where: {
+				exchange: exchange
+			},
+			limit: 25,
+			order: [['market_cap', 'DESC']]
+		}).then(companies => {
+			findStocksByAPI(companies, [], 0, (stocks) => {
+				var topVolume = {
+					one: 0,
+					two: 0,
+					three: 0,
+					four: 0,
+					five: 0,
+					six: 0,
+					seven: 0,
+					eight: 0,
+					nine: 0,
+					ten: 0
+				};
+				var topStocks = {
+					one: {},
+					two: {},
+					three: {},
+					four: {},
+					five: {},
+					six: {},
+					seven: {},
+					eight: {},
+					nine: {},
+					ten: {}
+				}
+				stocks.forEach(stock => {
+					var volume = stock.volume;
+					if(parseInt(volume) > topVolume.one) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = topVolume.six;
+						topVolume.six = topVolume.five;
+						topVolume.five = topVolume.four;
+						topVolume.four = topVolume.three;
+						topVolume.three = topVolume.two;
+						topVolume.two = topVolume.one;
+						topVolume.one = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = topStocks.six;
+						topStocks.six = topStocks.five;
+						topStocks.five = topStocks.four;
+						topStocks.four = topStocks.three;
+						topStocks.three = topStocks.two;
+						topStocks.two = topStocks.one;
+						topStocks.one = stock;
+						
+					} else if(parseInt(volume) > topVolume.two) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = topVolume.six;
+						topVolume.six = topVolume.five;
+						topVolume.five = topVolume.four;
+						topVolume.four = topVolume.three;
+						topVolume.three = topVolume.two;
+						topVolume.two = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = topStocks.six;
+						topStocks.six = topStocks.five;
+						topStocks.five = topStocks.four;
+						topStocks.four = topStocks.three;
+						topStocks.three = topStocks.two;
+						topStocks.two = stock;
+						
+					} else if(parseInt(volume) > topVolume.three) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = topVolume.six;
+						topVolume.six = topVolume.five;
+						topVolume.five = topVolume.four;
+						topVolume.four = topVolume.three;
+						topVolume.three = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = topStocks.six;
+						topStocks.six = topStocks.five;
+						topStocks.five = topStocks.four;
+						topStocks.four = topStocks.three;
+						topStocks.three = stock;
+						
+					} else if(parseInt(volume) > topVolume.four) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = topVolume.six;
+						topVolume.six = topVolume.five;
+						topVolume.five = topVolume.four;
+						topVolume.four = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = topStocks.six;
+						topStocks.six = topStocks.five;
+						topStocks.five = topStocks.four;
+						topStocks.four = stock;
+						
+					} else if(parseInt(volume) > topVolume.five) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = topVolume.six;
+						topVolume.six = topVolume.five;
+						topVolume.five = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = topStocks.six;
+						topStocks.six = topStocks.five;
+						topStocks.five = stock;
+						
+					} else if(parseInt(volume) > topVolume.six) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = topVolume.six;
+						topVolume.six = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = topStocks.six;
+						topStocks.six = stock;
+						
+					} else if(parseInt(volume) > topVolume.seven) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = topVolume.seven;
+						topVolume.seven = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = topStocks.seven;
+						topStocks.seven = stock;
+						
+					} else if(parseInt(volume) > topVolume.eight) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = topVolume.eight;
+						topVolume.eight = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = topStocks.eight;
+						topStocks.eight = stock;
+						
+					} else if(parseInt(volume) > topVolume.nine) {
+						
+						topVolume.ten = topVolume.nine;
+						topVolume.nine = parseInt(volume);
+						
+						topStocks.ten = topStocks.nine;
+						topStocks.nine = stock;
+						
+					} else if(parseInt(volume) > topVolume.ten) {
+						
+						topVolume.ten = parseInt(volume);
+						
+						topStocks.ten = stock;
+						
+					}
+				});
+				var keys = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+				for(var i = 0; i < keys.length; i++) {
+					topStocks[keys[i]].volume = format(topStocks[keys[i]].volume, 0, '');
+// 					console.log(topStocks[keys[i]]);
+				}
+				res.render('volume-cody', {
+					volume: topStocks,
+					exchange: exchange
+				});
+			});
+		});
+	});
+	
+	//	GET Stocks By Market Cap
+	app.get('/stocks/marketcap/:exchange?', (req, res) => {
+		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
+		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
+			return res.redirect('/stocks/volume/nasdaq');
+		}
+		Company.findAll({
+			where: {
+				exchange: exchange
+			},
+			limit: 10,
+			order: [['market_cap', 'DESC']]
+		}).then(companies => {
+			findStocksByAPI(companies, [], 0, (stocks) => {
+				res.render('marketcap-cody', {
+					stocks: stocks,
+					exchange: exchange
+				});
+			});
+		});
+	});
+	
 	//	GET Stocks By Sector
 	app.get('/stocks/sector/:sector?', (req, res) => {
 		var sector = req.params.sector;
@@ -317,12 +544,12 @@ module.exports = (app) => {
 			where: {
 				sector: sector
 			},
-			order: [['market_cap', 'ASC']],
+			order: [['market_cap', 'DESC']],
 			limit: 10
 		}).then(companies => {
 			
 			findStocksByAPI(companies, [], 0, (stocks) => {
-				console.log('\n\n\nstocks found:', stocks);
+// 				console.log('\n\n\nstocks found:', stocks);
 				res.render('sectors', {
 					stocks: stocks,
 					sector: sector.toUpperCase()
@@ -377,7 +604,8 @@ function findStocksByAPI(companies, stocks=[], count=0, cb) {
 					change: format(price - parseFloat(sd.previousClose)),
 					unformattedChange: (((price / parseFloat(sd.previousClose)) - 1) * 100),
 					percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
-					gain: gain 
+					gain: gain ,
+					volume: sd.volume ? sd.volume : 0
 				};
 				
 				stocks.push(data);

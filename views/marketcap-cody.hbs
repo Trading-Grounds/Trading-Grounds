@@ -1,0 +1,30 @@
+<h2>Market Cap</h2>
+
+<a href="/stocks/volume/nasdaq">NASDAQ</a> <a href="/stocks/volume/nyse">NYSE</a> <a href="/stocks/volume/amex">AMEX</a>
+<br><br>
+
+<h4>{{exchange}}</h4>
+
+<table>
+
+	<tr>
+		<th>Stock</th>
+		<th>Current Price</th>
+		<th>Change</th>
+		<th>Market Cap</th>
+	</tr>
+	
+{{#each stocks}}
+	<tr>
+		<td>{{this.symbol}}</td>
+		<td>{{this.price}}</td>
+		<td>{{this.percentChange}}</td>
+		<td></td>
+	</tr>
+{{/each}}
+
+</table>
+
+<br>
+
+<a href="/dashboard">Back</a>
