@@ -1,5 +1,92 @@
+{{> dashboardheader}}
 
-<h2 class="capitalize">{{sector}}</h2>
+<body class="page-background" id="dashboard"></body>
+
+<header>
+	<h1>Sectors</h1>
+	<h2 class="capitalize">{{sector}}</h2>
+</header>
+
+{{> sidenav}}
+
+<!--Main Content-->
+<main id="main-area">
+	<!--Main Card-->
+	<div id="main-card" class="card-panel z-depth-5">
+		<!--Tabs-->
+		<div class="row">
+			<div class="col l12 m12 s12">
+				<div class="card-panel center z-depth-5">
+					<div class="row">
+						<div class="col s12">
+							<ul class="tabs">
+								<li class="tab col s1"><a href="#test1">Test 1</a></li>
+								<li class="tab col s1"><a href="#test2">Test 2</a></li>
+								<li class="tab col s1"><a href="#test3">Test 3</a></li>
+								<li class="tab col s1"><a href="#test4">Test 4</a></li>
+								<li class="tab col s1"><a href="#test5">Test 5</a></li>
+								<li class="tab col s1"><a href="#test6">Test 6</a></li>
+								<li class="tab col s1"><a href="#test7">Test 7</a></li>
+								<li class="tab col s1"><a href="#test8">Test 8</a></li>
+								<li class="tab col s1"><a href="#test9">Test 9</a></li>
+								<li class="tab col s1"><a href="#test10">Test 10</a></li>
+								<li class="tab col s1"><a href="#test11">Test 11</a></li>
+								<li class="tab col s1"><a href="#test12">Test 12</a></li>
+							</ul>
+						</div>
+						<div id="test1" class="col s12">Test 1</div>
+						<div id="test2" class="col s12">Test 2</div>
+						<div id="test3" class="col s12">Test 3</div>
+						<div id="test4" class="col s12">Test 4</div>
+						<div id="test5" class="col s12">Test 5</div>
+						<div id="test6" class="col s12">Test 6</div>
+						<div id="test7" class="col s12">Test 7</div>
+						<div id="test8" class="col s12">Test 8</div>
+						<div id="test9" class="col s12">Test 9</div>
+						<div id="test10" class="col s12">Test 10</div>
+						<div id="test11" class="col s12">Test 11</div>
+						<div id="test12" class="col s12">Test 12</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Table-->
+		<section>
+			<div class="row">
+				<div class="col l12 m12 s12">
+					<div class="card-panel center z-depth-5">
+						<span class="table">
+							<table class="centered highlight responsive-table">
+								<thead>
+									<tr>
+										<th>Stock</th>
+										<th>Current Price</th>
+										<th>Change</th>
+									</tr>
+								</thead>
+								<tbody>
+									{{#each stocks}}
+									<tr>
+										<td>{{this.symbol}}</td>
+										<td>{{this.price}}</td>
+										<td>{{this.percentChange}}</td>
+									</tr>
+									{{/each}}
+								</tbody>
+							</table>
+						</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+{{> footer}}
+
+
+<!--Cody's Code-->
+{{!-- <h2 class="capitalize">{{sector}}</h2>
 
 <a href="/stocks/sector/basic%20industries">Basic Industries</a>
 <a href="/stocks/sector/capital%20goods">Capital Goods</a>
@@ -12,7 +99,7 @@
 <a href="/stocks/sector/miscellaneous">Miscellaneous</a>
 <a href="/stocks/sector/public%20utilities">Public Utilities</a>
 <a href="/stocks/sector/technology">Technology</a>
-<a href="/stocks/sector/transportation">Transportation</a> 
+<a href="/stocks/sector/transportation">Transportation</a>
 
 <br><br>
 
@@ -24,17 +111,17 @@
 		<th>Current Price</th>
 		<th>Change</th>
 	</tr>
-	
-{{#each stocks}}
+
+	{{#each stocks}}
 	<tr>
 		<td>{{this.symbol}}</td>
 		<td>{{this.price}}</td>
 		<td>{{this.percentChange}}</td>
 	</tr>
-{{/each}}
+	{{/each}}
 
 </table>
 
 <br>
 
-<a href="/dashboard">Back</a>
+<a href="/dashboard">Back</a> --}}
