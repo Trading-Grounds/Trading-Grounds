@@ -1,2 +1,0 @@
-ALTER TABLE companies ALTER COLUMN updated_at DATE NOT NULL SET DEFAULT CURRENT_TIMESTAMP;
-"5","MMM","3M Company","210.71","$123.61B","n/a","Health Care","Medical/Dental Instruments","NYSE", "Date", "date"

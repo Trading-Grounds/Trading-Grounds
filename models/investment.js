@@ -26,6 +26,12 @@ module.exports = (sequelize, Sequelize) => {
 	{
 		underscored: true
 	});
+
+	Investement.associate = (models) {
+		Investement.belongsTo(models.User, {
+			allowNull: false
+		});
+	};
 		
 	return Investment;
 }

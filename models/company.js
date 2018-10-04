@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
 			type: Sequelize.STRING
 		},
 		market_cap: {
-			type: Sequelize.STRING,
+			type: Sequelize.BIGINT(15),
 		},
 		ipo_year: {
 			type: Sequelize.STRING

@@ -41,11 +41,20 @@ module.exports = (sequelize, Sequelize) => {
 		reset_password_expires: {
 			type: Sequelize.STRING,
 		},
-        bank_balance: {
+		cash: {
             type: Sequelize.INTEGER,
-            isNumeric: true
+            defaultValue: 50000
         }
+	},
+	{
+		underscored: true
 	});
+	
+	User.associate = (models) => {
+		User.hasMany(models.Investment, {
+			onDelete: 'cascade'
+		});
+	};
 	
 	return User;
 }
