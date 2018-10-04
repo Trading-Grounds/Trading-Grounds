@@ -1,8 +1,9 @@
-<html>
-<head>
-<style>
+{{!-- <html>
 
-.card-link {
+<head> --}}
+	{{!-- <style>
+
+		.card-link {
 	cursor: pointer;
 }
 .selected-link {
@@ -14,115 +15,293 @@
 }
 
 </style>
+	--}}
 
-<script
-	src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-	crossorigin="anonymous">
-</script>
+	{{!--
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+	 crossorigin="anonymous">
 
-</head>
+	</script> --}}
 
-<body>
+	{{>dashboardheader}}
 
-<h3>{{symbol}}</h3>
-<h6>{{name}}</h6>
-<h2>{{price}}</h2>
-<h4>{{#if gain}}+ {{else}}- {{/if}}{{change}} ({{#if gain}}+ {{else}}- {{/if}}{{percentChange}})</h4>
-<ul>
-	<span class="card-link" id="hist-link">Historical</span>
-	<span class="card-link selected-link" id="det-link">Details</span>
-	<span class="card-link" id="comp-link">Company</span>
-</ul>
+<body class="page-background" id="dashboard">
 
-<div class="js-hidden" id="historical">
-	<ul>
-		<li><span>1w</span></li>
-		<li><span>1m</span></li>
-		<li><span>6m</span></li>
-		<li><span>YTD</span></li>
-		<li><span>1y</span></li>
-		<li><span>5y</span></li>
+<header>
+    <h1>Stock</h1>
+</header>
+	<!--Fixed Side Navigation -->
+	<ul id="slide-out" class="sidenav sidenav-fixed">
+		<li>
+			<div class="user-view">
+				<div class="background"></div>
+				<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
+
+				<span class="white-text name user-info">{{user.username}}</span>
+				<span class="white-text email user-info">{{user.email}}</span>
+				<div class="card-small">
+					<span class="white-text account user-info">$ 23,764.87</span>
+				</div>
+			</div>
+		</li>
+
+		<!--Log Out Button-->
+		<li id="logout-link">
+			<a href="/logout" class="white-text logout-link">Logout</a>
+		</li>
+
+		<!--Search Box in Fixed Side Navigation-->
+		<nav>
+			<div class="nav-wrapper">
+				<form>
+					<div class="input-field">
+						<input id="search" type="search" placeholder="stock symbol" required>
+						<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+					</div>
+				</form>
+			</div>
+		</nav>
+
+		<!--Page Links-->
+
+		<ul>
+			<ul class="collapsible collapsible-accordion">
+
+				<!--Portfolio Collapsible Link-->
+				<li>
+					<a class="collapsible-header white-text waves-effect waves-green accent-4">PORTFOLIO</a>
+					<div class="collapsible-body">
+						<ul>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="investments.html">Investments</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="watchlist.html">Watchlist</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="transactions.html">Transactions</a></li>
+						</ul>
+					</div>
+				</li>
+
+				<!--Portfolio Collapsible Link-->
+				<li>
+					<a class="collapsible-header white-text waves-effect waves-green accent-4">STOCKS</a>
+					<div class="collapsible-body">
+						<ul>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="topmovers.html">Top
+									Movers</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="volume.html">Volume</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="marketcap.html">Market
+									Cap</a></li>
+							<li> <a class="white-text waves-effect waves-green accent-4" href="sector.html">Sector/Industry</a></li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</ul>
 	</ul>
-	Historical Data/Graph Display Here
-</div>
+	<ul class="right hide-on-med-and-down">
+		<!--Portfolio-->
+		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">PORTFOLIO<i class="material-icons right">arrow_drop_down</i></a></li>
+		<ul id='dropdown1' class='dropdown-content'>
+			<li> <a href="investments.html">Investments</a></li>
+			<li> <a href="watchlist.html">Watchlist</a></li>
+			<li> <a href="transactions.html">Transactions</a></li>
+		</ul>
+		<!--Stocks-->
+		<li><a class="dropdown-trigger waves-effect waves-green accent-4" href="#!" data-target="dropdown1">STOCKS<i class="material-icons right">arrow_drop_down</i></a></li>
+		<ul id='dropdown1' class='dropdown-content'>
+			<li> <a href="topmovers.html">Top Movers</a></li>
+			<li> <a href="volume.html">Volume</a></li>
+			<li> <a href="marketcap.html">Market Cap</a></li>
+			<li> <a href="sector.html">Sector/Industry</a></li>
+		</ul>
+	</ul>
 
-<div id="details">
+	<a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i id="hamburger-menu" class="material-icons">menu</i></a>
+
+	<!--Main Content-->
+	<main id="main-area">
+		<!--Main Card-->
+		<div id="main-card" class="card z-depth-5">
+			<div class="container">
+				<div class="row center-align">
+					<div class="col s12 m12 l12">
+
+						<div class="card sticky-action">
+							<div class="card-content">
+								<h1>{{symbol}}</h1>
+								<h5>{{name}}</h5>
+								<h2>{{price}}</h2>
+								<h4>{{#if gain}}+ {{else}}- {{/if}}{{change}} ({{#if gain}}+ {{else}}- {{/if}}{{percentChange}})</h4>
+								<span class="card-title activator"><i class="material-icons right">more_vert</i></span>
+							</div>
+							<div class="card-action">
+								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
+								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
+							</div>
+							<div class="card-reveal">
+
+								<span class="card-title grey-text text-darken-4">
+									<h3>{{name}}</h3><i class="material-icons right">close</i>
+								</span>
+								<div class="card-tabs">
+									<ul class="tabs tabs-fixed-width">
+										<li class="tab"><a href="#test4">Historical</a></li>
+										<li class="tab"><a href="#test5">Details</a></li>
+										<li class="tab"><a href="#test6">Company</a></li>
+									</ul>
+								</div>
+								<div class="card-content grey lighten-4">
+									<div id="test4">
+										<ul>
+											<li><span>1w</span></li>
+											<li><span>1m</span></li>
+											<li><span>6m</span></li>
+											<li><span>YTD</span></li>
+											<li><span>1y</span></li>
+											<li><span>5y</span></li>
+										</ul>
+										Historical Data/Graph Display Here
+									</div>
+									<div id="test5">
+										<ul>
+											<li>Previous Close: {{close}}</li>
+											<li>Open: {{open}}</li>
+											<li>High: {{high}}</li>
+											<li>Low: {{low}}</li>
+											<li>Volume: {{volume}}</li>
+											<li>Market Cap: {{marketCap}}</li>
+											<li>52 Week High: {{fiftyTwoHigh}}</li>
+											<li>52 Week Low: {{fiftyTwoLow}}</li>
+										</ul>
+										<hr>
+										<ul>
+											<li>Div/Yield: {{div}} / {{yield}}</li>
+											<li>Beta: {{beta}}</li>
+											<li>EPS: {{eps}}</li>
+											<li>P/E: {{pe}}</li>
+										</ul>
+									</div>
+									<div id="test6">
+										<ul>
+											<li>Name: {{name}}</li>
+											<li>Symbol: {{symbol}}</li>
+											<li>Sector: {{sector}}</li>
+											<li>Industry: {{industry}}</li>
+											<li>Location: {{state}}, {{country}}</li>
+											<li>Employees: {{employees}}</li>
+											<li>Phone: {{phone}}</li>
+											<li>Website: <a href="{{website}}" target="_blank">{{website}}</a></li>
+										</ul>
+										<hr>
+										<div>{{summary}}</div>
+									</div>
+									<a href="/dashboard">Back</a>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	{{> footer}}
+
+	<!--===================================================Cody Code=================================================================-->
+
+	{{!-- <h3>{{symbol}}</h3>
+	<h6>{{name}}</h6>
+	<h2>{{price}}</h2>
+	<h4>{{#if gain}}+ {{else}}- {{/if}}{{change}} ({{#if gain}}+ {{else}}- {{/if}}{{percentChange}})</h4>
 	<ul>
-		<li>Previous Close: {{close}}</li>
-		<li>Open: {{open}}</li>
-		<li>High: {{high}}</li>
-		<li>Low: {{low}}</li>
-		<li>Volume: {{volume}}</li>
-		<li>Market Cap: {{marketCap}}</li>
-		<li>52 Week High: {{fiftyTwoHigh}}</li>
-		<li>52 Week Low: {{fiftyTwoLow}}</li>
+		<span class="card-link" id="hist-link">Historical</span>
+		<span class="card-link selected-link" id="det-link">Details</span>
+		<span class="card-link" id="comp-link">Company</span>
 	</ul>
-	<hr>
-	<ul>
-		<li>Div/Yield: {{div}} / {{yield}}</li>
-		<li>Beta: {{beta}}</li>
-		<li>EPS: {{eps}}</li>
-		<li>P/E: {{pe}}</li>
-	</ul>
-<!--
+
+	<div class="js-hidden" id="historical">
+		<ul>
+			<li><span>1w</span></li>
+			<li><span>1m</span></li>
+			<li><span>6m</span></li>
+			<li><span>YTD</span></li>
+			<li><span>1y</span></li>
+			<li><span>5y</span></li>
+		</ul>
+		Historical Data/Graph Display Here
+	</div>
+
+	<div id="details">
+		<ul>
+			<li>Previous Close: {{close}}</li>
+			<li>Open: {{open}}</li>
+			<li>High: {{high}}</li>
+			<li>Low: {{low}}</li>
+			<li>Volume: {{volume}}</li>
+			<li>Market Cap: {{marketCap}}</li>
+			<li>52 Week High: {{fiftyTwoHigh}}</li>
+			<li>52 Week Low: {{fiftyTwoLow}}</li>
+		</ul>
+		<hr>
+		<ul>
+			<li>Div/Yield: {{div}} / {{yield}}</li>
+			<li>Beta: {{beta}}</li>
+			<li>EPS: {{eps}}</li>
+			<li>P/E: {{pe}}</li>
+		</ul>
+		<!--
 	<hr>
 	Bid: {{bid}}<br>Ask: {{ask}}
 -->
-</div>
+	</div>
 
-<div class="js-hidden" id="company">
-	<ul>
-		<li>Name: {{name}}</li>
-		<li>Symbol: {{symbol}}</li>
-		<li>Sector: {{sector}}</li>
-		<li>Industry: {{industry}}</li>
-		<li>Location: {{state}}, {{country}}</li>
-		<li>Employees: {{employees}}</li>
-		<li>Phone: {{phone}}</li>
-		<li>Website: <a href="{{website}}" target="_blank">{{website}}</a></li>
-	</ul>
-	<hr>
-	<div>{{summary}}</div>
-</div>
+	<div class="js-hidden" id="company">
+		<ul>
+			<li>Name: {{name}}</li>
+			<li>Symbol: {{symbol}}</li>
+			<li>Sector: {{sector}}</li>
+			<li>Industry: {{industry}}</li>
+			<li>Location: {{state}}, {{country}}</li>
+			<li>Employees: {{employees}}</li>
+			<li>Phone: {{phone}}</li>
+			<li>Website: <a href="{{website}}" target="_blank">{{website}}</a></li>
+		</ul>
+		<hr>
+		<div>{{summary}}</div>
+	</div>
 
-<a href="/dashboard">Back</a>
+	<a href="/dashboard">Back</a>
 
-</body>
 
-<script>
 
-$('.card-link').click(function() {
+	$('.card-link').click(function() {
 
-});
+	});
 
-$('#hist-link').click(function() {
+	$('#hist-link').click(function() {
 	$('#det-link').removeClass('selected-link');
 	$('#comp-link').removeClass('selected-link');
 	$('#hist-link').addClass('selected-link');
 	$('#historical').removeClass('js-hidden');
 	$('#details').addClass('js-hidden');
 	$('#company').addClass('js-hidden');
-});
+	});
 
-$('#det-link').click(function() {
+	$('#det-link').click(function() {
 	$('#det-link').addClass('selected-link');
 	$('#comp-link').removeClass('selected-link');
 	$('#hist-link').removeClass('selected-link');
 	$('#historical').addClass('js-hidden');
 	$('#details').removeClass('js-hidden');
 	$('#company').addClass('js-hidden');
-});
+	});
 
-$('#comp-link').click(function() {
+	$('#comp-link').click(function() {
 	$('#det-link').removeClass('selected-link');
 	$('#comp-link').addClass('selected-link');
 	$('#hist-link').removeClass('selected-link');
 	$('#historical').addClass('js-hidden');
 	$('#details').addClass('js-hidden');
 	$('#company').removeClass('js-hidden');
-});
-
-</script>
-
-</html>
+	}); --}}

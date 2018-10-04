@@ -13,6 +13,14 @@ app.get('/singlestock', (req, res) => {
   res.render('singlestock');
 });
 
+app.get('/investments', (req, res) => {
+  res.render('investments');
+});
+
+app.get('/watchlist', (req, res) => {
+  res.render('watchlist');
+});
+
 //===================================================
 
 
