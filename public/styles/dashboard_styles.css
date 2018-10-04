@@ -1,3 +1,4 @@
+/*=============================Notes=========================*/
 /*
 Use for Headings
 Font-Family: 'Playfair Display', Serif;
@@ -11,9 +12,11 @@ Use for Stock Ticker
 font-family: 'Source Code Pro', monospace;
 */
 
-/*Color: Money Green*/
+/*Color Money Green*/
 /* background:#84bb65b2; */
+/*=============================================================*/
 
+/*Default Styling on All Pages Excpet Main Landing Page. See styles.css for Main Landing Page Styling*/
 body {
     /*Font Style*/
     Font-Family: 'Source Sans Pro', Sans-Serif;
@@ -49,7 +52,15 @@ footer {
     padding-left: 300px;
 }
 
-/*SideNav Styling*/
+header {
+    text-align: center;
+    color: ghostwhite;
+    Font-Family: 'Playfair Display', Serif;
+    background: rgba(0, 0, 0, 0.541);
+
+}
+
+/*==================SideNav Styling=================================*/
 .sidenav {
     background: #232526;
     /* fallback for old browsers */
@@ -82,7 +93,6 @@ footer {
     text-align: center;
 }
 
-
 #hamburger-menu {
     color: ghostwhite;
     height: 0;
@@ -90,7 +100,6 @@ footer {
 .hide-drop {
 	height: 0;
 }
-
 
 /*Search Bar*/
 nav {
@@ -112,21 +121,13 @@ nav {
 #search-icon {
 	cursor: pointer;
 }
-
-/*Stock Ticker*/
-.ticker-color {
-    color: ghostwhite;
-    font-size: 24px;
-    font-family: 'Source Code Pro', monospace;
-    background: rgba(0, 0, 0, 0.541);
-}
+/*===================================End SideNav====================================================*/
 
 #main-area {
 	max-height: 100vh;
 	overflow: auto;
 }
 #main-card {
-    /* background: rgba(0, 0, 0, 0.294);  */
     background:#84bb6534;
     margin-top: 0;
 }
@@ -138,7 +139,31 @@ nav {
     color: ghostwhite;
 }
 
-/*Table's*/
+/*Materialize Sticky Footer*/
+.page-footer {
+    background: rgba(0, 0, 0, 0.616);
+}
+
+main {
+    flex: 1 0 auto;
+}
+/*========================================END DEFAULT STYLING===========================================================*/
+
+/*============================Dashboard Specific Styling===========================================*/
+
+/*Stock Ticker*/
+.ticker-color {
+    color: ghostwhite;
+    font-size: 24px;
+    font-family: 'Source Code Pro', monospace;
+    background: rgba(0, 0, 0, 0.541);
+}
+
+.capitalize {
+    text-decoration: capitalize;
+}
+
+/*==========================Table's==============================================================*/
 table {
     color: ghostwhite;
     border: transparent;
@@ -157,16 +182,46 @@ td {
     font-size: 18px;
 }
 
-.small-name {
+.stock-symbol {
+    font-size: 24px;
+}
+
+.company-name {
     font-weight: 300;
 }
 
+.share {
+    font-size: 24px;
+}
+
+.big-number {
+    font-size: 24px;
+}
 .stock-row {
 	cursor: pointer;
 }
 
+/*Chart*/
+#pie {
+    width: 300px;
+    height: 300px;
+}
+/*=========================================End Dashboard Specific Styling=======================================================*/
 
-/*Reveal Cards*/
+/*===========================================Stock.hbs Styling=====================================================*/
+
+.card-link {
+	cursor: pointer;
+}
+.selected-link {
+	font-weight: bold;
+	cursor: default; 
+}
+.js-hidden {
+	display: none;
+}
+
+/*Reveal Card*/
 .card {
     background: rgba(0, 0, 0, 0.541);
     border-radius: 10px;
@@ -179,7 +234,6 @@ td {
 
 .card-action {
     border-radius: 10px;
-    text-align: center;
 }
 
 .card-reveal {
@@ -187,36 +241,33 @@ td {
     border-radius: 10px;
 }
 
-.buy-button {
+.close-x {
+    color: #84bb65b2;
+}
+
+/* .buy-button {
     float: left;
 }
 
 .sell-button {
     float: right;
-}
+} */
 
-#pie {
-    width: 300px;
-    height: 300px;
-}
+/*=============================================End Stock.hbs Styling=================================================================*/
 
-.close-x {
-    color: #84bb65b2;
+/*=============================================Watchlist Styling====================================================================*/
+#watchlist-header {
+    text-align: center;
 }
+/*===========================================End Watchlist Styling=================================================================*/
 
-/*Materialize Sticky Footer*/
-.page-footer {
-    background: transparent;
-}
+/*===========================================Movers.hbs Styling=======================================================*/
 
-main {
-    flex: 1 0 auto;
-}
 
-.capitalize {
-	text-decoration: capitalize;
-}
-/*Media Queries*/
+
+/*===========================================Movers.hbs Styling=======================================================*/
+
+/*============================================Media Queries==========================================================*/
 
 /*Materialize Side Nav*/
 @media only screen and (max-width : 992px) {

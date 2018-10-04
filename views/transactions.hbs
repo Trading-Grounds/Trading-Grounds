@@ -1,0 +1,103 @@
+{{> dashboardheader}}
+
+<body class="page-background" id="dashboard">
+
+    <header>
+        <h1>Transactions</h1>
+    </header>
+
+    {{> sidenav}}
+
+    <!--Main Content-->
+    <main id="main-area">
+        <!--Main Card-->
+        <div id="main-card" class="card-panel z-depth-5">
+            <!-- Four Cards at Top -->
+            <section class="section section-daily-stats center">
+                <div class="row">
+                    <div class="col l3 m6 s12">
+                        <div class="card-panel center z-depth-5">
+                            <i class="material-icons medium"></i>
+                            <h5>Account Balance</h5>
+                            <div class="divider"></div>
+                            <h4 class="">$ 23,764.87</h4>
+                            <div class="">
+                                <div class="" style="width:60%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l3 m6 s12">
+                        <div class="card-panel center z-depth-5">
+                            <i class="material-icons medium"></i>
+                            <h5>Cash</h5>
+                            <div class="divider"></div>
+                            <h4 class="">$ 15,207.65</h4>
+                            <div class="">
+                                <div class="" style="width:35%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l3 m6 s12">
+                        <div class="card-panel center z-depth-5">
+                            <i class="material-icons medium"></i>
+                            <h5>Investment</h5>
+                            <div class="divider"></div>
+                            <h4 class="">$ 54,324.34</h4>
+                            <div class="">
+                                <div class="determinate white" style="width:80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l3 m6 s12">
+                        <div class="card-panel center z-depth-5">
+                            <i class="material-icons medium"></i>
+                            <h5>ROI</h5>
+                            <div class="divider"></div>
+                            <h4 class="">$ 15,547.87</h4>
+                            <div class="">
+                                <div class="" style="width:50%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--Table-->
+            <section>
+                <div class="row">
+                    <div class="col l12 m12 s12">
+                        <div class="card-panel center z-depth-5">
+<span class="table">
+                                <table class="centered highlight responsive-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Symbol</th>
+                                            <th>Name</th>
+                                            <th>Shares</th>
+                                            <th>Costs</th>
+                                            <th>Price</th>
+                                            <th>Market Value</th>
+                                            <th>Gain/Loss</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GOOG</td>
+                                            <td>Alphabet, Inc</td>
+                                            <td>15</td>
+                                            <td>$ 17,266.30</td>
+                                            <td>$ 1203.60 <span>(-3.73)</span></td>
+                                            <td>$ 18,054.18</td>
+                                            <td>$ 787.95 <span>(4.56%)</span></td>                                           
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    {{> footer}}
