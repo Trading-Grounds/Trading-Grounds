@@ -27,11 +27,11 @@ module.exports = (sequelize, Sequelize) => {
 		underscored: true
 	});
 
-	// Investment.associate = (models) => {
-	// 	Investment.belongsTo(models.User, {
-	// 		allowNull: false
-	// 	});
-	// };
+	Investment.associate = (models) => {
+		Investment.belongsTo(models.user, {
+			allowNull: false
+		});
+	};
 		
 	return Investment;
 }

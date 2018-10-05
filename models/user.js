@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
 	
-	var User = sequelize.define('User', {
+	var User = sequelize.define('user', {
 		
 		username: {
 			type: Sequelize.STRING,
@@ -50,11 +50,11 @@ module.exports = (sequelize, Sequelize) => {
 		underscored: true
 	});
 	
-	// User.associate = (models) => {
-	// 	User.hasMany(models.Investment, {
-	// 		onDelete: 'cascade'
-	// 	});
-	// };
+	User.associate = (models) => {
+		User.hasMany(models.Investment, {
+			onDelete: 'cascade'
+		});
+	};
 	
 	return User;
 }
