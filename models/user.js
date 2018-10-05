@@ -50,11 +50,13 @@ module.exports = (sequelize, Sequelize) => {
 		underscored: true
 	});
 	
+/*
 	User.associate = (models) => {
 		User.hasMany(models.Investment, {
 			onDelete: 'cascade'
 		});
 	};
+*/
 	
 	return User;
 }
