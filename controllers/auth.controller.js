@@ -33,13 +33,16 @@ auth.dashboard = (req, res) => {
 	var user = req.user;
 	var investments = user.getInvestments;
 	var hasInvestments = investments ? true : false;
-	var stocks = getPortfolioData(investments);
-	console.log('\n\n\n', stocks, '\n\n\n')
+	var portfolio = getPortfolioData(investments);
+	if(!portfolio) { portfolio = {}; }
+	portfolio.cash = format(user.cash);
+	console.log('\n\n\n', portfolio, '\n\n\n')
 	
 	res.render('dashboard', {
 		user: req.user,
 		hasInvestments: hasInvestments,
-		investments: investments
+		investments: investments,
+		portfolio: portfolio
 	});
 };
 
@@ -124,14 +127,6 @@ function getPortfolioData(investments) {
 			cb();
 		}
 	}
-	
-	//	Formats numbers into custom strings (decimal places, commas, symbols, etc)
-	var format = (val=0, dec=2, den='$ ') => {
-		var fixed = val.toFixed(dec);
-		var parts = fixed.toString().split('.');
-		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-		return den + parts.join('.');
-	}
 		
 	var stocks = [];
 	var count = 0;
@@ -140,6 +135,14 @@ function getPortfolioData(investments) {
 		portfolio.stocks = stocks;
 		return portfolio;
 	});
+}
+
+//	Formats numbers into custom strings (decimal places, commas, symbols, etc)
+var format = (val=0, dec=2, den='$ ') => {
+	var fixed = val.toFixed(dec);
+	var parts = fixed.toString().split('.');
+	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	return den + parts.join('.');
 }
 
 module.exports = auth;
