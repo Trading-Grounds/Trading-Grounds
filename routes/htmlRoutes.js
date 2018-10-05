@@ -1,12 +1,12 @@
 var db = require("../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
 
-	// GET Homepage
-	app.get('/', (req, res) => {
-		res.render('index');
-  });
-  
+// GET Homepage
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 //=========Dustin's Temporary Routes for Working on New Files============//
 
 app.get('/singlestock', (req, res) => {
@@ -31,17 +31,21 @@ app.get('/purchase', (req, res) => {
 
 app.get('/marketcap', (req, res) => {
   res.render('marketcap');
+});
 
-  app.get('/volume', (req, res) => {
-    res.render('volume');
-  });
+app.get('/volume', (req, res) => {
+  res.render('volume');
+});
+
+app.get('/gettingstarted', (req, res) => {
+  res.render('gettingstarted');
 });
 
 //====================================================================//
 
 
-  // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
-    res.render("404");
-  });
+// Render 404 page for any unmatched routes
+app.get("*", function (req, res) {
+  res.render("404");
+});
 };
