@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
 	});
 
 	Investment.associate = (models) => {
-		Investment.belongsTo(models.User, {
+		Investment.belongsTo(models.user, {
 			allowNull: false
 		});
 	};
