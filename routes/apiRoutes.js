@@ -1,6 +1,6 @@
 var db = require("../models");
 var yahooFinance = require("yahoo-finance");
-var authController = require('../controllers/authcontroller');
+
 
 module.exports = function (app) {
   // Get all examples
