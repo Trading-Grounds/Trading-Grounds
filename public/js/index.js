@@ -78,6 +78,32 @@ $(document).ready(function () {
 		window.location.href = '/stock/' + symbol;
 	});
 
+	/////////////////////Code for the pie chart////////////////
+
+
+
+	google.charts.load("current", { packages: ["corechart"] });
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Sector', 'Percentage'],
+			['Technology', 33],
+			['Energy', 24],
+			['Finance', 18],
+			['Capital Goods', 14],
+			['Transportation', 11]
+		]);
+
+		var options = {
+			title: 'Percentage of Sector',
+			is3D: true,
+		};
+
+		var chart = new google.visualization.PieChart(document.getElementById('pie'));
+		chart.draw(data, options);
+	}
+
+
 	/////////////////AJAX CALLS TO API PAGES TO GET INFORMATIN FOR PLOTLY GRAPH//////////
 	/////////////////Added by Julie Hodges<---////////////////////////
 	$("#submitMonth").on("click", function () {
