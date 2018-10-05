@@ -70,13 +70,13 @@
                                 <div class="card">
                                     <div class="card-content white-text">
                                         <span class="company-name">
-                                            <h4>
-                                                Company Name
+                                            <h4 id="name" data-name="{{name}}">
+                                                {{name}}
                                             </h4>
                                         </span>
                                         <span class="card-title">
-                                            <h1>
-                                                Stock Symbol
+                                            <h1 id="symbol" data-symbol="{{symbol}}">
+                                                {{symbol}}
                                             </h1>
                                         </span>
                                         <span class="share-price">
@@ -103,7 +103,7 @@
 
                                     </div>
                                     <div class="card-action">
-                                        <a class="waves-effect waves-light btn" href="#">Purchase</a>
+                                        <span id="purchase" class="waves-effect waves-light btn">Purchase</span>
                                     </div>
                                 </div>
                             </div>
