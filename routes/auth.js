@@ -1,4 +1,4 @@
-var authController = require('../controllers/authcontroller');
+var authController = require('../controllers/auth.controller');
 var db = require("../models");
 var yahooFinance = require("yahoo-finance");
 // var expressValidator = require('express-validator');

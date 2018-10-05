@@ -57,7 +57,12 @@ header {
     color: ghostwhite;
     Font-Family: 'Playfair Display', Serif;
     background: rgba(0, 0, 0, 0.541);
+    padding: 0;
 
+}
+.hide-on-med-and-down {
+	padding: 0;
+	margin: 0;
 }
 
 /*==================SideNav Styling=================================*/
@@ -267,6 +272,26 @@ td {
 
 
 /*===========================================Movers.hbs Styling=======================================================*/
+
+/*===========================================Added by Cody===========================================*/
+
+.gain {
+	color: green;
+}
+.loss {
+	color: red;
+}
+h1 {
+	margin: 0;
+	padding: 15px 0;
+}
+h1 span {
+	font-size: 0.75em;
+}
+.small-number {
+	padding-right: 20px;
+	font-size: 15px;
+}
 
 /*============================================Media Queries==========================================================*/
 

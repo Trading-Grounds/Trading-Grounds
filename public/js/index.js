@@ -75,8 +75,21 @@ $(document).ready(function () {
 
 	$(document).on('click', '.stock-row', function () {
 		var symbol = $(this).data('symbol');
-		window.location.href = '/stock/' + symbol;
+		if(symbol && symbol != '') {
+			window.location.href = '/stock/' + symbol;
+		}
 	});
+	
+	/*=========== Stock Purchased ============*/
+	
+	$('#purchase').click(() => {
+		var data = {
+			asset_symbol: $('#symbol').data('symbol').toUpperCase(),
+			asset_name: $('#name').data('name')
+		}
+		console.log(data);
+	});
+	
 
 	/////////////////////Code for the pie chart////////////////
 

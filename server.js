@@ -51,6 +51,7 @@ var plotlyRoutes = require("./routes/plotly")(app);
 var authRoutes = require('./routes/auth')(app, passport);
 var reset = require('./routes/reset')(app);
 var stocks = require('./routes/stocks')(app);
+var transactions = require('./routes/transactions')(app);
 var apiRoutes = require('./routes/apiRoutes')(app);
 var htmlRoutes = require('./routes/htmlRoutes')(app);
 

@@ -1,4 +1,3 @@
-// var Company = require('../models').company;
 var Company = require('../models').companies;
 // var User = require('../models').user;
 var yahooFinance = require('yahoo-finance');
@@ -6,7 +5,7 @@ var yahooFinance = require('yahoo-finance');
 module.exports = (app) => {
 	
 	//	GET Single Stock
-	app.get('/stock/:symbol', (req, res) => {
+	app.get('/stock/:symbol', isLoggedIn, (req, res) => {
 		
 		var symbol = req.params.symbol;
 		var modules = ['summaryDetail', 'price', 'financialData', 'defaultKeyStatistics', 'summaryProfile'];
@@ -136,16 +135,17 @@ module.exports = (app) => {
 					price: priceFormatted,
 					change: format(price - parseFloat(sd.previousClose)),
 					percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
-					gain: gain
+					gain: (price - parseFloat(sd.previousClose) < 0) ? false : true
 				};
 // 				console.log(quote.price);
+				stockInfo.user = req.user;
 				res.render('stock', stockInfo);
 			}
 		});
 	});
 	
 	//	GET Stocks By Top Movers 
-	app.get('/stocks/movers/:exchange?', (req, res) => {
+	app.get('/stocks/movers/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
 // 		console.log('\n\n\n', exchange, '\n\n\n');
 		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
@@ -168,11 +168,11 @@ module.exports = (app) => {
 					five: {}
 				};
 				var topGains = {
-					one: 0,
-					two: 0,
-					three: 0,
-					four: 0,
-					five: 0
+					one: -1,
+					two: -1,
+					three: -1,
+					four: -1,
+					five: -1
 				}
 				var topLosers = {
 					one: {},
@@ -182,11 +182,11 @@ module.exports = (app) => {
 					five: {}
 				};
 				var topLosses = {
-					one: 0,
-					two: 0,
-					three: 0,
-					four: 0,
-					five: 0
+					one: 1,
+					two: 1,
+					three: 1,
+					four: 1,
+					five: 1
 				};
 				
 				findStocksByAPI(companies, [], 0, (stocks) => {
@@ -298,11 +298,12 @@ module.exports = (app) => {
 						}
 						
 					});
-
+					
 					res.render('movers', {
 						topGainers: topGainers,
 						topLosers: topLosers,
-						exchange: exchange
+						exchange: exchange,
+						user: req.user
 					});
 				});
 			}
@@ -310,7 +311,7 @@ module.exports = (app) => {
 	});
 	
 	//	GET Stocks By Volume
-	app.get('/stocks/volume/:exchange?', (req, res) => {
+	app.get('/stocks/volume/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
 		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
 			return res.redirect('/stocks/volume/nasdaq');
@@ -506,16 +507,17 @@ module.exports = (app) => {
 					topStocks[keys[i]].volume = format(topStocks[keys[i]].volume, 0, '');
 // 					console.log(topStocks[keys[i]]);
 				}
-				res.render('volume-cody', {
+				res.render('volume', {
 					volume: topStocks,
-					exchange: exchange
+					exchange: exchange,
+					user: req.user
 				});
 			});
 		});
 	});
 	
 	//	GET Stocks By Market Cap
-	app.get('/stocks/marketcap/:exchange?', (req, res) => {
+	app.get('/stocks/marketcap/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
 		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
 			return res.redirect('/stocks/volume/nasdaq');
@@ -528,16 +530,20 @@ module.exports = (app) => {
 			order: [['market_cap', 'DESC']]
 		}).then(companies => {
 			findStocksByAPI(companies, [], 0, (stocks) => {
-				res.render('marketcap-cody', {
+				stocks.forEach((stock, i) => {
+					stock.marketCap = format(companies[i].market_cap, 0);
+				});
+				res.render('marketcap', {
 					stocks: stocks,
-					exchange: exchange
+					exchange: exchange,
+					user: req.user
 				});
 			});
 		});
 	});
 	
 	//	GET Stocks By Sector
-	app.get('/stocks/sector/:sector?', (req, res) => {
+	app.get('/stocks/sector/:sector?', isLoggedIn, (req, res) => {
 		var sector = req.params.sector;
 		
 		Company.findAll({
@@ -552,13 +558,15 @@ module.exports = (app) => {
 // 				console.log('\n\n\nstocks found:', stocks);
 				res.render('sectors', {
 					stocks: stocks,
-					sector: sector.toUpperCase()
+					sector: sector.toUpperCase(),
+					user: req.user
 				});
 			});
 		});
 	});
 }
 
+//	Formats numbers into custom strings (decimal places, commas, symbols, etc)
 var format = (val=0, dec=2, den='$ ') => {
 	var fixed = val.toFixed(dec);
 	var parts = fixed.toString().split('.');
@@ -604,7 +612,7 @@ function findStocksByAPI(companies, stocks=[], count=0, cb) {
 					change: format(price - parseFloat(sd.previousClose)),
 					unformattedChange: (((price / parseFloat(sd.previousClose)) - 1) * 100),
 					percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
-					gain: gain ,
+					gain: (price - parseFloat(sd.previousClose) < 0) ? false : true,
 					volume: sd.volume ? sd.volume : 0
 				};
 				
@@ -618,5 +626,14 @@ function findStocksByAPI(companies, stocks=[], count=0, cb) {
 		console.log(count + ' / ' + companies.length);
 		console.log('\nSearch Complete!\n');
 		cb(stocks);
+	}
+}
+
+//	Custom middleware for restricting access to protected views
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	} else {
+		res.redirect('/');
 	}
 }

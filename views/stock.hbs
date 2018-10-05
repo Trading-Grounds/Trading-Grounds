@@ -3,7 +3,8 @@
 <body class="page-background" id="dashboard">
 
 	<header>
-		<h1>Stock</h1>
+<!--		<h1>Stock &middot; <span>{{symbol}}</span></h1>	-->
+		<h3>{{name}}</h3>
 	</header>
 
 	{{> sidenav}}
@@ -21,12 +22,12 @@
 								<h1>{{symbol}}</h1>
 								<h5>{{name}}</h5>
 								<h2>{{price}}</h2>
-								<h4>{{#if gain}}+ {{else}}- {{/if}}{{change}} ({{#if gain}}+ {{else}}- {{/if}}{{percentChange}})</h4>
+								<h4 class="{{#if gain}}gain{{else}}loss{{/if}}">{{change}} ({{percentChange}})</h4>
 								<span class="card-title activator"><i class="material-icons right">more_vert</i></span>
 							</div>
 							<div class="card-action">
-								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
-								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
+								<a href="/stock/buy/{{symbol}}" class="btn-small green accent-4 buy-button">BUY</a>
+								<a href="/stock/sell{{symbol}}" class="btn-small red accent-4 sell-button">SELL</a>
 							</div>
 							<div class="card-reveal">
 

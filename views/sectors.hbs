@@ -4,7 +4,6 @@
 
 <header>
 	<h1>Sectors</h1>
-	<h2 class="capitalize">{{sector}}</h2>
 </header>
 
 {{> sidenav}}
@@ -52,6 +51,7 @@
 		</div>
 		<!--Table-->
 		<section>
+			<h3>{{sector}}</h3>
 			<div class="row">
 				<div class="col l12 m12 s12">
 					<div class="card-panel center z-depth-5">
@@ -66,11 +66,23 @@
 								</thead>
 								<tbody>
 									{{#each stocks}}
-									<tr>
-										<td>{{this.symbol}}</td>
-										<td>{{this.price}}</td>
-										<td>{{this.percentChange}}</td>
+
+									<tr class="stock-row" data-symbol="{{symbol}}">
+										<td>
+											<span class="stock-symbol">{{this.symbol}}</span><br>
+											<span class="company-name">{{this.name}}</span>
+										</td>
+										<td><span class="share">{{this.price}}</span></td>
+										<td>
+											<span class="big-number {{#if gain}}gain{{else}}loss{{/if}}">
+												{{#if gain}}+ {{/if}}{{this.percentChange}}
+											<span><br>
+											<span class="small-number {{#if gain}}gain{{else}}loss{{/if}}">
+												{{#if gain}}+ {{/if}}{{this.change}}
+											</span>
+										</td>
 									</tr>
+									
 									{{/each}}
 								</tbody>
 							</table>
