@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
 	
-	var Investment = sequelize.define('investment', {
+	var Investment = sequelize.define('Investment', {
 		
 		name: {
 			type: Sequelize.STRING
@@ -27,13 +27,11 @@ module.exports = (sequelize, Sequelize) => {
 		underscored: true
 	});
 
-/*
 	Investment.associate = (models) => {
 		Investment.belongsTo(models.User, {
 			allowNull: false
 		});
 	};
-*/
 		
 	return Investment;
 }
