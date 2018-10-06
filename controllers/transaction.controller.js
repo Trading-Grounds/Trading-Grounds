@@ -1,5 +1,9 @@
 var app = require('../server');
 var yahooFinance = require('yahoo-finance');
+var Investment = require('../models').Investment;
+var Transaction = require('../models').Transaction;
+var User = require('../models').user;
+
 var transaction = {};
 
 transaction.getPurchase = (req, res, symbol) => {
@@ -24,9 +28,6 @@ transaction.getPurchase = (req, res, symbol) => {
 			} else {
 				var price = parseFloat(sd.ask);
 			}
-			
-// 				var priceFormatted = parseFloat(price).toFixed(2);
-// 				priceFormatted = priceFormatted.toLocaleString();
 			
 			var priceFormatted = format(price, 2);
 			
@@ -61,26 +62,6 @@ transaction.getPurchase = (req, res, symbol) => {
 			} else {
 				mc = '-';
 			}
-/*
-			if(sd.dividendRate == undefined) {
-				var div = '-';
-			} else {
-				var div = sd.dividendRate
-			}
-*/
-			
-/*
-			var open = sd.open ? format(sd.open) : '-';
-			var close = sd.previousClose ? format(sd.previousClose) : '-';
-			var high = sd.dayHigh ? format(sd.dayHigh) : '-';
-			var low = sd.dayLow ? format(sd.dayLow) : '-';
-			var beta = sd.beta ? sd.beta.toFixed(3) : '-';
-			var bid = sd.bid ? sd.bid : '-';
-			var bidSize = sd.bidSize ? sd.bidSize : '-';
-			var ask = sd.ask ? sd.ask : '-';
-			var askSize = sd.askSize ? sd.askSize : '-';
-			
-*/
 			
 			stockInfo = {
 				open: sd.open ? format(sd.open) : '-',
@@ -115,16 +96,54 @@ transaction.getPurchase = (req, res, symbol) => {
 				name: quote.price.shortName ? quote.price.shortName : '-',
 				symbol: quote.price.symbol ? quote.price.symbol : '-',
 				price: priceFormatted,
+				priceUnformatted: price,
 				change: format(price - parseFloat(sd.previousClose)),
 				percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
 				gain: (price - parseFloat(sd.previousClose) < 0) ? false : true
 			};
 			stockInfo.user = req.user ? req.user : {};
+			stockInfo.user.cashFormatted = format(req.user.cash);
 			console.log('\n\n\nUser:', req.user, '\n\n\n');
 			res.render('purchase', stockInfo);
 		}
 	});
 };
+
+transaction.recordTransaction = (req, res) => {
+	console.log('\n\n\nData:', req.body, '\n\n\n');
+	var investment = {
+		name: req.body.name,
+		symbol: req.body.symbol,
+		date_purchased: req.body.date_purchased,
+		quantity: req.body.quantity,
+		price: req.body.price,
+		user_id: req.user.id
+	};
+	Investment.create(investment).then(() => {
+		var transaction = {
+			transaction_type: req.body.transaction_type,
+			transaction_date: req.body.transaction_date,
+			asset_name: req.body.asset_name,
+			quantity: req.body.quantity,
+			price: req.body.price,
+			user_id: req.user.id,
+			asset_symbol: req.body.symbol
+		};
+		Transaction.create(transaction).then(() => {
+			User.findOne({
+				where: { id: req.user.id }
+			}).then(user => {
+				var cost = parseFloat(req.body.price) * parseInt(req.body.quantity);
+				user.cash -= cost;
+			
+				user.save().then(() => {
+					console.log('\nInvestment and Transaction recorded!\n');
+					res.json({ message: 'Transaction recorded!' });
+				});
+			});			
+		});
+	});
+}
 
 var format = (val=0, dec=2, den='$ ') => {
 	var fixed = val.toFixed(dec);

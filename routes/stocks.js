@@ -133,6 +133,7 @@ module.exports = (app) => {
 					name: quote.price.shortName ? quote.price.shortName : '-',
 					symbol: quote.price.symbol ? quote.price.symbol : '-',
 					price: priceFormatted,
+					priceUnformatted: price,
 					change: format(price - parseFloat(sd.previousClose)),
 					percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
 					gain: (price - parseFloat(sd.previousClose) < 0) ? false : true

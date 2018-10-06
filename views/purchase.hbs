@@ -30,7 +30,7 @@
                         <div class="card-panel center z-depth-5">
                             <h5>Cash</h5>
                             <div class="divider"></div>
-                            <h4 class="">$ 15,207.65</h4>
+                            <h4 class="">{{user.cashFormatted}}</h4>
                             <div class="">
                                 <div class="" style="width:35%;"></div>
                             </div>
@@ -81,20 +81,20 @@
                                         </span>
                                         <span class="share-price">
                                             <h3>
-                                                $ 0,000.00
+                                                {{price}}
                                             </h3>
                                         </span>
                                         <span class="share-qty">
                                             <div class="input-field col s12 m6 l6">
-                                                <input placeholder="Number of Shares" id="" type="text">
+                                                <input id="shares" value="1" type="number">
                                             </div>
                                         </span>
                                         <div class="row center-align">
                                             <div class="col s12 m6 l12">
                                                 <span class="total-purchase">
                            
-                                                    <h3>
-                                                        $ 0,000.00
+                                                    <h3 id="total">
+                                                        {{price}}
                                                     </h3>
                                                 </span>
                                             </div>
@@ -103,7 +103,7 @@
 
                                     </div>
                                     <div class="card-action">
-                                        <span id="purchase" class="waves-effect waves-light btn">Purchase</span>
+                                        <span id="purchase" class="waves-effect waves-light btn" data-price="{{priceUnformatted}}">Purchase</span>
                                     </div>
                                 </div>
                             </div>
