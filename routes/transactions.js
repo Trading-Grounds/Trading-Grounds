@@ -12,13 +12,21 @@ module.exports = (app) => {
 	//	POST Purchase
 	app.post('/stock/buy/:symbol', isLoggedIn, (req, res) => {
 // 		console.log('\n\n\nUser:', req.user, '\n\n\n');
-		transaction.recordTransaction(req, res);
+		transaction.recordPurchase(req, res);
 // 		res.redirect('/stock/buy/' + req.params.symbol);
 	});
 
-	app.get('/stock/sale/:symbol', isLoggedIn, (req, res) => {
-		res.render('sale');
+	//	GET Sell Page
+	app.get('/stock/sell/:symbol', isLoggedIn, (req, res) => {
+		var symbol = req.params.symbol ? req.params.symbol.toUpperCase() : false;
+		if(!symbol) { return res.render('dashboard', { error: 'Stock not found' })}
+		transaction.getSell(req, res, symbol);
 	})
+	
+	//	POST Sale
+	app.post('/stock/sell/:symbol', isLoggedIn, (req, res) => {
+		transaction.recordSale(req, res);
+	});
 }
 
 //	Custom middleware for restricting access to protected views
