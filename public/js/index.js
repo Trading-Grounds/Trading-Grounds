@@ -281,4 +281,8 @@ $(document).ready(function () {
 		})
 	})
 
+
+	//	
+	$('#copyright-date').text(moment().format('YYYY'));
+	
 });	//End of document.ready
