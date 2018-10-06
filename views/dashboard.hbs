@@ -2,7 +2,7 @@
 
 <body class="page-background" id="dashboard">
 
-<header>
+	<header>
 		<h1>Dashboard</h1>
 	</header>
 
@@ -10,7 +10,7 @@
 
 	<!--Main Content-->
 	<main id="main-area">
-	
+
 		<!--Main Card-->
 		<div id="main-card" class="card-panel z-depth-5">
 
@@ -22,9 +22,11 @@
 						<div class="mask">
 							<ul id="webTicker-2">
 								<li class="ticker-spacer"></li>
-								{{#each ticker}}<li class="ticker-color">{{this.symbol}}{{this.price}}</li> {{/each}}
-
-								{{#each ticker}}<li id="ticker-color" class="last ticker-color">{{this.symbol}}{{this.price}}</li>{{/each}}
+								<li class="ticker-color">GOOG -1.34%</li>
+								<li class="ticker-color">NKE +0.47%</li>
+								<li class="last ticker-color">AAPL +3.44%</li>
+								{{!-- {{#each ticker}}<li class="ticker-color">{{this.symbol}}{{this.price}}</li> {{/each}} --}}
+								{{!-- {{#each ticker}}<li id="ticker-color" class="last ticker-color">{{this.symbol}}{{this.price}}</li>{{/each}} --}}
 							</ul>
 						</div>
 					</div>
@@ -36,15 +38,15 @@
 						<div class="mask">
 							<ul id="webTicker">
 								<li class="ticker-spacer"></li>
-								<li><a href="" target="_blank" id="finNews1" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews2" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews3" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews4" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews5" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews6" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews7" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews8" class="ticker-color"> | </a></li>
-								<li><a href="" target="_blank" id="finNews9" class="ticker-color"> | </a></li>
+								<li><a href="" target="_blank" id="finNews1" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews2" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews3" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews4" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews5" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews6" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews7" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews8" class="ticker-color"></a></li>
+								<li><a href="" target="_blank" id="finNews9" class="ticker-color"></a></li>
 								<li><a href="" target="_blank" id="finNews10" class="last ticker-color"> | </a></li>
 							</ul>
 						</div>
@@ -70,25 +72,25 @@
 									</thead>
 									<tbody>
 										{{#each portfolio}}
-											<tr class="stock-row" data-symbol="{{this.symbol}}">
-												<td>
-													<span class="stock-symbol">
-														{{this.symbol}}
-													</span><br>
-													<span class="company-name">{{this.name}}</span>
-												</td>
-												<td>
-													<span class="price">{{this.price}}</span>
-												</td>
-												<td>
-													<span class="big-number {{#if this.gain}}gain{{else}}loss{{/if}}">
-														{{#if this.gain}}+ {{/if}}{{this.percentChange}}
-													</span><br>
-													<span class="small-number {{#if this.gain}}gain{{else}}loss{{/if}}">
-														{{#if this.gain}}+ {{/if}}{{this.change}}
-													</span>
-												</td>
-											</tr>
+										<tr class="stock-row" data-symbol="{{this.symbol}}">
+											<td>
+												<span class="stock-symbol">
+													{{this.symbol}}
+												</span><br>
+												<span class="company-name">{{this.name}}</span>
+											</td>
+											<td>
+												<span class="price">{{this.price}}</span>
+											</td>
+											<td>
+												<span class="big-number {{#if this.gain}}gain{{else}}loss{{/if}}">
+													{{#if this.gain}}+ {{/if}}{{this.percentChange}}
+												</span><br>
+												<span class="small-number {{#if this.gain}}gain{{else}}loss{{/if}}">
+													{{#if this.gain}}+ {{/if}}{{this.change}}
+												</span>
+											</td>
+										</tr>
 										{{/each}}
 									</tbody>
 								</table>
@@ -102,9 +104,9 @@
 			<div class="row">
 				<div class="col l6 m12 s12">
 					<div class="card-panel center-align z-depth-5">
-					
+
 						<span class="chart-graph">
-								<div id="pie"></div>
+							<div id="pie"></div>
 							{{!-- <img id="pie" src="/img/pie-chart.png"> --}}
 						</span>
 					</div>
