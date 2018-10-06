@@ -57,9 +57,8 @@ header {
     color: ghostwhite;
     Font-Family: 'Playfair Display', Serif;
     background: rgba(0, 0, 0, 0.541);
-    padding: 0;
-
 }
+
 .hide-on-med-and-down {
 	padding: 0;
 	margin: 0;
@@ -249,6 +248,7 @@ td {
     background: rgba(0, 0, 0, 0.541);
     border-radius: 10px;
     color: ghostwhite;
+    min-height: 550px;   
 }
 
 .card-content {
@@ -256,10 +256,15 @@ td {
     font-family: 'Source Code Pro', monospace;
     color: ghostwhite;
     background: rgba(0, 0, 0, 0.541);
+    min-height: 550px;
 }
 
 h1, h5 {
     Font-Family: 'Playfair Display', Serif;
+}
+
+#card-symbol {
+    padding: 50px 0;
 }
 
 .time {
@@ -290,13 +295,11 @@ h1, h5 {
     color: #84bb65b2;
 }
 
-.buy-button {
-    float: left;
+.btn-large {
+    padding: 0 35px;
+    border-radius: 10px;
 }
 
-.sell-button {
-    float: right;
-}
 
 /*=============================================End Stock.hbs Styling=================================================================*/
 
@@ -338,9 +341,14 @@ h1, h5 {
 /*===========================================Purchase.hbs Styling============================================================*/
 #shares,#shares::placeholder {
     color: ghostwhite;
+    text-align: center;
 }
 
 /*===========================================End Purchase.hbs Styling============================================================*/
+
+/*===========================================Contact Page=======================================================================*/
+
+/*===========================================End Contact Page==================================================================*/
 
 /*===========================================Added by Cody===========================================*/
 

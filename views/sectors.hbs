@@ -17,67 +17,72 @@
 			<div class="col l12 m12 s12">
 				<div class="card-panel center z-depth-5">
 					<div class="row center-align">
-						<div class="col s12">
-							<ul class="tabs transparent">
-								<li class="tab col s1"><a class="white-text" href="#test1">Basic Industries</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test2">Capital Goods</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test3">Consumer Durables</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test4">Consumer Non-Durables</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test5">Consumer Services</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test6">Energy</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test7">Finance</a>
-								<li class="tab col s1"><a class="white-text" href="#test8">Health Care</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test9">Miscellaneous</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test10">Public Utilities</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test11">Technology</a></li>
-								<li class="tab col s1"><a class="white-text" href="#test12">Transportation</a></li>
+						<div class="col s12 m12 l12">
+							<ul class="tabs tabs-fixed-width transparent">
+								<li class="tab col s1"><a class="white-text {{#if basicIndustries}}active{{/if}}" target="_self" href="/stocks/sector/basic%20industries">Basic Industries</a></li>
+								<li class="tab col s1"><a class="white-text {{#if capitalGoods}}active{{/if}}" target="_self" href="/stocks/sector/capital%20goods">Capital Goods</a></li>
+								<li class="tab col s1"><a class="white-text {{#if consumerDurables}}active{{/if}}" target="_self" href="/stocks/sector/consumer%20durables">Consumer Durables</a></li>
+								<li class="tab col s1"><a class="white-text {{#if consumerNondurables}}active{{/if}}" target="_self" href="/stocks/sector/consumer%non-durables">Consumer Non-Durables</a></li>
+								<li class="tab col s1"><a class="white-text {{#if consumerServices}}active{{/if}}" target="_self" href="/stocks/sector/consumer%20services">Consumer Services</a></li>
+								<li class="tab col s1"><a class="white-text {{#if energy}}active{{/if}}" target="_self" href="/stocks/sector/energy">Energy</a></li>
 							</ul>
 						</div>
-
-						<!--Table-->
-						<h3>{{sector}}</h3>
-						<section>
-							<div class="row">
-								<div class="col l12 m12 s12">
-									<div class="card-panel center z-depth-5">
-										<span class="table">
-											<table class="centered highlight responsive-table">
-												<thead>
-													<tr>
-														<th>Stock</th>
-														<th>Current Price</th>
-														<th>Change</th>
-													</tr>
-												</thead>
-												<tbody>
-													{{#each stocks}}
-													<tr class="stock-row" data-symbol="{{symbol}}">
-														<td>
-															<span class="stock-symbol">{{this.symbol}}</span><br>
-															<span class="company-name">{{this.name}}</span>
-														</td>
-														<td><span class="share">{{this.price}}</span></td>
-														<td>
-															<span class="big-number {{#if gain}}gain{{else}}loss{{/if}}">
-																{{#if gain}}+ {{/if}}{{this.percentChange}}
-															</span><br>
-															<span class="small-number {{#if gain}}gain{{else}}loss{{/if}}">
-																{{#if gain}}+ {{/if}}{{this.change}}
-															</span>
-														</td>
-													</tr>
-													{{/each}}
-												</tbody>
-											</table>
-										</span>
-									</div>
+						
+						<div class="col s12 m12 l12">
+							<ul class="tabs tabs-fixed-width transparent">
+								<li class="tab col s1"><a class="white-text {{#if finance}}active{{/if}}" target="_self" href="/stocks/sector/finance">Finance</a>
+								<li class="tab col s1"><a class="white-text {{#if healthCare}}active{{/if}}" target="_self" href="/stocks/sector/health%20care">Health Care</a></li>
+								<li class="tab col s1"><a class="white-text {{#if miscellaneous}}active{{/if}}" target="_self" href="/stocks/sector/miscellaneous">Miscellaneous</a></li>
+								<li class="tab col s1"><a class="white-text {{#if publicUtilities}}active{{/if}}" target="_self" href="/stocks/sector/public%20utilities">Public Utilities</a></li>
+								<li class="tab col s1"><a class="white-text {{#if technology}}active{{/if}}" target="_self" href="/stocks/sector/technology">Technology</a></li>
+								<li class="tab col s1"><a class="white-text {{#if transportation}}active{{/if}}" target="_self" href="/stocks/sector/transportation">Transportation</a></li>
+							</ul>
+						</div>
+					</div>
+					<!--Table-->
+					<h3>{{sector}}</h3>
+					<section>
+						<div class="row">
+							<div class="col l12 m12 s12">
+								<div class="card-panel center z-depth-5">
+									<span class="table">
+										<table class="centered highlight responsive-table">
+											<thead>
+												<tr>
+													<th>Stock</th>
+													<th>Current Price</th>
+													<th>Change</th>
+												</tr>
+											</thead>
+											<tbody>
+												{{#each stocks}}
+												<tr class="stock-row" data-symbol="{{symbol}}">
+													<td>
+														<span class="stock-symbol">{{this.symbol}}</span><br>
+														<span class="company-name">{{this.name}}</span>
+													</td>
+													<td><span class="share">{{this.price}}</span></td>
+													<td>
+														<span class="big-number {{#if gain}}gain{{else}}loss{{/if}}">
+															{{#if gain}}+ {{/if}}{{this.percentChange}}
+														</span><br>
+														<span class="small-number {{#if gain}}gain{{else}}loss{{/if}}">
+															{{#if gain}}+ {{/if}}{{this.change}}
+														</span>
+													</td>
+												</tr>
+												{{/each}}
+											</tbody>
+										</table>
+									</span>
 								</div>
 							</div>
-						</section>
-					</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</div>
+	</div>
 
 
 	</div>
