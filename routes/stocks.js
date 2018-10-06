@@ -300,11 +300,34 @@ module.exports = (app) => {
 						
 					});
 					
+					switch(exchange) {
+						case "NASDAQ":
+							var nasdaq = true;
+							var nyse = false;
+							var amex = false;
+						break;
+
+						case "NYSE":
+							var nasdaq = false;
+							var nyse = true;
+							var amex = false;
+						break;
+
+						case "AMEX":
+							var nasdaq = false;
+							var nyse = false;
+							var amex = true;
+						break;
+					}
+
 					res.render('movers', {
 						topGainers: topGainers,
 						topLosers: topLosers,
 						exchange: exchange,
-						user: req.user
+						user: req.user,
+						nasdaq: nasdaq,
+						nyse: nyse,
+						amex: amex
 					});
 				});
 			}
