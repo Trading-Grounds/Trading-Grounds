@@ -57,7 +57,6 @@ header {
     color: ghostwhite;
     Font-Family: 'Playfair Display', Serif;
     background: rgba(0, 0, 0, 0.541);
-
 }
 
 /*==================SideNav Styling=================================*/
@@ -97,8 +96,9 @@ header {
     color: ghostwhite;
     height: 0;
 }
+
 .hide-drop {
-	height: 0;
+    height: 0;
 }
 
 /*Search Bar*/
@@ -118,17 +118,29 @@ nav {
 .material-icon {
     color: ghostwhite;
 }
+
 #search-icon {
-	cursor: pointer;
+    cursor: pointer;
 }
+
+.footer-copyright {
+    color: ghostwhite;
+    position: absolute;
+    right: 0;
+    bottom: 50;
+    left: 0;
+    text-align: center;
+}
+
 /*===================================End SideNav====================================================*/
 
 #main-area {
-	max-height: 100vh;
-	overflow: auto;
+    max-height: 100vh;
+    overflow: auto;
 }
+
 #main-card {
-    background:#84bb6534;
+    background: #84bb6534;
     margin-top: 0;
 }
 
@@ -147,6 +159,7 @@ nav {
 main {
     flex: 1 0 auto;
 }
+
 /*========================================END DEFAULT STYLING===========================================================*/
 
 /*============================Dashboard Specific Styling===========================================*/
@@ -197,8 +210,9 @@ td {
 .big-number {
     font-size: 24px;
 }
+
 .stock-row {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 /*Chart*/
@@ -206,19 +220,22 @@ td {
     width: 300px;
     height: 300px;
 }
+
 /*=========================================End Dashboard Specific Styling=======================================================*/
 
 /*===========================================Stock.hbs Styling=====================================================*/
 
 .card-link {
-	cursor: pointer;
+    cursor: pointer;
 }
+
 .selected-link {
-	font-weight: bold;
-	cursor: default; 
+    font-weight: bold;
+    cursor: default;
 }
+
 .js-hidden {
-	display: none;
+    display: none;
 }
 
 /*Reveal Card*/
@@ -230,28 +247,50 @@ td {
 
 .card-content {
     border-radius: 10px;
+    font-family: 'Source Code Pro', monospace;
+    color: ghostwhite;
+    background: rgba(0, 0, 0, 0.541);
 }
 
-.card-action {
-    border-radius: 10px;
+h1, h5 {
+    Font-Family: 'Playfair Display', Serif;
 }
 
-.card-reveal {
-    color: black;
-    border-radius: 10px;
-}
-
-.close-x {
+.time {
     color: #84bb65b2;
 }
 
-/* .buy-button {
+.descriptor {
+    color: #84bb65b2;
+}
+
+.card .card-action {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.541);
+    padding: 35px 30px;
+}
+
+.card-reveal {
+    color: ghostwhite;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.541);
+}
+
+.card-title {
+    Font-Family: 'Playfair Display', Serif;
+}
+
+#close-x {
+    color: #84bb65b2;
+}
+
+.buy-button {
     float: left;
 }
 
 .sell-button {
     float: right;
-} */
+}
 
 /*=============================================End Stock.hbs Styling=================================================================*/
 
@@ -259,13 +298,43 @@ td {
 #watchlist-header {
     text-align: center;
 }
-/*===========================================End Watchlist Styling=================================================================*/
 
-/*===========================================Movers.hbs Styling=======================================================*/
+/*===========================================End Watchlist Styling======================================================*/
+
+/*===========================================Movers.hbs, Volume.hbs & Sector.hbs Styling==========================================================*/
+.tabs {
+    font-family: 'Source Code Pro', monospace;
+}
+
+.tabs .indicator {
+    background-color: #84bb65b2;
+    color: #84bb65b2;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: #84bb657a;
+}
+
+.tabs .tab a {
+    color: #84bb65b2;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+    background-color: #84bb65b2;
+    color: #84bb65b2;
+}
 
 
+/*===========================================End Sector.hbs Styling==========================================================*/
 
-/*===========================================Movers.hbs Styling=======================================================*/
+/*===========================================Purchase.hbs Styling============================================================*/
+#num-shares,#num-shares::placeholder {
+    color: ghostwhite;
+}
+
+/*===========================================End Purchase.hbs Styling============================================================*/
 
 /*============================================Media Queries==========================================================*/
 
@@ -277,8 +346,9 @@ td {
     footer {
         padding-left: 0;
     }
+
     #hamburger-menu {
-	    height: auto;
-	    position: fixed;
+        height: auto;
+        position: fixed;
     }
 }

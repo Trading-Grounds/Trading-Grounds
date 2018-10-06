@@ -9,8 +9,8 @@ app.get('/', (req, res) => {
 
 //=========Dustin's Temporary Routes for Working on New Files============//
 
-app.get('/singlestock', (req, res) => {
-  res.render('singlestock');
+app.get('/stock', (req, res) => {
+  res.render('stock');
 });
 
 app.get('/investments', (req, res) => {
@@ -41,6 +41,9 @@ app.get('/gettingstarted', (req, res) => {
   res.render('gettingstarted');
 });
 
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
 //====================================================================//
 
 
