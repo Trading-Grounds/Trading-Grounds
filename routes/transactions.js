@@ -15,6 +15,10 @@ module.exports = (app) => {
 		transaction.recordTransaction(req, res);
 // 		res.redirect('/stock/buy/' + req.params.symbol);
 	});
+
+	app.get('/stock/sale/:symbol', isLoggedIn, (req, res) => {
+		res.render('sale');
+	})
 }
 
 //	Custom middleware for restricting access to protected views
