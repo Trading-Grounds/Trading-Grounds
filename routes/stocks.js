@@ -536,10 +536,34 @@ module.exports = (app) => {
 					topStocks[keys[i]].volume = format(topStocks[keys[i]].volume, 0, '');
 // 					console.log(topStocks[keys[i]]);
 				}
+				
+				switch(exchange) {
+					case "NASDAQ":
+						var nasdaq = true;
+						var nyse = false;
+						var amex = false;
+					break;
+
+					case "NYSE":
+						var nasdaq = false;
+						var nyse = true;
+						var amex = false;
+					break;
+
+					case "AMEX":
+						var nasdaq = false;
+						var nyse = false;
+						var amex = true;
+					break;
+				}
+				
 				res.render('volume', {
 					volume: topStocks,
 					exchange: exchange,
-					user: req.user
+					user: req.user,
+					nasdaq: nasdaq,
+					nyse: nyse,
+					amex: amex
 				});
 			});
 		});
