@@ -11,8 +11,9 @@ module.exports = (app) => {
 	
 	//	POST Purchase
 	app.post('/stock/buy/:symbol', isLoggedIn, (req, res) => {
-		console.log('\n\n\nUser:', req.user, '\n\n\n');
-		res.redirect('/stock/buy/' + req.params.symbol);
+// 		console.log('\n\n\nUser:', req.user, '\n\n\n');
+		transaction.recordTransaction(req, res);
+// 		res.redirect('/stock/buy/' + req.params.symbol);
 	});
 }
 
