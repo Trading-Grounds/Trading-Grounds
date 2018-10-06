@@ -29,9 +29,6 @@ module.exports = (app, passport) => {
 	//	GET Logout
 	app.get('/logout', authController.logout);
 	
-	//	GET Dashboard (Restricted Access)
-	app.get('/dashboard', isLoggedIn, authController.dashboard);
-	
 	//	Custom middleware for restricting access to protected views
 	function isLoggedIn(req, res, next) {
 		if(req.isAuthenticated()) {
@@ -139,4 +136,5 @@ module.exports = (app, passport) => {
 			return next();
 		}
 	}
+	
 }

@@ -3,14 +3,14 @@ var db = require("../models");
 module.exports = function (app) {
 
 // GET Homepage
-app.get('/', (req, res) => {
+app.get('/', isNotLoggedIn, (req, res) => {
   res.render('index');
 });
 
 //=========Dustin's Temporary Routes for Working on New Files============//
 
-app.get('/singlestock', (req, res) => {
-  res.render('singlestock');
+app.get('/stock', (req, res) => {
+  res.render('stock');
 });
 
 app.get('/investments', (req, res) => {
@@ -41,11 +41,22 @@ app.get('/gettingstarted', (req, res) => {
   res.render('gettingstarted');
 });
 
+app.get('/contact', (req, res) => {
+  res.render('contact');
+});
 //====================================================================//
 
+//	Custom middleware for redirecting to dashboard if logged in
+function isNotLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return res.redirect('/dashboard');
+	} else {
+		return next();
+	}
+}
 
 // Render 404 page for any unmatched routes
 app.get("*", function (req, res) {
-  res.render("404");
+  res.render("dashboard", {user: req.user});
 });
 };

@@ -1,0 +1,73 @@
+{{> header}}
+
+<body class="page-background" id="index">
+
+    <nav class="no-shadows">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">TG</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/login">Log in</a></li>
+                <li><a href="/register">New User</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="card-panel">
+
+                <div class="row center-align">
+                    <div class="col s12 m12 l12">
+
+                        <h2>Connect With Us</h2>
+                    </div>
+                </div>
+                <div class="row center-align">
+
+                    <div class="container">
+                        <div class="col s12 m12">
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">First Name</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="icon_prefix" type="text" class="validate">
+                                    <label for="icon_prefix">Last Name</label>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">assignment</i>
+                                    <input id="icon_telephone" type="tel" class="validate">
+                                    <label for="icon_telephone">Subject</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <i class="material-icons prefix">email</i>
+                                    <input id="email" type="email" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <!--Text Area-->
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">comment</i>
+                                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                    <label for="textarea1">Textarea</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Submit Button-->
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}

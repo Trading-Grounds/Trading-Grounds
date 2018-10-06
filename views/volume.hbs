@@ -2,308 +2,304 @@
 
 <body class="page-background" id="dashboard">
 
-    <header>
-        <h1>Volume</h1>
+	<header>
+		<h1>Volume</h1>
 
-    </header>
+	</header>
 
-    {{> sidenav}}
+	{{> sidenav}}
 
-    <!--Main Content-->
-    <main id="main-area">
-        <!--Main Card-->
-        <div id="main-card" class="card-panel z-depth-5">
-            <section>
+	<!--Main Content-->
+	<main id="main-area">
+		<!--Main Card-->
+		<div id="main-card" class="card-panel z-depth-5">
+			<!--Tabs-->
+			<div class="row">
+				<div class="col l12 m12 s12">
+					<div class="card-panel center z-depth-5">
+						<div class="row center-align">
+							<div class="col s12">
+								<ul class="tabs transparent">
+									<li class="tab col s4"><a class="white-text" target="_self" href="/stocks/volume/nyse">NYSE</a></li>
+									<li class="tab col s4"><a class="white-text" target="_self" href="/stocks/volume/nasdaq">NASDAQ</a></li>
+									<li class="tab col s4"><a class="white-text" target="_self" href="/stocks/volume/amex">AMEX</a></li>
+								</ul>
+							</div>
 
-                <div class="row">
-                    <div class="col l12 m12 s12">
+							<!--NYSE TABLES-->
+							<div id="tes1" class="col s12"><span class="table">
+									<h3>{{exchange}}</h3>
+									<section>
+										<div class="row">
+											<div class="col l12 m12 s12">
+												<div class="card-panel center z-depth-5">
+													<span class="table">
+														<table class="centered highlight responsive-table">
+															<thead>
+																<tr>
+																	<th>Stock</th>
+																	<th>Current Price</th>
+																	<th>Change</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr class="stock-row" data-symbol="{{volume.one.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.one.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.one.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.one.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.one.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.one.gain}}+ {{/if}}{{volume.one.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.one.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.one.gain}}+ {{/if}}{{volume.one.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.one.volume}}</td>
+																</tr>
 
-                        <div class="row center-align">
-                            <div class="col s12">
-                                <ul class="tabs">
-                                    <li class="tab col s4"><a target="_self" href="/stocks/volume/nyse">NYSE</a></li>
-                                    <li class="tab col s4"><a target="_self" href="/stocks/volume/nasdaq">NASDAQ</a></li>
-                                    <li class="tab col s4"><a target="_self" href="/stocks/volume/amex">AMEX</a></li>
-                                </ul>
-                            </div>
+																<tr class="stock-row" data-symbol="{{volume.two.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.two.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.two.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.two.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.two.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.two.gain}}+ {{/if}}{{volume.two.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.two.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.two.gain}}+ {{/if}}{{volume.two.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.two.volume}}</td>
+																</tr>
 
-                            <!--NYSE TABLES-->
-                            <div id="/stocks/movers/nyse" class="col s12"><span class="table">
-                                    <h3>{{exchange}}</h3>
-                                    <div class="card-panel center z-depth-5">
-                                        <span class="table">
-                                            <table class="centered highlight responsive-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Stock</th>
-                                                        <th>Current Price</th>
-                                                        <th>Change</th>
-                                                        <th>Volume</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="stock-row" data-symbol="{{volume.one.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.one.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.one.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.one.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.one.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.one.gain}}+ {{/if}}{{volume.one.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.one.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.one.gain}}+ {{/if}}{{volume.one.change}}
-															</span>
-														</td>
-														<td>{{volume.one.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.two.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.two.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.two.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.two.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.two.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.two.gain}}+ {{/if}}{{volume.two.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.two.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.two.gain}}+ {{/if}}{{volume.two.change}}
-															</span>
-														</td>
-														<td>{{volume.two.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.three.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.three.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.three.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.three.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.three.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.three.gain}}+ {{/if}}{{volume.three.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.three.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.three.gain}}+ {{/if}}{{volume.three.change}}
-															</span>
-														</td>
-														<td>{{volume.three.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.four.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.four.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.four.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.four.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.four.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.four.gain}}+ {{/if}}{{volume.four.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.four.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.four.gain}}+ {{/if}}{{volume.four.change}}
-															</span>
-														</td>
-														<td>{{volume.four.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.five.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.five.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.five.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.five.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.five.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.five.gain}}+ {{/if}}{{volume.five.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.five.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.five.gain}}+ {{/if}}{{volume.five.change}}
-															</span>
-														</td>
-														<td>{{volume.five.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.six.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.six.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.six.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.six.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.six.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.six.gain}}+ {{/if}}{{volume.six.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.six.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.six.gain}}+ {{/if}}{{volume.six.change}}
-															</span>
-														</td>
-														<td>{{volume.six.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.seven.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.seven.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.seven.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.seven.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.seven.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.seven.gain}}+ {{/if}}{{volume.seven.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.seven.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.seven.gain}}+ {{/if}}{{volume.seven.change}}
-															</span>
-														</td>
-														<td>{{volume.seven.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.eight.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.eight.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.eight.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.eight.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.eight.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.eight.gain}}+ {{/if}}{{volume.eight.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.eight.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.eight.gain}}+ {{/if}}{{volume.eight.change}}
-															</span>
-														</td>
-														<td>{{volume.eight.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.nine.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.nine.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.nine.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.nine.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.nine.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.nine.gain}}+ {{/if}}{{volume.nine.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.nine.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.nine.gain}}+ {{/if}}{{volume.nine.change}}
-															</span>
-														</td>
-														<td>{{volume.nine.volume}}</td>
-													</tr>
-													
-													 <tr class="stock-row" data-symbol="{{volume.ten.symbol}}">
-														<td>
-															<span class="stock-symbol">
-																{{volume.ten.symbol}}
-															</span><br>
-															<span class="company-name">
-																{{volume.ten.name}}
-															</span>
-														</td>
-														<td>
-															<span class="share">
-																{{volume.ten.price}}
-															</span>
-														</td>
-														<td>
-															<span class="big-number {{#if volume.ten.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.ten.gain}}+ {{/if}}{{volume.ten.percentChange}}
-															</span><br>
-															<span class="small-number {{#if volume.ten.gain}}gain{{else}}loss{{/if}}">
-																{{#if volume.ten.gain}}+ {{/if}}{{volume.ten.change}}
-															</span>
-														</td>
-														<td>{{volume.ten.volume}}</td>
-													</tr>
-                                                </tbody>
-                                            </table>
-                                        </span>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
+																<tr class="stock-row" data-symbol="{{volume.three.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.three.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.three.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.three.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.three.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.three.gain}}+ {{/if}}{{volume.three.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.three.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.three.gain}}+ {{/if}}{{volume.three.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.three.volume}}</td>
+																</tr>
+																<tr class="stock-row" data-symbol="{{volume.four.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.four.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.four.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.four.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.four.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.four.gain}}+ {{/if}}{{volume.four.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.four.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.four.gain}}+ {{/if}}{{volume.four.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.four.volume}}</td>
+																</tr>
+																<tr class="stock-row" data-symbol="{{volume.five.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.five.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.five.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.five.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.five.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.five.gain}}+ {{/if}}{{volume.five.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.five.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.five.gain}}+ {{/if}}{{volume.five.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.five.volume}}</td>
+																</tr>
+																<tr class="stock-row" data-symbol="{{volume.six.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.six.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.six.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.six.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.six.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.six.gain}}+ {{/if}}{{volume.six.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.six.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.six.gain}}+ {{/if}}{{volume.six.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.six.volume}}</td>
+																</tr>
+																<tr class="stock-row" data-symbol="{{volume.seven.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.seven.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.seven.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.seven.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.seven.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.seven.gain}}+ {{/if}}{{volume.seven.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.seven.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.seven.gain}}+ {{/if}}{{volume.seven.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.seven.volume}}</td>
+																</tr>
 
-                </div>
-        </div>
+																<tr class="stock-row" data-symbol="{{volume.eight.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.eight.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.eight.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.eight.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.eight.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.eight.gain}}+ {{/if}}{{volume.eight.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.eight.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.eight.gain}}+ {{/if}}{{volume.eight.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.eight.volume}}</td>
+																</tr>
+																<tr class="stock-row" data-symbol="{{volume.nine.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.nine.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.nine.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.nine.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.nine.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.nine.gain}}+ {{/if}}{{volume.nine.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.nine.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.nine.gain}}+ {{/if}}{{volume.nine.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.nine.volume}}</td>
+																</tr>
 
-        </section>
-        </div>
-    </main>
+																<tr class="stock-row" data-symbol="{{volume.ten.symbol}}">
+																	<td>
+																		<span class="stock-symbol">
+																			{{volume.ten.symbol}}
+																		</span><br>
+																		<span class="company-name">
+																			{{volume.ten.name}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="share">
+																			{{volume.ten.price}}
+																		</span>
+																	</td>
+																	<td>
+																		<span class="big-number {{#if volume.ten.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.ten.gain}}+ {{/if}}{{volume.ten.percentChange}}
+																		</span><br>
+																		<span class="small-number {{#if volume.ten.gain}}gain{{else}}loss{{/if}}">
+																			{{#if volume.ten.gain}}+ {{/if}}{{volume.ten.change}}
+																		</span>
+																	</td>
+																	<td>{{volume.ten.volume}}</td>
+																</tr>
+															</tbody>
+														</table>
+													</span>
+												</div>
+											</div>
+										</div>
+									</section>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 
-    {{> footer}}
+	{{> footer}}

@@ -1,9 +1,9 @@
-	{{> dashboardheader}}
+{{> dashboardheader}}
 
 <body class="page-background" id="dashboard">
 
 	<header>
-<!--		<h1>Stock &middot; <span>{{symbol}}</span></h1>	-->
+		<!--		<h1>Stock &middot; <span>{{symbol}}</span></h1>	-->
 		<h3>{{name}}</h3>
 	</header>
 
@@ -15,184 +15,116 @@
 		<div id="main-card" class="card z-depth-5">
 			<div class="container">
 				<div class="row center-align">
-					<div class="col s12 m12 l12">
+					{{!-- <div class="col s12 m12 l12"> --}}
 
 						<div id="stock" class="card sticky-action">
 							<div class="card-content">
+								<span class="card-title activator"><i id="vert-dots" class="medium material-icons right">more_vert</i></span>
 								<h1>{{symbol}}</h1>
 								<h5>{{name}}</h5>
 								<h2>{{price}}</h2>
 								<h4 class="{{#if gain}}gain{{else}}loss{{/if}}">{{change}} ({{percentChange}})</h4>
-								<span class="card-title activator"><i class="material-icons right">more_vert</i></span>
 							</div>
 							<div class="card-action">
-								<a href="/stock/buy/{{symbol}}" class="btn-small green accent-4 buy-button">BUY</a>
-								<a href="/stock/sell{{symbol}}" class="btn-small red accent-4 sell-button">SELL</a>
+								<a href="/stock/buy/{{symbol}}" class="btn-medium green accent-4 buy-button">BUY</a>
+								<a href="/stock/sell{{symbol}}" class="btn-medium red accent-4 sell-button">SELL</a>
 							</div>
-							<div class="card-reveal">
+							<div class="card-reveal black">
 
-								<span class="card-title grey-text text-darken-4">
-									<h3>{{name}}</h3><i class="material-icons right">close</i>
+								<span class="card-title">
+									<h3>{{name}}</h3>
+									<i id="close-x" class="medium material-icons right">close</i>
 								</span>
-								<div class="card-tabs">
-									<ul class="tabs tabs-fixed-width">
-										<li class="tab"><a href="#test4">Historical</a></li>
-										<li class="tab"><a href="#test5">Details</a></li>
-										<li class="tab"><a href="#test6">Company</a></li>
+								<div class="card-tabs transparent">
+									<ul class="tabs tabs-fixed-width transparent">
+										<li class="tab"><a class="white-text" href="#test4">Historical</a></li>
+										<li class="tab"><a class="active white-text" href="#test5">Details</a></li>
+										<li class="tab"><a class="white-text" href="#test6">Company</a></li>
 									</ul>
 								</div>
-								<div class="card-content grey lighten-4">
+								<div class="card-content">
 									<div id="test4">
-										<ul>
-											<li><span>1w</span></li>
-											<li><span>1m</span></li>
-											<li><span>6m</span></li>
-											<li><span>YTD</span></li>
-											<li><span>1y</span></li>
-											<li><span>5y</span></li>
-										</ul>
-										Historical Data/Graph Display Here
+										<div id="historical-background" class="row">
+											<div class="col s6">
+												<ul>
+													<li><span class="time">1w:</span> data</li>
+													<li><span class="time">1m:</span> data</li>
+													<li><span class="time">6m:</span> data</li>
+													<li><span class="time">YTD:</span> data</li>
+													<li><span class="time">1y:</span> data</li>
+													<li><span class="time">5y:</span> data</li>
+												</ul>
+											</div>
+											<div class="col s6">
+												Historical Data/Graph Display Here
+											</div>
+										</div>
 									</div>
 									<div id="test5">
-										<ul>
-											<li>Previous Close: {{close}}</li>
-											<li>Open: {{open}}</li>
-											<li>High: {{high}}</li>
-											<li>Low: {{low}}</li>
-											<li>Volume: {{volume}}</li>
-											<li>Market Cap: {{marketCap}}</li>
-											<li>52 Week High: {{fiftyTwoHigh}}</li>
-											<li>52 Week Low: {{fiftyTwoLow}}</li>
-										</ul>
-										<hr>
-										<ul>
-											<li>Div/Yield: {{div}} / {{yield}}</li>
-											<li>Beta: {{beta}}</li>
-											<li>EPS: {{eps}}</li>
-											<li>P/E: {{pe}}</li>
-										</ul>
+										<div id="details-background" class="row">
+											<div class="col s3 left-align">
+												<ul>
+													<li><span class="descriptor">Close:</span> {{close}}</li>
+													<li><span class="descriptor">Open:</span> {{open}}</li>
+													<li><span class="descriptor">High:</span> {{high}}</li>
+													<li><span class="descriptor">Low:</span> {{low}}</li>
+												</ul>
+											</div>
+											<div class="col s4 left-align">
+												<ul>
+													<li><span class="descriptor">Volume:</span> {{volume}}</li>
+													<li><span class="descriptor">Market Cap:</span> {{marketCap}}</li>
+													<li><span class="descriptor">52 Week High:</span> {{fiftyTwoHigh}}</li>
+													<li><span class="descriptor">52 Week Low:</span> {{fiftyTwoLow}}</li>
+												</ul>
+											</div>
+											<div class="col s5 left-align">
+												<ul>
+													<li><span class="descriptor">Div/Yield:</span> {{div}} / {{yield}}</li>
+													<li><span class="descriptor">Beta:</span> {{beta}}</li>
+													<li><span class="descriptor">EPS:</span> {{eps}}</li>
+													<li><span class="descriptor">P/E:</span> {{pe}}</li>
+												</ul>
+											</div>
+										</div>
 									</div>
 									<div id="test6">
-										<ul>
-											<li>Name: {{name}}</li>
-											<li>Symbol: {{symbol}}</li>
-											<li>Sector: {{sector}}</li>
-											<li>Industry: {{industry}}</li>
-											<li>Location: {{state}}, {{country}}</li>
-											<li>Employees: {{employees}}</li>
-											<li>Phone: {{phone}}</li>
-											<li>Website: <a href="{{website}}" target="_blank">{{website}}</a></li>
-										</ul>
-										<hr>
-										<div>{{summary}}</div>
+										<div id="company-background" class="row">
+											<div class="col s6">
+												<ul>
+													<li><span class="descriptor">Name:</span> {{name}} </li>
+													<li><span class="descriptor">Symbol:</span> {{symbol}} </li>
+													<li><span class="descriptor">Sector:</span> {{sector}} </li>
+													<li><span class="descriptor">Industry:</span> {{industry}} </li>
+												</ul>
+											</div>
+											<div class="col s6">
+												<ul>
+													<li><span class="descriptor">Location:</span> {{state}}, {{country}} </li>
+													<li><span class="descriptor">Employees:</span> {{employees}} </li>
+													<li><span class="descriptor">Phone: </span> {{phone}} </li>
+													<li><span class="descriptor">Website:</span> <a href="{{website}}" target="_blank">{{website}}</a> </li>
+												</ul>
+											</div>
+										</div>
+										<div class="row">
+											<hr>
+										</div>
+										<h5>Summary</h5>
+										<div class="row">
+											<div class="col s12">
+												<div>{{summary}}</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
-
 					</div>
-				</div>
+					{{!-- </div> --}}
 			</div>
+		</div>
 		</div>
 	</main>
 
 	{{> footer}}
-
-	<!--===================================================Cody Code=================================================================-->
-
-	{{!-- <h3>{{symbol}}</h3>
-	<h6>{{name}}</h6>
-	<h2>{{price}}</h2>
-	<h4>{{#if gain}}+ {{else}}- {{/if}}{{change}} ({{#if gain}}+ {{else}}- {{/if}}{{percentChange}})</h4>
-	<ul>
-		<span class="card-link" id="hist-link">Historical</span>
-		<span class="card-link selected-link" id="det-link">Details</span>
-		<span class="card-link" id="comp-link">Company</span>
-	</ul>
-
-	<div class="js-hidden" id="historical">
-		<ul>
-			<li><span>1w</span></li>
-			<li><span>1m</span></li>
-			<li><span>6m</span></li>
-			<li><span>YTD</span></li>
-			<li><span>1y</span></li>
-			<li><span>5y</span></li>
-		</ul>
-		Historical Data/Graph Display Here
-	</div>
-
-	<div id="details">
-		<ul>
-			<li>Previous Close: {{close}}</li>
-			<li>Open: {{open}}</li>
-			<li>High: {{high}}</li>
-			<li>Low: {{low}}</li>
-			<li>Volume: {{volume}}</li>
-			<li>Market Cap: {{marketCap}}</li>
-			<li>52 Week High: {{fiftyTwoHigh}}</li>
-			<li>52 Week Low: {{fiftyTwoLow}}</li>
-		</ul>
-		<hr>
-		<ul>
-			<li>Div/Yield: {{div}} / {{yield}}</li>
-			<li>Beta: {{beta}}</li>
-			<li>EPS: {{eps}}</li>
-			<li>P/E: {{pe}}</li>
-		</ul>
-		<!--
-	<hr>
-	Bid: {{bid}}<br>Ask: {{ask}}
--->
-	</div>
-
-	<div class="js-hidden" id="company">
-		<ul>
-			<li>Name: {{name}}</li>
-			<li>Symbol: {{symbol}}</li>
-			<li>Sector: {{sector}}</li>
-			<li>Industry: {{industry}}</li>
-			<li>Location: {{state}}, {{country}}</li>
-			<li>Employees: {{employees}}</li>
-			<li>Phone: {{phone}}</li>
-			<li>Website: <a href="{{website}}" target="_blank">{{website}}</a></li>
-		</ul>
-		<hr>
-		<div>{{summary}}</div>
-	</div>
-
-	<a href="/dashboard">Back</a>
-
-
-
-	$('.card-link').click(function() {
-
-	});
-
-	$('#hist-link').click(function() {
-	$('#det-link').removeClass('selected-link');
-	$('#comp-link').removeClass('selected-link');
-	$('#hist-link').addClass('selected-link');
-	$('#historical').removeClass('js-hidden');
-	$('#details').addClass('js-hidden');
-	$('#company').addClass('js-hidden');
-	});
-
-	$('#det-link').click(function() {
-	$('#det-link').addClass('selected-link');
-	$('#comp-link').removeClass('selected-link');
-	$('#hist-link').removeClass('selected-link');
-	$('#historical').addClass('js-hidden');
-	$('#details').removeClass('js-hidden');
-	$('#company').addClass('js-hidden');
-	});
-
-	$('#comp-link').click(function() {
-	$('#det-link').removeClass('selected-link');
-	$('#comp-link').addClass('selected-link');
-	$('#hist-link').removeClass('selected-link');
-	$('#historical').addClass('js-hidden');
-	$('#details').addClass('js-hidden');
-	$('#company').removeClass('js-hidden');
-	}); --}}
