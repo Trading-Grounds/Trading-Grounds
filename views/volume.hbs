@@ -20,9 +20,9 @@
 						<div class="row center-align">
 							<div class="col s12">
 								<ul class="tabs transparent">
-									<li class="tab col s4"><a class="white-text" target="_self" href="/stocks/volume/nyse">NYSE</a></li>
-									<li class="tab col s4"><a class="white-text" target="_self" href="/stocks/volume/nasdaq">NASDAQ</a></li>
-									<li class="tab col s4"><a class="white-text" target="_self" href="/stocks/volume/amex">AMEX</a></li>
+									<li class="tab col s4"><a class="white-text {{#if nyse}}active{{/if}}" target="_self" href="/stocks/volume/nyse">NYSE</a></li>
+									<li class="tab col s4"><a class="white-text {{#if nasdaq}}active{{/if}}" target="_self" href="/stocks/volume/nasdaq">NASDAQ</a></li>
+									<li class="tab col s4"><a class="white-text {{#if amex}}active{{/if}}" target="_self" href="/stocks/volume/amex">AMEX</a></li>
 								</ul>
 							</div>
 
@@ -40,6 +40,7 @@
 																	<th>Stock</th>
 																	<th>Current Price</th>
 																	<th>Change</th>
+																	<th>Volume</th>
 																</tr>
 															</thead>
 															<tbody>

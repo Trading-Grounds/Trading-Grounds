@@ -15,19 +15,19 @@
 		<div id="main-card" class="card z-depth-5">
 			<div class="container">
 				<div class="row center-align">
-					{{!-- <div class="col s12 m12 l12"> --}}
+					<div class="col s12 m12 l12">
 
 						<div id="stock" class="card sticky-action">
-							<div class="card-content">
-								<span class="card-title activator"><i id="vert-dots" class="medium material-icons right">more_vert</i></span>
-								<h1>{{symbol}}</h1>
-								<h5>{{name}}</h5>
-								<h2>{{price}}</h2>
-								<h4 class="{{#if gain}}gain{{else}}loss{{/if}}">{{change}} ({{percentChange}})</h4>
+							<div class="card-content center-align">
+								<span class="card-title activator"><i id="vert-dots" class="medium material-icons right">more_vert</i></span>								
+									<h1 id="card-symbol">{{symbol}}</h1>
+									<h5>{{name}}</h5>
+									<h2>{{price}}</h2>
+									<h4 class="{{#if gain}}gain{{else}}loss{{/if}}">{{change}} ({{percentChange}})</h4>								
 							</div>
 							<div class="card-action">
-								<a href="/stock/buy/{{symbol}}" class="btn-medium green accent-4 buy-button">BUY</a>
-								<a href="/stock/sell{{symbol}}" class="btn-medium red accent-4 sell-button">SELL</a>
+								<a href="/stock/buy/{{symbol}}" class="btn-large green accent-4 buy-button">BUY</a>
+								<a href="/stock/sell{{symbol}}" class="btn-large red accent-4 sell-button">SELL</a>
 							</div>
 							<div class="card-reveal black">
 
@@ -121,9 +121,8 @@
 							</div>
 						</div>
 					</div>
-					{{!-- </div> --}}
+				</div>
 			</div>
-		</div>
 		</div>
 	</main>
 
