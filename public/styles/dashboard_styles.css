@@ -369,6 +369,17 @@ h1 span {
 	padding-right: 20px;
 	font-size: 15px;
 }
+#plotly-display li {
+	display: inline-block;
+	cursor: pointer;
+}
+#plotly-display li span:hover,
+.graph-selected {
+	color: ghostwhite;
+}
+#webTicker-2 a {
+	color: ghostwhite;
+}
 
 /*============================================Media Queries==========================================================*/
 

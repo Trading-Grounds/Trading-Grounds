@@ -13,18 +13,23 @@ app.get('/stock', (req, res) => {
   res.render('stock');
 });
 
+/*
 app.get('/investments', (req, res) => {
   res.render('investments');
 });
+*/
 
 app.get('/watchlist', (req, res) => {
   res.render('watchlist');
 });
 
+/*
 app.get('/transactions', (req, res) => {
   res.render('transactions');
 });
+*/
 
+/*
 app.get('/purchase', (req, res) => {
   res.render('purchase');
 });
@@ -36,6 +41,7 @@ app.get('/marketcap', (req, res) => {
 app.get('/volume', (req, res) => {
   res.render('volume');
 });
+*/
 
 app.get('/gettingstarted', (req, res) => {
   res.render('gettingstarted');

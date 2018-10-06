@@ -13,7 +13,7 @@
         <!--Main Card-->
         <div id="main-card" class="card-panel z-depth-5">
 
-           {{> accountinfo}}
+
 
             <!--Table-->
             <section>
@@ -24,25 +24,27 @@
                                 <table class="centered highlight responsive-table">
                                     <thead>
                                         <tr>
+                                        	<th>Type</th>
+                                        	<th>Date</th>
                                             <th>Symbol</th>
                                             <th>Name</th>
                                             <th>Shares</th>
-                                            <th>Costs</th>
                                             <th>Price</th>
-                                            <th>Market Value</th>
-                                            <th>Gain/Loss</th>
+                                            <th>Total</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>GOOG</td>
-                                            <td>Alphabet, Inc</td>
-                                            <td>15</td>
-                                            <td>$ 17,266.30</td>
-                                            <td>$ 1203.60 <span>(-3.73)</span></td>
-                                            <td>$ 18,054.18</td>
-                                            <td>$ 787.95 <span>(4.56%)</span></td>
-                                        </tr>
+                                    	{{#each transactions}}
+                                    		<tr class="stock-row" data-symbol="{{this.symbol}}">
+                                    			<td>{{this.type}}</td>
+                                    			<td>{{this.date}}</td>
+                                    			<td>{{this.symbol}}</td>
+                                    			<td>{{this.name}}</td>
+                                    			<td>{{this.shares}}</td>
+                                    			<td>{{this.price}}</td>
+                                    			<td>{{this.total}}</td>
+                                    		</tr>
+                                    	{{/each}}
                                     </tbody>
                                 </table>
                             </span>
