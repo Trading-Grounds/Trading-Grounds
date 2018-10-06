@@ -9,6 +9,12 @@ module.exports = (app) => {
 	//	GET Dashboard (Restricted Access)
 	app.get('/dashboard', isLoggedIn, stockController.dashboard);
 	
+	//	GET Investments/Portfolio (Restricted Access)
+	app.get('/investments', isLoggedIn, stockController.investments);
+	
+	//	GET Transactions (Restricted Access)
+	app.get('/transactions', isLoggedIn, stockController.transactions);
+	
 	//	GET Single Stock (Restricted Access)
 	app.get('/stock/:symbol', isLoggedIn, (req, res) => {
 		
@@ -339,6 +345,165 @@ module.exports = (app) => {
 		});
 	});
 	
+	app.get('/stocks/api/movers', (req, res) => {
+		
+		Company.findAll({
+			where: {
+				exchange: 'NASDAQ'
+			},
+			limit: 25,
+			order: [['market_cap', 'DESC']],
+		}).then(companies => {
+			if(companies) {
+												
+				var topGainers = {
+					one: {},
+					two: {},
+					three: {},
+					four: {},
+					five: {}
+				};
+				var topGains = {
+					one: -1,
+					two: -1,
+					three: -1,
+					four: -1,
+					five: -1
+				}
+				var topLosers = {
+					one: {},
+					two: {},
+					three: {},
+					four: {},
+					five: {}
+				};
+				var topLosses = {
+					one: 1,
+					two: 1,
+					three: 1,
+					four: 1,
+					five: 1
+				};
+				
+				findStocksByAPI(companies, [], 0, (stocks) => {
+
+					stocks.forEach(stock => {
+						
+						if(parseFloat(stock.unformattedChange) > topGains.one) {
+							
+							topGains.five = topGains.four;
+							topGains.four = topGains.three;
+							topGains.three = topGains.two;
+							topGains.two = topGains.one;
+							topGains.one = parseFloat(stock.unformattedChange);
+							
+							topGainers.five = topGainers.four;
+							topGainers.four = topGainers.three;
+							topGainers.three = topGainers.two;
+							topGainers.two = topGainers.one;
+							topGainers.one = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) > topGains.two) {
+							
+							topGains.five = topGains.four;
+							topGains.four = topGains.three;
+							topGains.three = topGains.two;
+							topGains.two = parseFloat(stock.unformattedChange);
+							
+							topGainers.five = topGainers.four;
+							topGainers.four = topGainers.three;
+							topGainers.three = topGainers.two;
+							topGainers.two = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) > topGains.three) {
+							
+							topGains.five = topGains.four;
+							topGains.four = topGains.three;
+							topGains.three = parseFloat(stock.unformattedChange);
+							
+							topGainers.five = topGainers.four;
+							topGainers.four = topGainers.three;
+							topGainers.three = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) > topGains.four) {
+							
+							topGains.five = topGains.four;
+							topGains.four = parseFloat(stock.unformattedChange);
+							
+							topGainers.five = topGainers.four;
+							topGainers.four = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) > topGains.five) {
+							
+							topGains.five = parseFloat(stock.unformattedChange);
+							
+							topGainers.five = stock;
+							
+						}
+						
+						if(parseFloat(stock.unformattedChange) < topLosses.one) {
+							
+							topLosses.five = topLosses.four;
+							topLosses.four = topLosses.three;
+							topLosses.three = topLosses.two;
+							topLosses.two = topLosses.one;
+							topLosses.one = parseFloat(stock.unformattedChange);
+							
+							topLosers.five = topLosers.four;
+							topLosers.four = topLosers.three;
+							topLosers.three = topLosers.two;
+							topLosers.two = topLosers.one;
+							topLosers.one = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) < topLosses.two) {
+							
+							topLosses.five = topLosses.four;
+							topLosses.four = topLosses.three;
+							topLosses.three = topLosses.two;
+							topLosses.two = parseFloat(stock.unformattedChange);
+							
+							topLosers.five = topLosers.four;
+							topLosers.four = topLosers.three;
+							topLosers.three = topLosers.two;
+							topLosers.two = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) < topLosses.three) {
+							
+							topLosses.five = topLosses.four;
+							topLosses.four = topLosses.three;
+							topLosses.three = parseFloat(stock.unformattedChange);
+							
+							topLosers.five = topLosers.four;
+							topLosers.four = topLosers.three;
+							topLosers.three = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) < topLosses.four) {
+							
+							topLosses.five = topLosses.four;
+							topLosses.four = parseFloat(stock.unformattedChange);
+							
+							topLosers.five = topLosers.four;
+							topLosers.four = stock;
+							
+						} else if(parseFloat(stock.unformattedChange) < topLosses.five) {
+							
+							topLosses.five = parseFloat(stock.unformattedChange);
+							
+							topLosers.five = stock;
+							
+						}
+						
+					});
+					
+					return res.json({
+						topGainers: topGainers,
+						topLosers: topLosers
+					});
+				});
+			}
+		});
+	});
+	
 	//	GET Stocks By Volume (Restricted Access)
 	app.get('/stocks/volume/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
@@ -586,10 +751,34 @@ module.exports = (app) => {
 				stocks.forEach((stock, i) => {
 					stock.marketCap = format(companies[i].market_cap, 0);
 				});
+				
+				switch(exchange) {
+					case "NASDAQ":
+						var nasdaq = true;
+						var nyse = false;
+						var amex = false;
+					break;
+
+					case "NYSE":
+						var nasdaq = false;
+						var nyse = true;
+						var amex = false;
+					break;
+
+					case "AMEX":
+						var nasdaq = false;
+						var nyse = false;
+						var amex = true;
+					break;
+				}
+					
 				res.render('marketcap', {
 					stocks: stocks,
 					exchange: exchange,
-					user: req.user
+					user: req.user,
+					nasdaq: nasdaq,
+					nyse: nyse,
+					amex: amex
 				});
 			});
 		});
@@ -608,11 +797,67 @@ module.exports = (app) => {
 		}).then(companies => {
 			
 			findStocksByAPI(companies, [], 0, (stocks) => {
-// 				console.log('\n\n\nstocks found:', stocks);
+
+				var sectors = {
+					basicIndustries: false,
+					capitalGoods: false,
+					consumerDurables: false,
+					consumerNondurables: false,
+					consumerServices: false,
+					energy: false,
+					finance: false,
+					healthCare: false,
+					miscellaneous: false,
+					publicUtilities: false,
+					technology: false,
+					transportation: false
+				};
+				
+				switch(sector) {
+					case 'Basic Industries':
+						sectors.basicIndustries = true;
+					break;
+					case 'Capital Goods':
+						sectors.capitalGoods = true;
+					break;
+					case 'Consumer Durables':
+						sectors.consumerDurables = true;
+					break;
+					case 'Consumer Non-Durables':
+						sectors.consumerNondurables = true;
+					break;
+					case 'Consumer Services':
+						sectors.consumerServices = true;
+					break;
+					case 'Energy':
+						sectors.energy = true;
+					break;
+					case 'Finance':
+						sectors.finance = true;
+					break;
+					case 'Health Care':
+						sectors.healthCare = true;
+					break;
+					case 'Miscellaneous':
+						sectors.miscellaneous = true;
+					break;
+					case 'Public Utilities':
+						sectors.publicUtilities = true;
+					break;
+					case 'Technology':
+						sectors.technology = true;
+					break;
+					case 'Transportation':
+						sectors.transportation = true;
+					break;
+					default: sectors.basicIndustries = true;
+				}
+				
 				res.render('sectors', {
 					stocks: stocks,
 					sector: sector.toUpperCase(),
-					user: req.user
+					user: req.user,
+					sectors: sectors
 				});
 			});
 		});

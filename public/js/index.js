@@ -144,6 +144,32 @@ $(document).ready(function () {
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return den + parts.join('.');
 	}
+	
+	/*============== Stock Ticker =============*/
+	
+/*
+		var ticker = $('#webTicker-2');
+		ticker.empty();
+		
+		$.get('/stocks/api/movers', (movers) => {
+			if(movers) {
+				var spacer = $('<li>').addClass('ticker-spacer');
+				movers.topGainers.
+				Object.keys(movers.topGainers).forEach((key) => {
+
+				  console.log(key, obj[key]);
+				
+				});
+				var li = $('<li>').addClass('ticker-color');
+				var last = $('<li>').addClass('last ticker-color');
+				
+				li.text(movers.topGainers.one.symbol + ' (' + movers.topGainers.one.percentChange + ')');
+				last.text('----');
+				
+				ticker.append(spacer, li, last);
+			}
+		});
+*/
 
 	/////////////////////Code for the pie chart////////////////
 
@@ -173,14 +199,27 @@ $(document).ready(function () {
 
 	/////////////////AJAX CALLS TO API PAGES TO GET INFORMATIN FOR PLOTLY GRAPH//////////
 	/////////////////Added by Julie Hodges<---////////////////////////
+	
+	function addSelected(selected) {
+		var graphLinks =[$('#submitWeek'), $('#submitMonth'), $('#submitSix'), $('#submitYear'), $('#submitFive')];
+		graphLinks.forEach(link => {
+			if(selected == link) {
+				link.addClass('graph-selected');
+			} else {
+				link.removeClass('graph-selected');
+			}
+		});
+	}
+	
 	$("#submitMonth").on("click", function () {
-		$.get("/api/graph", function (data) {
+		var symbol = $('#card-symbol').text().toUpperCase();
+		$.get("/api/graph/oneMonth/" + symbol, function (data) {
 			if (data) {
 				var highestPrice = [];
 				var dates = [];
 
 				for (var i = 0; i < data.length; i++) {
-					highestPriceW.push(data[i].highestPrice);
+					highestPrice.push(data[i].highestPrice);
 					dates.push(data[i].date);
 
 				}
@@ -200,7 +239,8 @@ $(document).ready(function () {
 	})
 
 	$("#submitWeek").on("click", function () {
-		$.get("/api/graph/oneWeek", function (data) {
+		var symbol = $('#card-symbol').text().toUpperCase();
+		$.get("/api/graph/oneWeek/" + symbol, function (data) {
 			if (data) {
 				var highestPrice = [];
 				var dates = [];
@@ -226,7 +266,8 @@ $(document).ready(function () {
 	})
 
 	$("#submitSix").on("click", function () {
-		$.get("/api/graph/sixmonths", function (data) {
+		var symbol = $('#card-symbol').text().toUpperCase();
+		$.get("/api/graph/sixmonths/" + symbol, function (data) {
 			if (data) {
 				var highestPrice = [];
 				var dates = [];
@@ -253,7 +294,8 @@ $(document).ready(function () {
 	})
 
 	$("#submitYear").on("click", function () {
-		$.get("/api/graph/oneyear", function (data) {
+		var symbol = $('#card-symbol').text().toUpperCase();
+		$.get("/api/graph/oneyear/" + symbol, function (data) {
 			if (data) {
 				var highestPrice = [];
 				var dates = [];
@@ -280,7 +322,8 @@ $(document).ready(function () {
 	})
 
 	$("#submitFive").on("click", function () {
-		$.get("/api/graph/fiveyear", function (data) {
+		var symbol = $('#card-symbol').text().toUpperCase();
+		$.get("/api/graph/fiveyear/" + symbol, function (data) {
 			if (data) {
 				var highestPrice = [];
 				var dates = [];

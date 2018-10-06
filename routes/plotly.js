@@ -5,12 +5,12 @@ var yahooFinance = require("yahoo-finance");
 var moment = require("moment")
 
 module.exports = function (app) {
-    app.get("/api/graph", function (req, res) {
+    app.get("/api/graph/oneMonth/:symbol", function (req, res) {
         var today = moment().format()
         var oneMonthAgo = moment().subtract(1, "month").format();
 
         yahooFinance.historical({
-            symbols: ["FB"],
+            symbols: [req.params.symbol],
 
             from: oneMonthAgo,
             to: today
@@ -39,12 +39,12 @@ module.exports = function (app) {
             })
     })
 
-    app.get("/api/graph/oneWeek", function (req, res) {
+    app.get("/api/graph/oneWeek/:symbol", function (req, res) {
         var today = moment().format()
         var oneWeekAgo = moment().subtract(1, "week").format();
 
         yahooFinance.historical({
-            symbols: ["FB"],
+            symbols: [req.params.symbol],
 
             from: oneWeekAgo,
             to: today
@@ -73,13 +73,13 @@ module.exports = function (app) {
             })
     })
 
-    app.get("/api/graph/sixmonths", function (req, res) {
+    app.get("/api/graph/sixmonths/:symbol", function (req, res) {
 
         var today = moment().format()
         var sixMonthsAgo = moment().subtract(6, "months").format();
         yahooFinance.historical({
 
-            symbols: ["FB"],
+            symbols: [req.params.symbol],
             from: sixMonthsAgo,
             to: today
         },
@@ -106,13 +106,13 @@ module.exports = function (app) {
             })
     })
 
-    app.get("/api/graph/oneyear", function (req, res) {
+    app.get("/api/graph/oneyear/:symbol", function (req, res) {
 
         var today = moment().format()
         var oneYearAgo = moment().subtract(1, "year").format();
 
         yahooFinance.historical({
-            symbols: ["FB"],
+            symbols: [req.params.symbol],
             from: oneYearAgo,
             to: today
         },
@@ -139,13 +139,13 @@ module.exports = function (app) {
             })
     })
 
-    app.get("/api/graph/fiveyear", function (req, res) {
+    app.get("/api/graph/fiveyear/:symbol", function (req, res) {
 
         var today = moment().format()
         var fiveYearsAgo = moment().subtract(5, "years").format();
 
         yahooFinance.historical({
-            symbols: ["FB"],
+            symbols: [req.params.symbol],
             from: fiveYearsAgo,
             to: today
         },

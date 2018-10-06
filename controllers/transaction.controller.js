@@ -223,6 +223,9 @@ transaction.recordPurchase = (req, res) => {
 		price: req.body.price,
 		user_id: req.user.id
 	};
+	if((parseFloat(investment.price) * parseInt(investment.quantity)) > parseFloat(req.user.cash)) {
+		return res.redirect('/stock/' + investment.symbol);
+	}
 	Investment.create(investment).then(() => {
 		var transaction = {
 			transaction_type: req.body.transaction_type,
@@ -308,13 +311,24 @@ transaction.recordSale = (req, res) => {
 			}
 			
 			sellStocks(() => {
-				var revenue =  parseFloat(req.body.price) * parseInt(req.body.quantity);
-				user.cash += revenue;
-				
-				user.save().then(() => {
-					console.log('\n\nCash Updated\n\n');
-					return res.redirect('/dashboard'
-					);
+				var transaction = {
+					transaction_type: req.body.transaction_type,
+					transaction_date: req.body.transaction_date,
+					asset_name: req.body.asset_name,
+					quantity: req.body.quantity,
+					price: req.body.price,
+					user_id: req.user.id,
+					asset_symbol: req.body.symbol
+				};
+				Transaction.create(transaction).then(() => {
+					var revenue =  parseFloat(req.body.price) * parseInt(req.body.quantity);
+					user.cash += revenue;
+					
+					user.save().then(() => {
+						console.log('\n\nCash Updated\n\n');
+						return res.redirect('/dashboard'
+						);
+					});
 				});
 			});
 		});
