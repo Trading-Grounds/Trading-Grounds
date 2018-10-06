@@ -98,33 +98,6 @@
 				</div>
 			</section>
 
-			<!--Reveal Cards-->
-			<section>
-				<div class="row">
-					{{#each ticker}}<div class="col l3 m6 s12">
-						<div class="card sticky-action medium z-depth-5">
-							<div class="card-content">
-								<span class="card-title activator">{{this.stockName}}, {{this.symbol}}<i class="material-icons right dots">more_vert</i></span>
-								<br>All prices in USD<br>
-								Buying Price: {{this.price}} <br>
-								Selling Price: {{this.sellPrice}} <br>
-								Opening Price: {{this.open}} <br>
-								52 Week High: {{this.fiftyTwoWeekHigh}} <br>
-								52 Week Low: {{this.fiftyTwoWeekLow}}<br>
-							</div>
-							<div class="card-action">
-								<a href="#" class="btn-small green accent-4 buy-button">BUY</a>
-								<a href="#" class="btn-small red accent-4 sell-button">SELL</a>
-							</div>
-							<div class="card-reveal">
-								<span class="card-title">Card Title<i class="material-icons right close-x">close</i></span>
-								<p>Here is some more information about this product that is only revealed once clicked on.</p>
-							</div>
-						</div>
-					</div>{{/each}}
-				</div>
-			</section>
-
 			<!--Pie Chart and Table-->
 			<div class="row">
 				<div class="col l6 m12 s12">
