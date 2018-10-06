@@ -28,6 +28,9 @@ module.exports = (sequelize, Sequelize) => {
 		bio: {
 			type: Sequelize.TEXT
 		},
+		profile_pic: {
+			type: Sequelize.STRING
+		},
 		last_login: {
 			type: Sequelize.DATE
 		},
@@ -52,6 +55,9 @@ module.exports = (sequelize, Sequelize) => {
 	
 	User.associate = (models) => {
 		User.hasMany(models.Investment, {
+			onDelete: 'cascade'
+		});
+		User.hasMany(models.Transaction, {
 			onDelete: 'cascade'
 		});
 	};

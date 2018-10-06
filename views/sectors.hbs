@@ -4,7 +4,6 @@
 
 <header>
 	<h1>Sectors</h1>
-	<h2 class="capitalize">{{sector}}</h2>
 </header>
 
 {{> sidenav}}
@@ -34,425 +33,54 @@
 								<li class="tab col s1"><a class="white-text" href="#test12">Transportation</a></li>
 							</ul>
 						</div>
-						<div id="test1" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
+
+						<!--Table-->
+						<h3>{{sector}}</h3>
+						<section>
+							<div class="row">
+								<div class="col l12 m12 s12">
+									<div class="card-panel center z-depth-5">
+										<span class="table">
+											<table class="centered highlight responsive-table">
+												<thead>
+													<tr>
+														<th>Stock</th>
+														<th>Current Price</th>
+														<th>Change</th>
+													</tr>
+												</thead>
+												<tbody>
+													{{#each stocks}}
+													<tr class="stock-row" data-symbol="{{symbol}}">
+														<td>
+															<span class="stock-symbol">{{this.symbol}}</span><br>
+															<span class="company-name">{{this.name}}</span>
+														</td>
+														<td><span class="share">{{this.price}}</span></td>
+														<td>
+															<span class="big-number {{#if gain}}gain{{else}}loss{{/if}}">
+																{{#if gain}}+ {{/if}}{{this.percentChange}}
+															</span><br>
+															<span class="small-number {{#if gain}}gain{{else}}loss{{/if}}">
+																{{#if gain}}+ {{/if}}{{this.change}}
+															</span>
+														</td>
+													</tr>
+													{{/each}}
+												</tbody>
+											</table>
+										</span>
 									</div>
 								</div>
-							</section>
-						</div>
-						<div id="test2" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test3" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test4" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test5" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test6" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test7" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test8" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test9" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test10" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test11" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div id="test12" class="col s12">
-							<!--Table-->
-							<section>
-								<div class="row">
-									<div class="col l12 m12 s12">
-										<div class="card-panel center z-depth-5">
-											<span class="table">
-												<table class="centered highlight responsive-table">
-													<thead>
-														<tr>
-															<th>Stock</th>
-															<th>Current Price</th>
-															<th>Change</th>
-														</tr>
-													</thead>
-													<tbody>
-														{{#each stocks}}
-														<tr>
-															<td>{{this.symbol}}</td>
-															<td>{{this.price}}</td>
-															<td>{{this.percentChange}}</td>
-														</tr>
-														{{/each}}
-													</tbody>
-												</table>
-											</span>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
+							</div>
+						</section>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
 	</div>
 </main>
 
 {{> footer}}
-
-
-<!--Cody's Code-->
-{{!-- <h2 class="capitalize">{{sector}}</h2>
-
-<a href="/stocks/sector/basic%20industries">Basic Industries</a>
-<a href="/stocks/sector/capital%20goods">Capital Goods</a>
-<a href="/stocks/sector/consumer%20durables">Consumer Durables</a>
-<a href="/stocks/sector/consumer%20non-durables">Consumer Non-Durables</a>
-<a href="/stocks/sector/consumer%20services">Consumer Services</a>
-<a href="/stocks/sector/energy">Energy</a>
-<a href="/stocks/sector/finance">Finance</a>
-<a href="/stocks/sector/health%20care">Health Care</a>
-<a href="/stocks/sector/miscellaneous">Miscellaneous</a>
-<a href="/stocks/sector/public%20utilities">Public Utilities</a>
-<a href="/stocks/sector/technology">Technology</a>
-<a href="/stocks/sector/transportation">Transportation</a>
-
-<br><br>
-
-
-<table>
-
-	<tr>
-		<th>Stock</th>
-		<th>Current Price</th>
-		<th>Change</th>
-	</tr>
-
-	{{#each stocks}}
-	<tr>
-		<td>{{this.symbol}}</td>
-		<td>{{this.price}}</td>
-		<td>{{this.percentChange}}</td>
-	</tr>
-	{{/each}}
-
-</table>
-
-<br>
-
-<a href="/dashboard">Back</a> --}}

@@ -4,13 +4,11 @@
 		<div class="user-view">
 			<div class="background"></div>
 			<a href="#user"><img class="circle" src="/img/headshot_placeholder.png"></a>
-
 			<span class="white-text name user-info">{{user.username}}</span>
 			<span class="white-text email user-info">{{user.email}}</span>
 			<div class="card-small">
-				<span class="white-text account user-info">$ 23,764.87</span>
+				<span class="white-text account user-info">{{portfolio.cash}}</span>
 			</div>
-
 		</div>
 	</li>
 
@@ -36,7 +34,7 @@
 	<ul>
 		<!--Dashboard Link-->
 		<li>
-			<a class="collapsible-header white-text waves-effect waves-green accent-4" href="/dashboard">DASHBOARD</a>
+			<a class="collapsible-header white-text waves-effect waves-green accent-4" href="/dashboard">HOME</a>
 		</li>
 		<ul class="collapsible collapsible-accordion">
 			<!--Portfolio Collapsible Link-->
@@ -51,34 +49,35 @@
 				</div>
 			</li>
 
-			<!--Portfolio Collapsible Link-->
+			<!--Stock Collapsible Link-->
 			<li>
 				<a class="collapsible-header white-text waves-effect waves-green accent-4">STOCKS</a>
 				<div class="collapsible-body">
 					<ul>
 						<li> <a class="white-text waves-effect waves-green accent-4" href="/stocks/movers/nasdaq">Top Movers</a></li>
-						<li> <a class="white-text waves-effect waves-green accent-4" href="/volume">Volume</a></li>
-						<li> <a class="white-text waves-effect waves-green accent-4" href="/marketcap">Market Cap</a></li>
+						<li> <a class="white-text waves-effect waves-green accent-4" href="/stocks/volume/nasdaq">Volume</a></li>
+						<li> <a class="white-text waves-effect waves-green accent-4" href="/stocks/marketcap/nasdaq">Market Cap</a></li>
 						<li> <a class="white-text waves-effect waves-green accent-4" href="/stocks/sector/basic%20industries">Sector</a></li>
 					</ul>
 				</div>
 			</li>
 		</ul>
-		<!--Contact Link-->
-		<li>
-			<a class="collapsible-header white-text waves-effect waves-green accent-4" href="/contact">CONTACT</a>
-		</li>
 	</ul>
-	<li class=" row footer-copyright">
-		<div class="social-icon">
-			<div class="col s10">
-				© 2018 Trading Grounds
-				<a class="text-lighten-4 right" href="https://github.com/Trading-Grounds">
-					<img src="/img/GitHub-Mark-Light-32px.png">
-				</a>
-			</div>
-		</div>
+	<!--Contact Link-->
+	<li>
+		<a class="collapsible-header white-text waves-effect waves-green accent-4" href="/contact">CONTACT</a>
 	</li>
+</ul>
+<li class=" row footer-copyright">
+	<div class="social-icon">
+		<div class="col s10">
+			© <span id="copyright-date">2018</span> Trading Grounds
+			<a class="text-lighten-4 right" href="https://github.com/Trading-Grounds">
+				<img src="/img/GitHub-Mark-Light-32px.png">
+			</a>
+		</div>
+	</div>
+</li>
 </ul>
 
 <ul class="right hide-on-med-and-down">

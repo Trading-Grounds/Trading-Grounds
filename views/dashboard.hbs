@@ -10,7 +10,7 @@
 
 	<!--Main Content-->
 	<main id="main-area">
-
+	
 		<!--Main Card-->
 		<div id="main-card" class="card-panel z-depth-5">
 
@@ -72,17 +72,17 @@
 										<tr class="stock-row" data-symbol="appl">
 											<td><span class="stock-symbol">APPL</span> <br> <span class="company-name">Apple</span></td>
 											<td><span class="share">$ 225.48</span> </td>
-											<td><span class="big-number">+ 0.20% </span> <br><span class="small-number">+0.04</span></td>
+											<td><span class="big-number">+ 0.20% </span> <br><span class="">+0.04</span></td>
 										</tr>
 										<tr class="stock-row" data-symbol="goog">
 											<td><span class="stock-symbol">GOOG</span> <br> <span class="company-name">Google</span></td>
 											<td><span class="share">$ 1203.00</span></td>
-											<td><span class="big-number">+ 0.48% </span><br><span class="small-number">+1.21</span></td>
+											<td><span class="big-number">+ 0.48% </span><br><span class="">+1.21</span></td>
 										</tr>
 										<tr class="stock-row" data-symbol="nke">
 											<td><span class="stock-symbol">NKE</span> <br> <span class="company-name">Nike</span></td>
 											<td><span class="share">$ 84.72</span></td>
-											<td><span class="big-number">+ 0.21%</span> <br><span class="small-number">+0.07</span></td>
+											<td><span class="big-number">+ 0.21%</span> <br><span class="">+0.07</span></td>
 										</tr>
 									</tbody>
 								</table>
@@ -119,13 +119,14 @@
 				</div>
 			</section>
 
-
 			<!--Pie Chart and Table-->
 			<div class="row">
 				<div class="col l6 m12 s12">
 					<div class="card-panel center-align z-depth-5">
+					
 						<span class="chart-graph">
-							<img id="pie" src="/img/pie-chart.png">
+								<div id="pie"></div>
+							{{!-- <img id="pie" src="/img/pie-chart.png"> --}}
 						</span>
 					</div>
 				</div>
@@ -180,5 +181,3 @@
 			</div>
 		</div>
 	</main>
-
-	{{> footer}}

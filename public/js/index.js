@@ -75,8 +75,76 @@ $(document).ready(function () {
 
 	$(document).on('click', '.stock-row', function () {
 		var symbol = $(this).data('symbol');
-		window.location.href = '/stock/' + symbol;
+		if(symbol && symbol != '') {
+			window.location.href = '/stock/' + symbol;
+		}
 	});
+	
+	/*=========== Stock Purchased ============*/
+	
+	$('#purchase').click(() => {
+		
+		var timestamp = moment().format('YYYY-MM-DD hh:mm:ss');
+		var data = {
+			symbol: $('#symbol').data('symbol').toUpperCase(),
+			name: $('#name').data('name'),
+			date_purchased: timestamp,
+			quantity: $('#shares').val().trim(),
+			price: $('#purchase').data('price'),
+			transaction_type: 'purchase',
+			transaction_date: timestamp,
+			asset_name: $('#name').data('name'),
+		}
+				
+		data.quantity == '' ? 0 : data.quantity;
+		
+		console.log(data);
+		$.post('/stock/buy/' + data.symbol, data, (res) => {
+			console.log(res.message);
+			window.location.href = '/dashboard';
+		});
+	});
+	
+	$('#shares').on('keyup', () => {
+		var price = $('#purchase').data('price');
+		var shares = $('#shares').val();
+		var cost = price * shares;
+		console.log(price, shares, cost);
+		$('#total').text(format(cost));
+	});
+	
+	var format = (val=0, dec=2, den='$ ') => {
+		var fixed = val.toFixed(dec);
+		var parts = fixed.toString().split('.');
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		return den + parts.join('.');
+	}
+
+	/////////////////////Code for the pie chart////////////////
+
+
+
+	google.charts.load("current", { packages: ["corechart"] });
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Sector', 'Percentage'],
+			['Technology', 33],
+			['Energy', 24],
+			['Finance', 18],
+			['Capital Goods', 14],
+			['Transportation', 11]
+		]);
+
+		var options = {
+			title: 'Percentage of Sector',
+			is3D: true,
+		};
+
+		var chart = new google.visualization.PieChart(document.getElementById('pie'));
+		chart.draw(data, options);
+	}
+
 
 	/////////////////AJAX CALLS TO API PAGES TO GET INFORMATIN FOR PLOTLY GRAPH//////////
 	/////////////////Added by Julie Hodges<---////////////////////////

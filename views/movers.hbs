@@ -3,8 +3,7 @@
 <body class="page-background" id="dashboard">
 
 	<header>
-		<h1>Top Movers</h1>
-		<h2>{{exchange}}</h2>
+		<h1>Top Movers &middot; <span>{{exchange}}</span></h1>
 	</header>
 
 	{{> sidenav}}
@@ -20,15 +19,15 @@
 						<div class="row center-align">
 							<div class="col s12">
 								<ul class="tabs transparent">
-									<li class="tab col s4"><a class="white-text"  href="#test1">NYSE</a></li>
-									<li class="tab col s4"><a class="white-text"  href="#test2">NASDAQ</a></li>
-									<li class="tab col s4"><a class="white-text"  href="#test3">AMEX</a></li>
+									<li class="tab col s4"><a class="white-text {{#if nyse}}active{{/if}}" target="_self" href="/stocks/movers/nyse">NYSE</a></li>
+									<li class="tab col s4"><a class="white-text {{#if nasdaq}}active{{/if}}" target="_self" href="/stocks/movers/nasdaq">NASDAQ</a></li>
+									<li class="tab col s4"><a class="white-text {{#if amex}}active{{/if}}" target="_self" href="/stocks/movers/amex">AMEX</a></li>
 								</ul>
 							</div>
 
-							<!--NYSE TABLES-->
+							<!--TABLES-->
 							<div id="test1" class="col s12">
-								<h3>NYSE Top Gainers</h3>
+								<h3>Top Gainers</h3>
 								<section>
 									<div class="row">
 										<div class="col l12 m12 s12">
@@ -43,30 +42,95 @@
 															</tr>
 														</thead>
 														<tbody>
-															<tr>
-																<td>{{topGainers.one.symbol}}</td>
-																<td>{{topGainers.one.price}}</td>
-																<td>{{topGainers.one.percentChange}}</td>
+
+															<tr class="stock-row" data-symbol="{{topGainers.one.symbol}}">
+																<td>
+																	<span class="stock-symbol">{{topGainers.one.symbol}}</span><br>
+																	<span class="company-name">{{topGainers.one.name}}</span>
+																</td>
+																<td>
+																	<span class="share">{{topGainers.one.price}}</span>
+																</td>
+																<td>
+																	<span class="big-number {{#if topGainers.one.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.one.gain}}+ {{/if}}{{topGainers.one.percentChange}}
+																	</span><br>
+																	<span class="small-number {{#if topGainers.one.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.one.gain}}+ {{/if}}{{topGainers.one.change}}
+																	</span>
+																</td>
 															</tr>
-															<tr>
-																<td>{{topGainers.two.symbol}}</td>
-																<td>{{topGainers.two.price}}</td>
-																<td>{{topGainers.two.percentChange}}</td>
+
+															<tr class="stock-row" data-symbol="{{topGainers.two.symbol}}">
+																<td>
+																	<span class="stock-symbol">{{topGainers.two.symbol}}</span><br>
+																	<span class="company-name">{{topGainers.two.name}}</span>
+																</td>
+																<td>
+																	<span class="share">{{topGainers.two.price}}</span>
+																</td>
+																<td>
+																	<span class="big-number {{#if topGainers.two.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.two.gain}}+ {{/if}}{{topGainers.two.percentChange}}
+																	</span><br>
+																	<span class="small-number {{#if topGainers.two.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.two.gain}}+ {{/if}}{{topGainers.two.change}}
+																	</span>
+																</td>
 															</tr>
-															<tr>
-																<td>{{topGainers.three.symbol}}</td>
-																<td>{{topGainers.three.price}}</td>
-																<td>{{topGainers.three.percentChange}}</td>
+
+															<tr class="stock-row" data-symbol="{{topGainers.three.symbol}}">
+																<td>
+																	<span class="stock-symbol">{{topGainers.three.symbol}}</span><br>
+																	<span class="company-name">{{topGainers.three.name}}</span>
+																</td>
+																<td>
+																	<span class="share">{{topGainers.three.price}}</span>
+																</td>
+																<td>
+																	<span class="big-number {{#if topGainers.three.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.three.gain}}+ {{/if}}{{topGainers.three.percentChange}}
+																	</span><br>
+																	<span class="small-number {{#if topGainers.three.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.three.gain}}+ {{/if}}{{topGainers.three.change}}
+																	</span>
+																</td>
 															</tr>
-															<tr>
-																<td>{{topGainers.four.symbol}}</td>
-																<td>{{topGainers.four.price}}</td>
-																<td>{{topGainers.four.percentChange}}</td>
+
+															<tr class="stock-row" data-symbol="{{topGainers.four.symbol}}">
+																<td>
+																	<span class="stock-symbol">{{topGainers.four.symbol}}</span><br>
+																	<span class="company-name">{{topGainers.four.name}}</span>
+																</td>
+																<td>
+																	<span class="share">{{topGainers.four.price}}</span>
+																</td>
+																<td>
+																	<span class="big-number {{#if topGainers.four.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.four.gain}}+ {{/if}}{{topGainers.four.percentChange}}
+																	</span><br>
+																	<span class="small-number {{#if topGainers.four.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.four.gain}}+ {{/if}}{{topGainers.four.change}}
+																	</span>
+																</td>
 															</tr>
-															<tr>
-																<td>{{topGainers.five.symbol}}</td>
-																<td>{{topGainers.five.price}}</td>
-																<td>{{topGainers.five.percentChange}}</td>
+
+															<tr class="stock-row" data-symbol="{{topGainers.five.symbol}}">
+																<td>
+																	<span class="stock-symbol">{{topGainers.five.symbol}}</span><br>
+																	<span class="company-name">{{topGainers.five.name}}</span>
+																</td>
+																<td>
+																	<span class="share">{{topGainers.five.price}}</span>
+																</td>
+																<td>
+																	<span class="big-number {{#if topGainers.five.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.five.gain}}+ {{/if}}{{topGainers.five.percentChange}}
+																	</span><br>
+																	<span class="small-number {{#if topGainers.five.gain}}gain{{else}}loss{{/if}}">
+																		{{#if topGainers.five.gain}}+ {{/if}}{{topGainers.five.change}}
+																	</span>
+																</td>
 															</tr>
 														</tbody>
 													</table>
@@ -76,7 +140,7 @@
 									</div>
 								</section>
 
-								<h3>NYSE Top Losers</h3>
+								<h3>Top Losers</h3>
 								<div class="card-panel center z-depth-5">
 									<span class="table">
 										<table class="centered highlight responsive-table">
@@ -88,211 +152,99 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>{{topLosers.one.symbol}}</td>
-													<td>{{topLosers.one.price}}</td>
-													<td>{{topLosers.one.percentChange}}</td>
+												<tr class="stock-row" data-symbol="{{topLosers.one.symbol}}">
+													<td>
+														<span class="stock-symbol">{{topLosers.one.symbol}}</span><br>
+														<span class="company-name">{{topLosers.one.name}}</span>
+													</td>
+													<td>
+														<span class="share">{{topLosers.one.price}}</span>
+													</td>
+													<td>
+														<span class="big-number {{#if topLosers.one.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.one.gain}}+ {{/if}}{{topLosers.one.percentChange}}
+														</span><br>
+														<span class="small-number {{#if topLosers.one.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.one.gain}}+ {{/if}}{{topLosers.one.change}}
+														</span>
+													</td>
 												</tr>
-												<tr>
-													<td>{{topLosers.two.symbol}}</td>
-													<td>{{topLosers.two.price}}</td>
-													<td>{{topLosers.two.percentChange}}</td>
+
+												<tr class="stock-row" data-symbol="{{topLosers.two.symbol}}">
+													<td>
+														<span class="stock-symbol">{{topLosers.two.symbol}}</span><br>
+														<span class="company-name">{{topLosers.two.name}}</span>
+													</td>
+													<td>
+														<span class="share">{{topLosers.two.price}}</span>
+													</td>
+													<td>
+														<span class="big-number {{#if topLosers.two.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.two.gain}}+ {{/if}}{{topLosers.two.percentChange}}
+														</span><br>
+														<span class="small-number {{#if topLosers.two.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.two.gain}}+ {{/if}}{{topLosers.two.change}}
+														</span>
+													</td>
 												</tr>
-												<tr>
-													<td>{{topLosers.three.symbol}}</td>
-													<td>{{topLosers.three.price}}</td>
-													<td>{{topLosers.three.percentChange}}</td>
+
+												<tr class="stock-row" data-symbol="{{topLosers.three.symbol}}">
+													<td>
+														<span class="stock-symbol">{{topLosers.three.symbol}}</span><br>
+														<span class="company-name">{{topLosers.three.name}}</span>
+													</td>
+													<td>
+														<span class="share">{{topLosers.three.price}}</span>
+													</td>
+													<td>
+														<span class="big-number {{#if topLosers.three.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.three.gain}}+ {{/if}}{{topLosers.three.percentChange}}
+														</span><br>
+														<span class="small-number {{#if topLosers.three.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.three.gain}}+ {{/if}}{{topLosers.three.change}}
+														</span>
+													</td>
 												</tr>
-												<tr>
-													<td>{{topLosers.four.symbol}}</td>
-													<td>{{topLosers.four.price}}</td>
-													<td>{{topLosers.four.percentChange}}</td>
+
+												<tr class="stock-row" data-symbol="{{topLosers.four.symbol}}">
+													<td>
+														<span class="stock-symbol">{{topLosers.four.symbol}}</span><br>
+														<span class="company-name">{{topLosers.four.name}}</span>
+													</td>
+													<td>
+														<span class="share">{{topLosers.four.price}}</span>
+													</td>
+													<td>
+														<span class="big-number {{#if topLosers.four.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.four.gain}}+ {{/if}}{{topLosers.four.percentChange}}
+														</span><br>
+														<span class="small-number {{#if topLosers.four.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.four.gain}}+ {{/if}}{{topLosers.four.change}}
+														</span>
+													</td>
 												</tr>
-												<tr>
-													<td>{{topLosers.five.symbol}}</td>
-													<td>{{topLosers.five.price}}</td>
-													<td>{{topLosers.five.percentChange}}</td>
+
+												<tr class="stock-row" data-symbol="{{topLosers.five.symbol}}">
+													<td>
+														<span class="stock-symbol">{{topLosers.five.symbol}}</span><br>
+														<span class="company-name">{{topLosers.five.name}}</span>
+													</td>
+													<td>
+														<span class="share">{{topLosers.five.price}}</span>
+													</td>
+													<td>
+														<span class="big-number {{#if topLosers.five.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.five.gain}}+ {{/if}}{{topLosers.five.percentChange}}
+														</span><br>
+														<span class="small-number {{#if topLosers.five.gain}}gain{{else}}loss{{/if}}">
+															{{#if topLosers.five.gain}}+ {{/if}}{{topLosers.five.change}}
+														</span>
+													</td>
 												</tr>
 											</tbody>
 										</table>
 									</span>
 								</div>
-							</div>
-
-							<!--NASDAQ TABLE-->
-							<div id="test2" class="col s12">
-								<div class="table">
-									<h3>NASDAQ Top Gainers</h3>
-									<div class="card-panel center z-depth-5">
-										<span class="table">
-											<table class="centered highlight responsive-table">
-												<thead>
-													<tr>
-														<th>Stock</th>
-														<th>Current Price</th>
-														<th>Change</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>{{topGainers.one.symbol}}</td>
-														<td>{{topGainers.one.price}}</td>
-														<td>{{topGainers.one.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.two.symbol}}</td>
-														<td>{{topGainers.two.price}}</td>
-														<td>{{topGainers.two.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.three.symbol}}</td>
-														<td>{{topGainers.three.price}}</td>
-														<td>{{topGainers.three.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.four.symbol}}</td>
-														<td>{{topGainers.four.price}}</td>
-														<td>{{topGainers.four.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.five.symbol}}</td>
-														<td>{{topGainers.five.price}}</td>
-														<td>{{topGainers.five.percentChange}}</td>
-													</tr>
-												</tbody>
-											</table>
-										</span>
-									</div>
-
-									<h3>NASDAQ Top Losers</h3>
-									<div class="card-panel center z-depth-5">
-										<span class="table">
-											<table class="centered highlight responsive-table">
-												<thead>
-													<tr>
-														<th>Stock</th>
-														<th>Current Price</th>
-														<th>Change</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>{{topLosers.one.symbol}}</td>
-														<td>{{topLosers.one.price}}</td>
-														<td>{{topLosers.one.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.two.symbol}}</td>
-														<td>{{topLosers.two.price}}</td>
-														<td>{{topLosers.two.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.three.symbol}}</td>
-														<td>{{topLosers.three.price}}</td>
-														<td>{{topLosers.three.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.four.symbol}}</td>
-														<td>{{topLosers.four.price}}</td>
-														<td>{{topLosers.four.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.five.symbol}}</td>
-														<td>{{topLosers.five.price}}</td>
-														<td>{{topLosers.five.percentChange}}</td>
-													</tr>
-												</tbody>
-											</table>
-										</span>
-									</div>
-								</div>
-							</div>
-
-							<!--AMEX TABLE-->
-							<div id="test3" class="col s12"><span class="table">
-									<h3>AMEX Top Gainers</h3>
-									<div class="card-panel center z-depth-5">
-										<span class="table">
-											<table class="centered highlight responsive-table">
-												<thead>
-													<tr>
-														<th>Stock</th>
-														<th>Current Price</th>
-														<th>Change</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>{{topGainers.one.symbol}}</td>
-														<td>{{topGainers.one.price}}</td>
-														<td>{{topGainers.one.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.two.symbol}}</td>
-														<td>{{topGainers.two.price}}</td>
-														<td>{{topGainers.two.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.three.symbol}}</td>
-														<td>{{topGainers.three.price}}</td>
-														<td>{{topGainers.three.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.four.symbol}}</td>
-														<td>{{topGainers.four.price}}</td>
-														<td>{{topGainers.four.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topGainers.five.symbol}}</td>
-														<td>{{topGainers.five.price}}</td>
-														<td>{{topGainers.five.percentChange}}</td>
-													</tr>
-												</tbody>
-											</table>
-										</span>
-									</div>
-
-									<h3>AMEX Top Losers</h3>
-									<div class="card-panel center z-depth-5">
-										<span class="table">
-											<table class="centered highlight responsive-table">
-												<thead>
-													<tr>
-														<th>Stock</th>
-														<th>Current Price</th>
-														<th>Change</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>{{topLosers.one.symbol}}</td>
-														<td>{{topLosers.one.price}}</td>
-														<td>{{topLosers.one.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.two.symbol}}</td>
-														<td>{{topLosers.two.price}}</td>
-														<td>{{topLosers.two.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.three.symbol}}</td>
-														<td>{{topLosers.three.price}}</td>
-														<td>{{topLosers.three.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.four.symbol}}</td>
-														<td>{{topLosers.four.price}}</td>
-														<td>{{topLosers.four.percentChange}}</td>
-													</tr>
-													<tr>
-														<td>{{topLosers.five.symbol}}</td>
-														<td>{{topLosers.five.price}}</td>
-														<td>{{topLosers.five.percentChange}}</td>
-													</tr>
-												</tbody>
-											</table>
-										</span>
-									</div>
 							</div>
 						</div>
 						</section>
@@ -303,92 +255,3 @@
 	</main>
 
 	{{> footer}}
-
-
-	<!--=========================================================Cody's Code=================================================================================-->
-
-	{{!-- <h2>{{exchange}}</h2>
-
-	<a href="/stocks/movers/nasdaq">NASDAQ</a> <a href="/stocks/movers/nyse">NYSE</a> <a href="/stocks/movers/amex">AMEX</a>
-	<br><br>
-
-	<h4>Top Gainers</h4>
-
-	<table>
-
-		<tr>
-			<th>Stock</th>
-			<th>Current Price</th>
-			<th>Change</th>
-		</tr>
-
-		<tr>
-			<td>{{topGainers.one.symbol}}</td>
-			<td>{{topGainers.one.price}}</td>
-			<td>{{topGainers.one.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topGainers.two.symbol}}</td>
-			<td>{{topGainers.two.price}}</td>
-			<td>{{topGainers.two.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topGainers.three.symbol}}</td>
-			<td>{{topGainers.three.price}}</td>
-			<td>{{topGainers.three.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topGainers.four.symbol}}</td>
-			<td>{{topGainers.four.price}}</td>
-			<td>{{topGainers.four.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topGainers.five.symbol}}</td>
-			<td>{{topGainers.five.price}}</td>
-			<td>{{topGainers.five.percentChange}}</td>
-		</tr>
-
-	</table>
-
-	<br>
-	<hr><br>
-
-	<h4>Top Losers</h4>
-
-	<table>
-
-		<tr>
-			<th>Stock</th>
-			<th>Current Price</th>
-			<th>Change</th>
-		</tr>
-
-		<tr>
-			<td>{{topLosers.one.symbol}}</td>
-			<td>{{topLosers.one.price}}</td>
-			<td>{{topLosers.one.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topLosers.two.symbol}}</td>
-			<td>{{topLosers.two.price}}</td>
-			<td>{{topLosers.two.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topLosers.three.symbol}}</td>
-			<td>{{topLosers.three.price}}</td>
-			<td>{{topLosers.three.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topLosers.four.symbol}}</td>
-			<td>{{topLosers.four.price}}</td>
-			<td>{{topLosers.four.percentChange}}</td>
-		</tr>
-		<tr>
-			<td>{{topLosers.five.symbol}}</td>
-			<td>{{topLosers.five.price}}</td>
-			<td>{{topLosers.five.percentChange}}</td>
-		</tr>
-
-	</table>
-
-	<a href="/dashboard">Back</a> --}}
