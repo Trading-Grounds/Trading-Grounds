@@ -4,7 +4,6 @@
 var yahooFinance = require("yahoo-finance");
 var moment = require("moment")
 
-
 module.exports = function (app) {
     app.get("/api/graph", function (req, res) {
         var today = moment().format()
