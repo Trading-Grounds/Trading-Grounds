@@ -2,9 +2,14 @@ var Company = require('../models').companies;
 // var User = require('../models').user;
 var yahooFinance = require('yahoo-finance');
 
+var stockController = require('../controllers/stocks.controller');
+
 module.exports = (app) => {
 	
-	//	GET Single Stock
+	//	GET Dashboard (Restricted Access)
+	app.get('/dashboard', isLoggedIn, stockController.dashboard);
+	
+	//	GET Single Stock (Restricted Access)
 	app.get('/stock/:symbol', isLoggedIn, (req, res) => {
 		
 		var symbol = req.params.symbol;
@@ -145,7 +150,7 @@ module.exports = (app) => {
 		});
 	});
 	
-	//	GET Stocks By Top Movers 
+	//	GET Stocks By Top Movers  (Restricted Access)
 	app.get('/stocks/movers/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
 // 		console.log('\n\n\n', exchange, '\n\n\n');
@@ -334,7 +339,7 @@ module.exports = (app) => {
 		});
 	});
 	
-	//	GET Stocks By Volume
+	//	GET Stocks By Volume (Restricted Access)
 	app.get('/stocks/volume/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
 		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
@@ -540,7 +545,7 @@ module.exports = (app) => {
 		});
 	});
 	
-	//	GET Stocks By Market Cap
+	//	GET Stocks By Market Cap (Restricted Access)
 	app.get('/stocks/marketcap/:exchange?', isLoggedIn, (req, res) => {
 		var exchange = req.params.exchange ? req.params.exchange.toUpperCase() : false;
 		if(!exchange || (exchange !== 'NASDAQ' && exchange !== 'NYSE' && exchange !== 'AMEX')) {
@@ -566,7 +571,7 @@ module.exports = (app) => {
 		});
 	});
 	
-	//	GET Stocks By Sector
+	//	GET Stocks By Sector (Restricted Access)
 	app.get('/stocks/sector/:sector?', isLoggedIn, (req, res) => {
 		var sector = req.params.sector;
 		

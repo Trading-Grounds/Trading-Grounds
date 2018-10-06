@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function (app) {
 
 // GET Homepage
-app.get('/', (req, res) => {
+app.get('/', isNotLoggedIn, (req, res) => {
   res.render('index');
 });
 
@@ -46,9 +46,17 @@ app.get('/contact', (req, res) => {
 });
 //====================================================================//
 
+//	Custom middleware for redirecting to dashboard if logged in
+function isNotLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return res.redirect('/dashboard');
+	} else {
+		return next();
+	}
+}
 
 // Render 404 page for any unmatched routes
 app.get("*", function (req, res) {
-  res.render("404");
+  res.render("dashboard", {user: req.user});
 });
 };
