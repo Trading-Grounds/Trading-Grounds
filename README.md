@@ -17,7 +17,7 @@ Trading Grounds was developed using:
 [Cody Thompson](https://github.com/cdt12988), [Dustin McGilvray](https://github.com/DustinMcGilvray), [Julie Hodges](https://github.com/jivinjules), and [Patrick Noonan](https://github.com/pnoonan32)
 
 ## Live Link on Heroku
-coming...
+Explore [Trading Grounds](https://radiant-coast-91135.herokuapp.com/stocks/movers/nasdaq).
 
 ![tg-screenshot](public/img/tg-screenshot.png)
 
