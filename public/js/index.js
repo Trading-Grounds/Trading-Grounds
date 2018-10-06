@@ -90,7 +90,7 @@ $(document).ready(function () {
 			name: $('#name').data('name'),
 			date_purchased: timestamp,
 			quantity: $('#shares').val().trim(),
-			price: $('#purchase').data('price'),
+			price: $('#price').data('price'),
 			transaction_type: 'purchase',
 			transaction_date: timestamp,
 			asset_name: $('#name').data('name'),
@@ -105,9 +105,34 @@ $(document).ready(function () {
 		});
 	});
 	
-	$('#shares').on('keyup', () => {
-		var price = $('#purchase').data('price');
-		var shares = $('#shares').val();
+	/*=========== Stock Sold =============*/
+	
+	$('#sell').click(() => {
+		
+		var timestamp = moment().format('YYYY-MM-DD hh:mm:ss');
+		var data = {
+			symbol: $('#symbol').data('symbol').toUpperCase(),
+			name: $('#name').data('name'),
+			date_purchased: timestamp,
+			quantity: $('#shares').val().trim(),
+			price: $('#price').data('price'),
+			transaction_type: 'sale',
+			transaction_date: timestamp,
+			asset_name: $('#name').data('name'),
+		}
+		
+		data.quantity == '' ? 0 : data.quantity;
+		
+		console.log(data);
+		$.post('/stock/sell/' + data.symbol, data, (res) => {
+			console.log(res.message);
+			window.location.href = '/dashboard';
+		});
+	});
+	
+	$('.quantity-input').on('keyup', () => {
+		var price = $('#price').data('price');
+		var shares = $('.quantity-input').val();
 		var cost = price * shares;
 		console.log(price, shares, cost);
 		$('#total').text(format(cost));
