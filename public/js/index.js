@@ -73,10 +73,19 @@ $(document).ready(function () {
 
 	/*=========== Stock Row Clicked ===========*/
 
-	$(document).on('click', '.stock-row', function () {
+	$(document).on('click', '.stock-row', function() {
 		var symbol = $(this).data('symbol');
 		if(symbol && symbol != '') {
 			window.location.href = '/stock/' + symbol;
+		}
+	});
+	
+	/*=========== Sector Row Clicked ==========*/
+	
+	$(document).on('click', '.sector-row', function() {
+		var sector = $(this).data('sector');
+		if(sector && sector != '') {
+			window.location.href = '/stocks/sector/' + sector;
 		}
 	});
 	
@@ -178,6 +187,18 @@ $(document).ready(function () {
 	google.charts.load("current", { packages: ["corechart"] });
 	google.charts.setOnLoadCallback(drawChart);
 	function drawChart() {
+		console.log('drawChart called...');
+/*
+		var data = google.visualization.arrayToDataTable([
+			['Sector', 'Percentage'],
+			['Technology', 330],
+			['Energy', 240],
+			['Finance', 180],
+			['Capital Goods', 140],
+			['Transportation', 110]
+		]);
+*/
+/*
 		var data = google.visualization.arrayToDataTable([
 			['Sector', 'Percentage'],
 			['Technology', 33],
@@ -186,14 +207,72 @@ $(document).ready(function () {
 			['Capital Goods', 14],
 			['Transportation', 11]
 		]);
+*/
 
+		$.get('/api/chart/sectors', function(sectors) {
+			console.log(sectors);
+			var testData = [
+				['Sector', 'Percentage'],
+				['Technology', 33],
+				['Energy', 24],
+				['Finance', 18],
+				['Capital Goods', 14],
+				['Transportation', 11]
+			];
+			console.log('-----');
+			console.log(testData);
+			var data = google.visualization.arrayToDataTable(sectors);
+// 			var data = google.visualization.arrayToDataTable(sectors);
+			var options = {
+				title: 'Percentage of Sector',
+				is3D: true,
+				legend: { position: 'none' },
+				backgroundColor: { fill:'transparent' },
+				height: '475',
+				titleTextStyle: {
+					color: 'ghostwhite',
+					fontName: "Sans-Serif",
+					fontSize: 32
+					
+				},
+				titlePosition: 'none'
+			};
+			var chart = new google.visualization.PieChart(document.getElementById('pie'));
+			chart.draw(data, options);
+		});
+/*
+
+		var data = google.visualization.arrayToDataTable([
+			['Sector', 'Investment'],
+			['Capital Goods', 3500],
+			['Consumer Services', 24220],
+			['Energy', 325],
+			['Finance', 1060],
+			['Health Care', 1070],
+			['Miscellaneous', 2915],
+			['Technology', 13830]
+		]);
+*/
+
+/*
 		var options = {
 			title: 'Percentage of Sector',
 			is3D: true,
+			legend: { position: 'none' },
+			backgroundColor: { fill:'transparent' },
+			height: '475',
+			titleTextStyle: {
+				color: 'ghostwhite',
+				fontName: "Sans-Serif",
+				fontSize: 32
+				
+			},
+			titlePosition: 'none'
 		};
 
 		var chart = new google.visualization.PieChart(document.getElementById('pie'));
 		chart.draw(data, options);
+*/
 	}
 
 

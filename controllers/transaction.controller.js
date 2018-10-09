@@ -224,6 +224,7 @@ transaction.recordPurchase = (req, res) => {
 		user_id: req.user.id
 	};
 	if((parseFloat(investment.price) * parseInt(investment.quantity)) > parseFloat(req.user.cash)) {
+		console.log('Insufficient funds for this purchase.');
 		return res.redirect('/stock/' + investment.symbol);
 	}
 	Investment.create(investment).then(() => {

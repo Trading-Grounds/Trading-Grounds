@@ -60,6 +60,7 @@
 			{{> accountinfo}}
 
 			<!--Table-->
+			<h2 class="center">Investments</h2>
 			<section>
 				<div class="row">
 					<div class="col l12 m12 s12">
@@ -104,6 +105,7 @@
 			</section>
 
 			<!--Pie Chart and Table-->
+			<h2 class="center">Diversification</h2>
 			<div class="row">
 				<div class="col l6 m12 s12">
 					<div class="card-panel center-align z-depth-5">
@@ -117,7 +119,7 @@
 				<div class="col l6 m12 s12">
 					<div class="card-panel z-depth-5">
 						<span class="">
-							<table class="centered highlight responsive-table">
+							<table class="centered highlight responsive-table sector-table">
 								<thead>
 									<tr>
 										<th>Sector</th>
@@ -127,34 +129,16 @@
 								</thead>
 
 								<tbody>
-									<tr>
-										<td>Technology</td>
-										<td>$ 15,350.00</td>
-										<td>33%</td>
+								{{#each sectors}}
+									<tr class="sector-row" data-sector="{{this.name}}">
+										<td>{{this.name}}</td>
+										<td>{{this.amount}}</td>
+										<td>{{this.percent}} %</td>
 									</tr>
-									<tr>
-										<td>Energy</td>
-										<td>$ 11,052.00</td>
-										<td>24%</td>
-									</tr>
-									<tr>
-										<td>Finance</td>
-										<td>$ 8289.00</td>
-										<td>18%</td>
-									</tr>
-									<tr>
-										<td>Capital Goods</td>
-										<td>$ 6447.00</td>
-										<td>14%</td>
-									</tr>
-									<tr>
-										<td>Transportation</td>
-										<td>$ 4913.00</td>
-										<td>11%</td>
-									</tr>
-									<tr>
+								{{/each}}
+									<tr class="sector-total">
 										<td>Total</td>
-										<td>$ 46,051.00</td>
+										<td>{{accountInfo.investments}}</td>
 										<td>100%</td>
 									</tr>
 								</tbody>

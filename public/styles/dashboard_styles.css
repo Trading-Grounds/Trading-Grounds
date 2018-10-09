@@ -380,6 +380,20 @@ h1 span {
 #webTicker-2 a {
 	color: ghostwhite;
 }
+.sector-table a {
+	color: ghostwhite;
+}
+.sector-row {
+	cursor: pointer;
+}
+.sector-total {
+	border-top: 2px solid ghostwhite;
+}
+.center {
+	text-align: center;
+	margin: 0;
+	
+}
 
 /*============================================Media Queries==========================================================*/
 
