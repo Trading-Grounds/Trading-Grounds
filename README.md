@@ -14,10 +14,10 @@ Trading Grounds was developed using:
 4. *Additional Technologies*: [Bootstrap](http://getbootstrap.com/), [Materialize CSS](https://materializecss.com/), [jQuery Web Ticker](https://maze.digital/webticker/), [Google Fonts](https://fonts.google.com/)
 
 ## Contributors
-[Cody Thompson](https://github.com/cdt12988), [Dustin McGilvray](https://github.com/DustinMcGilvray), [Julie Hodges](https://github.com/jivinjules), and [Patrick Noonan](https://github.com/pnoonan32)
+[Cody Thompson](https://github.com/cdt12988), [Dustin McGilvray](https://github.com/DustinMcGilvray), and [Julie Hodges](https://github.com/jivinjules)
 
 ## Live Link on Heroku
-coming...
+Explore [Trading Grounds](https://radiant-coast-91135.herokuapp.com/stocks/movers/nasdaq).
 
 ![tg-screenshot](public/img/tg-screenshot.png)
 
