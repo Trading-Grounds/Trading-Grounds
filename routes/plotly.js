@@ -170,8 +170,7 @@ module.exports = function (app) {
                     res.json(stocks)
                 }
             })
-    })
-
+    });
 
     //// TEST PURPOSES////
     app.get('/api/graph/test', function (req, res) {
