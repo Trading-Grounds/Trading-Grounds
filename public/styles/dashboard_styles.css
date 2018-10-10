@@ -392,7 +392,10 @@ h1 span {
 .center {
 	text-align: center;
 	margin: 0;
-	
+}
+.wl-remove {
+	position: relative;
+	z-index: 10;
 }
 
 /*============================================Media Queries==========================================================*/

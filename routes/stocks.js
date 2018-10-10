@@ -863,6 +863,7 @@ module.exports = (app) => {
 		});
 	});
 	
+	//	GET Sector Pie Chart Data
 	app.get('/api/chart/sectors', isLoggedIn, stockController.sectorChart);
 }
 

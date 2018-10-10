@@ -27,24 +27,37 @@
                                             <th>Name</th>
                                             <th>Share</th>
                                             <th>Gain/Loss</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="stock-row" data-symbol="appl">
-                                            <td><span class="stock-symbol">APPL</span> <br> <span class="company-name">Apple</span></td>
-                                            <td><span class="share">$ 225.48</span> </td>
-                                            <td><span class="big-number">+ 0.20% </span> <br><span class="small-number">+0.04</span></td>
-                                        </tr>
-                                        <tr class="stock-row" data-symbol="goog">
-                                            <td><span class="stock-symbol">GOOG</span> <br> <span class="company-name">Google</span></td>
-                                            <td><span class="share">$ 1203.00</span></td>
-                                            <td><span class="big-number">+ 0.48% </span><br><span class="small-number">+1.21</span></td>
-                                        </tr>
-                                        <tr class="stock-row" data-symbol="nke">
-                                            <td><span class="stock-symbol">NKE</span> <br> <span class="company-name">Nike</span></td>
-                                            <td><span class="share">$ 84.72</span></td>
-                                            <td><span class="big-number">+ 0.21%</span> <br><span class="small-number">+0.07</span></td>
-                                        </tr>
+                                    	{{#each watchlist}}
+                                    		<tr class="" data-symbol="{{this.symbol}}">
+                                    			<td>
+                                    				<span class="stock-symbol>{{this.symbol}}</span><br>
+                                    				<span class="company-name">{{this.name}}</span>
+                                    			</td>
+                                    			<td>
+                                    				<span class="share">{{this.price}}</span>
+                                    			</td>
+                                    			<td>
+                                    				<span class="big-number {{#if gain}}gain{{else}}loss{{/if}}">
+                                    					{{#if gain}}+ {{/if}}{{this.percentChange}}
+                                    				</span><br>
+                                    				<span class="small-number {{#if gain}}gain{{else}}loss{{/if}}">
+                                    					{{#if gain}}+ {{/if}}{{this.change}}
+                                    				</span>
+                                    			</td>
+                                    			<td>
+                                    				<a href="/stock/buy/{{this.symbol}}" class="btn-small green accent-4 buy-button">
+                                    					BUY
+                                    				</a>
+                                    				<span class="btn-small red accent-4 wl-remove" data-symbol="{{this.symbol}}">
+                                    					Remove From Watchlist
+                                    				</span>
+                                    			</td>
+                                    		</tr>
+                                    	{{/each}}
                                     </tbody>
                                 </table>
                             </span>

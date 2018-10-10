@@ -3,6 +3,8 @@ var yahooFinance = require('yahoo-finance');
 var Investment = require('../models').Investment;
 var Transaction = require('../models').Transaction;
 var User = require('../models').user;
+var Watchlist = require('../models').Watchlist;
+var validations = require('../functions/validations');
 
 var transaction = {};
 
@@ -213,6 +215,26 @@ transaction.getSell = (req, res, symbol) => {
 	});
 };
 
+transaction.getWatchlist = (req, res) => {
+	console.log('test0');
+	User.findOne({ where: { id: req.user.id }}).then(user => {
+		user.getWatchlists().then(watchlist => {
+			var stocks = [];
+			watchlist.forEach(listItem => {
+				stocks.push(listItem.symbol);
+			});
+			console.log('test1');
+			findStocksByAPI(stocks, [], 0, stocks => {
+				console.log('test2');
+				return res.render('watchlist', {
+					user: req.user,
+					watchlist: stocks
+				});
+			});
+		});
+	});
+};
+
 transaction.recordPurchase = (req, res) => {
 	console.log('\n\n\nData:', req.body, '\n\n\n');
 	var investment = {
@@ -225,7 +247,8 @@ transaction.recordPurchase = (req, res) => {
 	};
 	if((parseFloat(investment.price) * parseInt(investment.quantity)) > parseFloat(req.user.cash)) {
 		console.log('Insufficient funds for this purchase.');
-		return res.redirect('/stock/' + investment.symbol);
+		return res.json({ message: 'Insufficient funds for this purchase!', error: true });
+// 		return res.redirect('/stock/' + investment.symbol);
 	}
 	Investment.create(investment).then(() => {
 		var transaction = {
@@ -246,7 +269,11 @@ transaction.recordPurchase = (req, res) => {
 			
 				user.save().then(() => {
 					console.log('\nInvestment and Transaction recorded!\n');
-					res.json({ message: 'Transaction recorded!' });
+// 					res.json({ message: 'Transaction recorded!' });
+					return res.json({
+						message: req.body.quantity + ' ' + req.body.symbol + ' stock purchased for $ ' + cost.toFixed(2) + '!',
+						error: false
+					});
 				});
 			});			
 		});
@@ -272,7 +299,10 @@ transaction.recordSale = (req, res) => {
 			});
 			if(quantity > totalQuantity) {
 				console.log('Error: Shares sold cannot exceed shares owned');
-				return res.redirect('/stock/' + req.body.symbol);
+				return res.json({
+					message: 'Shares sold cannot exceed shares owned!',
+					error: true
+				});
 			}
 			var quantityRemaining = req.body.quantity;
 			
@@ -327,10 +357,45 @@ transaction.recordSale = (req, res) => {
 					
 					user.save().then(() => {
 						console.log('\n\nCash Updated\n\n');
-						return res.redirect('/dashboard'
-						);
+						return res.json({
+							message: req.body.quantity + ' ' + req.body.symbol + ' stock sold for $ ' + revenue.toFixed(2) + '!',
+							error: false
+						});
 					});
 				});
+			});
+		});
+	});
+};
+
+transaction.addToWatchlist = (req, res) => {
+	var symbol = req.body.symbol.trim().toUpperCase();
+	User.findOne({ where: { id: req.user.id }}).then(user => {
+		user.getWatchlists({ where: { symbol: symbol }}).then(alreadyExists => {
+			console.log('\n\n\n', alreadyExists);
+			if(!validations.is_empty(alreadyExists)) {
+				console.log('Stock is already on watchlist.');
+				res.json({ message: 'Stock is already on watchlist.', error: true });
+			} else {
+				Watchlist.create({
+					name: req.body.name,
+					symbol: symbol,
+					user_id: req.user.id
+				}).then(() => {
+					res.json({ message: symbol + ' added to watchlist!', error: false });
+				});
+			}
+		});
+	});
+};
+
+transaction.removeFromWatchlist = (req, res) => {
+	User.findOne({ where: { id: req.user.id }}).then(user => {
+		user.getWatchlists({ where: { symbol: req.body.symbol }, limit: 1}).then(watchlist => {
+			console.log('\n\n\nWatchlist:', watchlist, '\n\n\n');
+/* 			res.json({ message: 'Item removed from watchlist!' }); */
+			watchlist[0].destroy().then(() => {
+				res.json({ message: 'Item removed from watchlist!', error: false });
 			});
 		});
 	});
@@ -341,6 +406,61 @@ var format = (val=0, dec=2, den='$ ') => {
 	var parts = fixed.toString().split('.');
 	parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	return den + parts.join('.');
+};
+
+//	Uses Recursion to handle asynchonous API calls, returning an array of stock data into the callback function
+function findStocksByAPI(companies, stocks=[], count=0, cb) {
+	
+	if(count == 0) {
+		console.log('\nSearching API for ' + companies.length + ' companies...\n');
+	}
+	if(count < companies.length) {
+		
+		yahooFinance.quote({ symbol: companies[count], modules: ['summaryDetail', 'price' ]}, (err, quote) => {
+			if(err) {
+				console.log('Unable to find: ', companies[count].symbol);
+				count++;
+				findStocksByAPI(companies, stocks, count, cb)
+			} else {
+				var sd = quote.summaryDetail ? quote.summaryDetail : {};
+				
+				if(sd.ask == 0 && sd.bid == 0) {
+					var price = parseFloat(sd.previousClose);
+				} else if(sd.ask == 0) {
+					var price = parseFloat(sd.bid);
+				} else {
+					var price = parseFloat(sd.ask);
+				}
+				
+				var change = format(price - parseFloat(sd.previousClose));
+				if(parseFloat(change) < 0) {
+					var gain = false;
+				} else {
+					var gain = true;
+				}
+				
+				var data = {
+					price: format(price),
+					name: quote.price.shortName ? quote.price.shortName : '-',
+					symbol: quote.price.symbol ? quote.price.symbol : '-',
+					change: format(price - parseFloat(sd.previousClose)),
+					unformattedChange: (((price / parseFloat(sd.previousClose)) - 1) * 100),
+					percentChange: (((price / parseFloat(sd.previousClose)) - 1) * 100).toFixed(2) + ' %',
+					gain: (price - parseFloat(sd.previousClose) < 0) ? false : true,
+					volume: sd.volume ? sd.volume : 0
+				};
+				
+				stocks.push(data);
+				console.log(count + ' / ' + companies.length);
+				count++;
+				findStocksByAPI(companies, stocks, count, cb);
+			}
+		});
+	} else {
+		console.log(count + ' / ' + companies.length);
+		console.log('\nSearch Complete!\n');
+		cb(stocks);
+	}
 }
 
 module.exports = transaction;
