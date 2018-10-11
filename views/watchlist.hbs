@@ -13,7 +13,7 @@
         <!--Main Card-->
         <div id="main-card" class="card-panel z-depth-5">
 
-          {{> accountinfo}}
+          {{!-- {{> accountinfo}} --}}
 
             <!--Table-->
             <section>
@@ -33,7 +33,7 @@
                                     <tbody>
                                     	{{#each watchlist}}
                                     		<tr class="" data-symbol="{{this.symbol}}">
-                                    			<td>
+                                    			<td data-symbol="{{this.symbol}}>
                                     				<span class="stock-symbol">{{this.symbol}}</span><br>
                                     				<span class="company-name">{{this.name}}</span>
                                     			</td>
@@ -53,7 +53,7 @@
                                     					BUY
                                     				</a>
                                     				<span class="btn-small red accent-4 wl-remove" data-symbol="{{this.symbol}}">
-                                    					Remove From Watchlist
+                                    					 <i class="material-icons" title="Delete from Watchlist">delete_forever</i>
                                     				</span>
                                     			</td>
                                     		</tr>

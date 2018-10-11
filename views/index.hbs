@@ -5,7 +5,8 @@
   <nav class="no-shadows">
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">TG</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i id="hamburger-menu" class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a href="/login">Log in</a></li>
         <li><a href="/register">New User</a></li>
         <li><a href="/gettingstarted">Getting Started</a></li>
@@ -13,6 +14,23 @@
       </ul>
     </div>
   </nav>
+
+  <ul class="sidenav waves-effect waves-grey darkent-4" id="mobile-demo">
+    <li class="link-position"><a href="/login">Log in</a></li>
+    <li class="link-position"><a href="/register">New User</a></li>
+    <li class="link-position"><a href="/gettingstarted">Getting Started</a></li>
+    <li class="link-position"><a href="/contact">Contact</a></li>
+    <li class="row footer-copyright">
+      <div class="social-icon">
+        <div class="col s10">
+          © <span id="copyright-date">2018</span> Trading Grounds
+          <a class="text-lighten-4 right" href="https://github.com/Trading-Grounds">
+            <img src="/img/GitHub-Mark-Light-32px.png">
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
 
   <main>
     <div class="container">
@@ -31,4 +49,4 @@
     </div>
   </main>
 
-{{> footer}}
+  {{> footer}}

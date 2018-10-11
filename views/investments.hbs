@@ -13,7 +13,7 @@
         <!--Main Card-->
         <div id="main-card" class="card-panel z-depth-5">
 
-           {{> accountinfo}}
+            {{> accountinfo}}
 
             <!--Table-->
             <section>
@@ -35,21 +35,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	{{#each portfolio}}
-										<tr class="stock-row" data-symbol="{{this.symbol}}">
-											<td><span class="">{{this.symbol}}</span></td>
-											<td><span class="">{{this.name}}</span></td>
-											<td>{{this.shares}}</td>
-											<td>{{this.costsFormatted}}</td>
-											<td><span class="">{{this.price}}</span></td>
-											<td>{{this.investmentFormatted}}</td>
-											<td class="{{#if this.positive}}gain{{else}}loss{{/if}}">
-													{{#if this.positive}}+ {{/if}}{{this.gainLoss}} ({{#if this.positive}}+ {{/if}}{{this.percentGainLoss}})</td>
-											<td><a href="/stock/buy/{{this.symbol}}" class="btn-small green accent-4 buy-button">BUY</a>
-                                                <a href="/stock/sell/{{this.symbol}}" class="btn-small red accent-4 sell-button">SELL</a>
+                                        {{#each portfolio}}
+                                        <tr class="stock-row" data-symbol="{{this.symbol}}">
+                                            <td><span class="">{{this.symbol}}</span></td>
+                                            <td><span class="">{{this.name}}</span></td>
+                                            <td>{{this.shares}}</td>
+                                            <td>{{this.costsFormatted}}</td>
+                                            <td><span class="">{{this.price}}</span></td>
+                                            <td>{{this.investmentFormatted}}</td>
+                                            <td class="{{#if this.positive}}gain{{else}}loss{{/if}}">
+                                                {{#if this.positive}}+ {{/if}}{{this.gainLoss}} ({{#if this.positive}}+
+                                                {{/if}}{{this.percentGainLoss}})</td>
+                                            <td><a href="/stock/buy/{{this.symbol}}" class="btn-small green accent-4 buy-button">
+                                                    BUY
+                                                </a>
+                                                <a href="/stock/sell/{{this.symbol}}" class="btn-small yellow darken-3 sell-button">
+                                                   SELL
+                                                </a>
                                             </td>
-										</tr>
-										{{/each}}
+                                        </tr>
+                                        {{/each}}
                                     </tbody>
                                 </table>
                             </span>

@@ -1,22 +1,25 @@
 $(document).ready(function () {
 
+
+
 	//===========Script added by Dustin McGilvray for Front-End Events===============
-
-	// Webticker Function
-	$("#webTicker").webTicker({
-		height: '35px',
-		duplicate: true,
-		speed: 60
-	});
-
-	$("#webTicker-2").webTicker({
-		height: '35px',
-		duplicate: true,
-		speed: 60
-	});
 
 	//Initialize all Materialize Components
 	M.AutoInit();
+
+	//============Webticker Function=====================================
+
+			$("#webTicker").webTicker({
+				height: '35px',
+				duplicate: true,
+				speed: 60
+			});
+		
+			$("#webTicker-2").webTicker({
+				height: '35px',
+				duplicate: true,
+				speed: 60
+			});
 
 	//===========AJAX CALL FOR FINANCIAL NEWS============================
 
@@ -41,7 +44,7 @@ $(document).ready(function () {
 		var news9 = response.articles[8].title;
 		var news10 = response.articles[9].title;
 
-		//Adding News to Web Ticker
+		//============================Adding News to Web Ticker=================================
 		$("#finNews1").html(news1 + " | ").attr('href', response.articles[0].url);
 		$("#finNews2").html(news2 + " | ").attr('href', response.articles[1].url);
 		$("#finNews3").html(news3 + " | ").attr('href', response.articles[2].url);
@@ -188,29 +191,29 @@ $(document).ready(function () {
 	
 	/*============== Stock Ticker =============*/
 	
-/*
-		var ticker = $('#webTicker-2');
-		ticker.empty();
-		
-		$.get('/stocks/api/movers', (movers) => {
-			if(movers) {
-				var spacer = $('<li>').addClass('ticker-spacer');
-				movers.topGainers.
-				Object.keys(movers.topGainers).forEach((key) => {
 
-				  console.log(key, obj[key]);
+		// var ticker = $('#webTicker-2');
+		// ticker.empty();
+		
+		// $.get('/stocks/api/movers', (movers) => {
+		// 	if(movers) {
+		// 		var spacer = $('<li>').addClass('ticker-spacer');
+		// 		movers.topGainers.
+		// 		Object.keys(movers.topGainers).forEach((key) => {
+
+		// 		  console.log(key, obj[key]);
 				
-				});
-				var li = $('<li>').addClass('ticker-color');
-				var last = $('<li>').addClass('last ticker-color');
+		// 		});
+		// 		var li = $('<li>').addClass('ticker-color');
+		// 		var last = $('<li>').addClass('last ticker-color');
 				
-				li.text(movers.topGainers.one.symbol + ' (' + movers.topGainers.one.percentChange + ')');
-				last.text('----');
+		// 		li.text(movers.topGainers.one.symbol + ' (' + movers.topGainers.one.percentChange + ')');
+		// 		last.text('----');
 				
-				ticker.append(spacer, li, last);
-			}
-		});
-*/
+		// 		ticker.append(spacer, li, last);
+		// 	}
+		// });
+
 
 	/////////////////////Code for the pie chart////////////////
 
@@ -463,5 +466,6 @@ $(document).ready(function () {
 
 	//	
 	$('#copyright-date').text(moment().format('YYYY'));
+
 	
 });	//End of document.ready

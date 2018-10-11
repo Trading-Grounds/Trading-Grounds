@@ -300,6 +300,17 @@ h1, h5 {
     border-radius: 10px;
 }
 
+.watchlist-button {
+    position: absolute;
+    top: 70%;
+    right: 2.5%;
+}
+
+.buy-button, .sell-button {
+    font-weight: bold;
+    font-size: 18px;
+}
+
 
 /*=============================================End Stock.hbs Styling=================================================================*/
 
@@ -358,6 +369,15 @@ h1, h5 {
 .loss {
 	color: red;
 }
+
+/*===========================================Added by Dustin=======================================*/
+#message-display {
+font-size: 32px;
+}
+
+/*===========================================End Added by Dustin=======================================*/
+
+
 h1 {
 	margin: 0;
 	padding: 15px 0;
