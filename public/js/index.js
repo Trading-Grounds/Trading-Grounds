@@ -110,7 +110,13 @@ $(document).ready(function () {
 		console.log(data);
 		$.post('/stock/buy/' + data.symbol, data, (res) => {
 			console.log(res.message);
-			window.location.href = '/dashboard';
+			$('#message-display').text(res.message);
+			if(res.error) {
+				$('#message-display').addClass('loss');
+			} else {
+				$('#message-display').removeClass('loss');
+			}
+// 			window.location.href = '/dashboard';
 		});
 	});
 	
@@ -135,7 +141,8 @@ $(document).ready(function () {
 		console.log(data);
 		$.post('/stock/sell/' + data.symbol, data, (res) => {
 			console.log(res.message);
-			window.location.href = '/dashboard';
+			$('#message-display').text(res.message);
+// 			window.location.href = '/dashboard';
 		});
 	});
 	
@@ -153,6 +160,31 @@ $(document).ready(function () {
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 		return den + parts.join('.');
 	}
+	
+	/*============== Add to Watchlist =============*/
+	
+	$('#add-watchlist').click(function() {
+		var name = $('#card-name').data('name').trim();
+		var symbol = $('#card-symbol').data('symbol').trim().toUpperCase();
+		$.post('/watchlist/add/' + symbol, { name: name, symbol: symbol }, function(res) {
+			console.log(res.message);
+			$('#message-display').text(res.message);
+			if(res.error) {
+				$('#message-display').addClass('loss');
+			} else {
+				$('#message-display').removeClass('loss');
+			}
+		});
+	});
+	
+	/*============== Remove From Watchlist ============*/
+	
+	$(document).on('click', '.wl-remove', function() {
+		var symbol = $(this).data('symbol');
+		$.post('/watchlist/remove/' + symbol, { symbol: symbol }, function(res) {
+			location.reload();
+		});
+	});
 	
 	/*============== Stock Ticker =============*/
 	
