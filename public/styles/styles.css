@@ -39,6 +39,45 @@ nav {
   z-index: 0;
 }
 
+.sidenav {
+  background: #84bb65a1;
+}
+
+.sidenav li>a {
+  color: ghostwhite;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 32px;
+}
+
+#hamburger-menu {
+  color: ghostwhite;
+  height: 0;
+}
+
+.link-position {
+  padding-top: 35px;
+}
+
+.social-icon {
+  margin-bottom: 0;
+}
+
+.footer-copyright {
+  color: ghostwhite;
+  position: absolute;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+
+li.row.footer-copyright {
+  bottom: 50px;
+}
+
 .no-shadows {
   box-shadow: none !important;
 }
