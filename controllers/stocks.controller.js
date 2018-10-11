@@ -3,6 +3,7 @@ var yahooFinance = require('yahoo-finance');
 var moment = require('moment');
 
 var User = require('../models').user;
+var Company = require('../models').companies;
 
 var stocks = {};
 
@@ -10,40 +11,43 @@ stocks.dashboard = (req, res) => {
 	User.findOne({ where: { id: req.user.id }}).then(user => {
 		user.getInvestments({ order: [['purchase_date', 'ASC']]}).then(investments => {
 			var hasInvestments = investments ? true : false;
-			console.log('\n\n\nInvestments:', investments, '\n\n\n')
+// 			console.log('\n\n\nInvestments:', investments, '\n\n\n')
+
+			findSectors(investments, sectors => {
 			
-			getPortfolioData(investments, (portfolio) => {
-				if(!portfolio) { portfolio = {}; }
-				portfolio.cash = format(user.cash);
-				console.log('\n\n\nPortfolio:', portfolio, '\n\n\n')
-				
-				accountInfo = {
-					cash: format(user.cash),
-					unformattedCash: user.cash,
-					investmentsUnformatted: 0
-				};
-				
-				//	40,363.94
-				portfolio.forEach(obj => {
-					accountInfo.investmentsUnformatted += obj.investment;
-				});
-				
-				accountInfo.balanceUnformatted = accountInfo.investmentsUnformatted + parseFloat(accountInfo.unformattedCash);
-				accountInfo.balance = format(accountInfo.balanceUnformatted);
-				accountInfo.investments = format(accountInfo.investmentsUnformatted);
-				accountInfo.roiUnformatted = (((accountInfo.balanceUnformatted / 50000) - 1) * 100);
-				accountInfo.roi = accountInfo.roiUnformatted.toFixed(2) + ' %';
-				
-				var companies = ['AAPL', 'AMZN', 'MSFT', 'GOOG', 'FB'];
-				
-				findStocksByAPI(companies, [], 0, (stocks) => {
-					res.render('dashboard', {
-						user: req.user,
-						hasInvestments: hasInvestments,
-						investments: investments,
-						portfolio: portfolio,
-						accountInfo: accountInfo,
-						ticker: stocks
+				getPortfolioData(investments, (portfolio) => {
+					if(!portfolio) { portfolio = {}; }
+					portfolio.cash = format(user.cash);
+	// 				console.log('\n\n\nPortfolio:', portfolio, '\n\n\n')
+					
+					accountInfo = {
+						cash: format(user.cash),
+						unformattedCash: user.cash,
+						investmentsUnformatted: 0
+					};
+					
+					portfolio.forEach(obj => {
+						accountInfo.investmentsUnformatted += obj.investment;
+					});
+					
+					accountInfo.balanceUnformatted = accountInfo.investmentsUnformatted + parseFloat(accountInfo.unformattedCash);
+					accountInfo.balance = format(accountInfo.balanceUnformatted);
+					accountInfo.investments = format(accountInfo.investmentsUnformatted);
+					accountInfo.roiUnformatted = (((accountInfo.balanceUnformatted / 50000) - 1) * 100);
+					accountInfo.roi = accountInfo.roiUnformatted.toFixed(2) + ' %';
+					
+					var companies = ['AAPL', 'AMZN', 'MSFT', 'GOOG', 'FB'];
+					
+					findStocksByAPI(companies, [], 0, (stocks) => {
+						res.render('dashboard', {
+							user: req.user,
+							hasInvestments: hasInvestments,
+							investments: investments,
+							portfolio: portfolio,
+							accountInfo: accountInfo,
+							ticker: stocks,
+							sectors: sectors
+						});
 					});
 				});
 			});
@@ -89,7 +93,7 @@ stocks.investments = (req, res) => {
 			});
 		});
 	});
-}
+};
 
 stocks.transactions = (req, res) => {
 	User.findOne({ where: { id: req.user.id }}).then(user => {
@@ -113,7 +117,22 @@ stocks.transactions = (req, res) => {
 			});
 		});
 	});
-}
+};
+
+stocks.sectorChart = (req, res) => {
+	User.findOne({ where: { id: req.user.id }}).then(user => {
+		user.getInvestments({ order: [['purchase_date', 'ASC']]}).then(investments => {
+			findSectors(investments, sectors => {
+				var data = [['Sector', 'Investment']];
+				sectors.forEach(sector => {
+					data.push([sector.name, sector.amountUF]);
+				});
+				console.log(data);
+				res.json(data);
+			});
+		});
+	});
+};
 
 function getPortfolioData(investments, callback) {
 	if(!investments) { return false; }
@@ -293,6 +312,148 @@ function findStocksByAPI(companies, stocks=[], count=0, cb) {
 		console.log('\nSearch Complete!\n');
 		cb(stocks);
 	}
+}
+
+function findSectors(investments, callback) {
+	
+	var sectors = ['Basic Industries',
+		'Capital Goods',
+		'Consumer Durables',
+		'Consumer Non-Durables',
+		'Consumer Services',
+		'Energy',
+		'Finance',
+		'Health Care',
+		'Miscellaneous',
+		'Public Utilities',
+		'Technology',
+		'Transportation'
+		];
+	var sectorsCount = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	var totalInvestment = 0;
+		
+	function grabCompany(cb) {
+		if(count < investments.length) {
+			console.log('\n\n\n', count, investments[count], '\n\n\n')
+			Company.findOne({ where: {symbol: investments[count].symbol }}).then(company => {
+				if(company.sector != 'n/a') {
+					var index = sectors.indexOf(company.sector);
+					sectorsCount[index] += parseFloat(investments[count].price) * parseInt(investments[count].quantity);
+					totalInvestment += parseFloat(investments[count].price) * parseInt(investments[count].quantity);
+				} else {
+					sectorsCount[8] += parseFloat(investments[count].price) * parseInt(investments[count].quantity);
+					totalInvestment += parseFloat(investments[count].price) * parseInt(investments[count].quantity);
+				}
+				count++;
+				grabCompany(cb);
+			});
+		} else {
+			cb();
+		}
+	}
+	
+	var count = 0;
+	grabCompany(() => {
+		
+		var sector = [
+			{
+				name: sectors[0],
+				amount: format(sectorsCount[0]),
+				amountUF: sectorsCount[0],
+				percent: ((sectorsCount[0] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[1],
+				amount: format(sectorsCount[1]),
+				amountUF: sectorsCount[1],
+				percent: ((sectorsCount[1] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[2],
+				amount: format(sectorsCount[2]),
+				amountUF: sectorsCount[2],
+				percent: ((sectorsCount[2] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[3],
+				amount: format(sectorsCount[3]),
+				amountUF: sectorsCount[3],
+				percent: ((sectorsCount[3] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[4],
+				amount: format(sectorsCount[4]),
+				amountUF: sectorsCount[4],
+				percent: ((sectorsCount[4] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[5],
+				amount: format(sectorsCount[5]),
+				amountUF: sectorsCount[5],
+				percent: ((sectorsCount[5] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[6],
+				amount: format(sectorsCount[6]),
+				amountUF: sectorsCount[6],
+				percent: ((sectorsCount[6] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[7],
+				amount: format(sectorsCount[7]),
+				amountUF: sectorsCount[7],
+				percent: ((sectorsCount[7] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[8],
+				amount: format(sectorsCount[8]),
+				amountUF: sectorsCount[8],
+				percent: ((sectorsCount[8] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[9],
+				amount: format(sectorsCount[9]),
+				amountUF: sectorsCount[9],
+				percent: ((sectorsCount[9] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[10],
+				amount: format(sectorsCount[10]),
+				amountUF: sectorsCount[10],
+				percent: ((sectorsCount[10] / totalInvestment) * 100).toFixed(2)
+			},
+			{
+				name: sectors[11],
+				amount: format(sectorsCount[11]),
+				amountUF: sectorsCount[11],
+				percent: ((sectorsCount[11] / totalInvestment) * 100).toFixed(2)
+			}
+		];
+		
+		var results = [];
+		sectorsCount.forEach((num, i) => {
+			if(num > 0) {
+				results.push(sector[i]);
+			}
+		});
+		callback(results);
+/*
+			var sector = {
+				basicIndustries: { amount: format(sectorsCount[0]), amountUF: sectorsCount[0], name: sectors[0] },
+				capitalGoods: 0,
+				consumerDurable: 0,
+				consumerNondurable: 0,
+				consumerServices: 0,
+				energy: 0,
+				finance: 0,
+				healthCare: 0,
+				miscellaneous: 0,
+				publicUtilities: 0,
+				technology: 0,
+				transportation: 0
+			};
+*/
+	});
 }
 
 //	Formats numbers into custom strings (decimal places, commas, symbols, etc)

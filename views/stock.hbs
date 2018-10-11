@@ -19,15 +19,17 @@
 
 						<div id="stock" class="card sticky-action">
 							<div class="card-content center-align">
+								<div id="message-display"></div>
 								<span class="card-title activator"><i id="vert-dots" class="medium material-icons right">more_vert</i></span>								
-									<h1 id="card-symbol">{{symbol}}</h1>
-									<h5>{{name}}</h5>
+									<h1 id="card-symbol" data-symbol="{{symbol}}">{{symbol}}</h1>
+									<h5 id="card-name" data-name="{{name}}">{{name}}</h5>
 									<h2>{{price}}</h2>
 									<h4 class="{{#if gain}}gain{{else}}loss{{/if}}">{{change}} ({{percentChange}})</h4>								
 							</div>
 							<div class="card-action">
 								<a href="/stock/buy/{{symbol}}" class="btn-large green accent-4 buy-button">BUY</a>
 								<a href="/stock/sell/{{symbol}}" class="btn-large red accent-4 sell-button">SELL</a>
+								<span id="add-watchlist" class="btn-large blue accent-4 watchlist-button">Add to Watchlist</span>
 							</div>
 							<div class="card-reveal black">
 

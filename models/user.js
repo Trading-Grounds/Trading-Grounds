@@ -60,6 +60,9 @@ module.exports = (sequelize, Sequelize) => {
 		User.hasMany(models.Transaction, {
 			onDelete: 'cascade'
 		});
+		User.hasMany(models.Watchlist, {
+			onDelete: 'cascade'
+		});
 	};
 	
 	return User;

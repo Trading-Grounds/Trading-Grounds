@@ -27,6 +27,15 @@ module.exports = (app) => {
 	app.post('/stock/sell/:symbol', isLoggedIn, (req, res) => {
 		transaction.recordSale(req, res);
 	});
+	
+	//	GET Watchlist
+	app.get('/watchlist', isLoggedIn, transaction.getWatchlist);
+	
+	//	POST Add to Watchlist
+	app.post('/watchlist/add/:symbol', isLoggedIn, transaction.addToWatchlist);
+	
+	//	POST Remove from Watchlist
+	app.post('/watchlist/remove/:symbol', isLoggedIn, transaction.removeFromWatchlist);
 }
 
 //	Custom middleware for restricting access to protected views

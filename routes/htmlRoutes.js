@@ -19,9 +19,11 @@ app.get('/investments', (req, res) => {
 });
 */
 
+/*
 app.get('/watchlist', (req, res) => {
   res.render('watchlist');
 });
+*/
 
 /*
 app.get('/transactions', (req, res) => {

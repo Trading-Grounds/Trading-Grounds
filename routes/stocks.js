@@ -862,6 +862,9 @@ module.exports = (app) => {
 			});
 		});
 	});
+	
+	//	GET Sector Pie Chart Data
+	app.get('/api/chart/sectors', isLoggedIn, stockController.sectorChart);
 }
 
 //	Formats numbers into custom strings (decimal places, commas, symbols, etc)
